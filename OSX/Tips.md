@@ -1,9 +1,9 @@
-= Essentials =
+# Essentials
 
- * --(Truecrypt)-- [[https://pure-privacy.org/projects/|TrueCrypt forks]]
- * [[http://brew.sh/|Homebrew]]
-  * ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ([[https://www.macports.org/|Mac Ports]])
- * [[https://github.com/caskroom/homebrew-cask|brew Cask]]
+* ~~Truecrypt~~ [TrueCrypt forks](https://pure-privacy.org/projects/)
+* [Homebrew](http://brew.sh/)
+ * ``` ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"``` ([Mac Ports](https://www.macports.org/))
+ * [brew Cask](https://github.com/caskroom/homebrew-cask)
   * brew install caskroom/cask/brew-cask
  * Cask packages
   * brew cask install iterm2 karabiner google-chrome mactex texshop firefox thunderbird xquartz little-snitch gpgtools kaleidoscope keka virtualbox libreoffice macupdate-desktop evernote osxfuse 0xed shiftit adafruit-arduino
@@ -22,37 +22,37 @@
   * ableton-live-suite
   * adobe-cc*
   * audacity
-  * [[https://getfirefox.com|Firefox]]
-  * [[https://getthunderbird.com|Thunderbird]]
-  * [[http://ethanschoonover.com/solarized|Solarized iTerm2]]
-  * [[http://xquartz.macosforge.org/|Xquartz]]
-  * [[https://tug.org/mactex/|MacTeX]]
-  * [[http://pages.uoregon.edu/koch/texshop/installing.html|TeXShop]]
-  * [[https://www.obdev.at/products/littlesnitch/index.html|Little Snitch]]
-  * [[https://gpgtools.org|GPGTools]]
-  * [[https://github.com/fikovnik/ShiftIt/releases|ShiftIt]]
-  * [[https://www.iterm2.com/|iTerm]]
-  * [[http://www.kekaosx.com/en/|Keka]]
-  * [[https://www.google.com/chrome/|Chrome]]
-  * [[http://www.kaleidoscopeapp.com/|Kaleidoscope]]
-  * [[https://virtualbox.org|Virtualbox]]
-  * [[https://www.libreoffice.org/download|LibreOffice]]
-  * [[http://www.macupdate.com/desktop|MacUpdate]]
-  * [[https://pqrs.org/osx/karabiner/|Karabiner]]
-   * [[https://github.com/pauloconnor/das_keyboard|dasKeyboard mapping]]
+  * [Firefox](https://getfirefox.com)
+  * [Thunderbird](https://getthunderbird.com)
+  * [Solarized iTerm2](http://ethanschoonover.com/solarized)
+  * [Xquartz](http://xquartz.macosforge.org/)
+  * [MacTex](https://tug.org/mactex/)
+  * [TexXShop](http://pages.uoregon.edu/koch/texshop/installing.html)
+  * [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
+  * [GPGTools](https://gpgtools.org)
+  * [ShiftIt](https://github.com/fikovnik/ShiftIt/releases)
+  * [iTerm2](https://www.iterm2.com/)
+  * [Keka](http://www.kekaosx.com/en/)
+  * [Google Chrome](https://www.google.com/chrome/)
+  * [Kaleidoscope](http://www.kaleidoscopeapp.com/)
+  * [Virtualbox](https://virtualbox.org)
+  * [LibreOffice](https://www.libreoffice.org/download)
+  * [MacUpdate](http://www.macupdate.com/desktop)
+  * [Karabiner](https://pqrs.org/osx/karabiner/)
+   * [dasKeyboard mapping](https://github.com/pauloconnor/das_keyboard)
  * Fonts
-  * [[https://github.com/adobe-fonts/source-code-pro/releases/tag/1.017R|Source Code Pro]]
-  * [[https://github.com/powerline/fonts/tree/master/InconsolataDz|Inconsolata-Dz]]
- * [[http://synergy-project.org/|Synergy]]
- * [[https://itunes.apple.com/en/app/xcode/id497799835?mt=12|Xcode]]
- * [[https://spellchecker.lu|Spellchecker.lu]]
- * --(FlashPlayer)--
- * [[OSX mutt]]
- * [[https://itunes.apple.com/us/app/regexrx/id498370702?mt=12|RegExRX]]
- * [[https://github.com/zdia/gorilla/wiki|PasswordGorilla]] or [[http://pwsafe.info/mac/|pwSafe]]
- * --(AppFresh)--
- * [[https://www.sublimetext.com/3|Sublime Text 3]]
-  * [[https://packagecontrol.io/installation#st3|Package Control]]
+  * [Source Code Pro](https://github.com/adobe-fonts/source-code-pro/releases/tag/1.017R)
+  * [Inconsolata-Dz](https://github.com/powerline/fonts/tree/master/InconsolataDz)
+ * [Synergy](http://synergy-project.org/)
+ * [Xcode](https://itunes.apple.com/en/app/xcode/id497799835?mt=12)
+ * [Spellchecker.lu](https://spellchecker.lu)
+ * ~~FlashPlayer~~
+ * [OSX mutt internal link](OSX mutt)
+ * [RegExRX](https://itunes.apple.com/us/app/regexrx/id498370702?mt=12)
+ * [PasswordGorilla](https://github.com/zdia/gorilla/wiki) or [pwSafe](http://pwsafe.info/mac/)
+ * ~~AppFresh~~
+ * [Sublime Text 3](https://www.sublimetext.com/3)
+  * [Package Control](https://packagecontrol.io/installation#st3)
   * ColorPicker
   * Solarized (braver)
   * LatexTools
@@ -62,31 +62,31 @@
   * LiveReload
   * WordCount
 
-== Development ==
+## Development
 
  * brew install android-sdk go jq phantomjs python3 mercurial 
 
-=== pygame ===
+### pygame
  * brew install sdl sdl_image sdl_mixer sdl_ttf portmidi
  * brew tap homebrew/headonly
  * brew install --HEAD smpeg
 
-==== Fixing packages ====
+#### Fixing packages
 
-{{{
+```
 export PKG_S="sdl sdl_image sdl_mixer sdl_ttf smpeg portmidi"
 for PKG in `echo ${PKG_S}`; do
    brew rm ${PKG}
    brew rm $(join <(brew leaves) <(brew deps ${PKG}))
 done 
-}}}
+```
 
-= Potentially obsolete =
-== Mac Ports ==
+# Potentially obsolete
+## Mac Ports
 
  * port install pidgin pidgin-otr
   * brew install pidgin
 
-== Tier 2 ==
- * [[http://ww2.unime.it/flr/tftpserver|tftpserver]]
+## Tier 2
+ * [tftpserver](http://ww2.unime.it/flr/tftpserver)
   * brew cask install tftpserver
