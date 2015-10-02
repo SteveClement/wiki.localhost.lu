@@ -47,7 +47,7 @@
  * [Xcode](https://itunes.apple.com/en/app/xcode/id497799835?mt=12)
  * [Spellchecker.lu](https://spellchecker.lu)
  * ~~FlashPlayer~~
- * [OSX mutt internal link](OSX mutt)
+ * [OSX mutt](mutt.md)
  * [RegExRX](https://itunes.apple.com/us/app/regexrx/id498370702?mt=12)
  * [PasswordGorilla](https://github.com/zdia/gorilla/wiki) or [pwSafe](http://pwsafe.info/mac/)
  * ~~AppFresh~~
