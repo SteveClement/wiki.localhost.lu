@@ -12,7 +12,7 @@ You can pay in: Paypal, Cash, Wire transfer (IBAN/BIC foo), hej, even Western Un
 
 To get in touch, either:
 
- * Twitter - [[https://twitter.com/SteveClement|@SteveClement]]
+ * Twitter - [@SteveClement](https://twitter.com/SteveClement)
  * Phone   - +352 20 333 66
  * E-Mail  - steve <atdt> localhost.lu
 
