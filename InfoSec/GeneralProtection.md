@@ -339,6 +339,7 @@ ln -s ~/truecrypt1/dotfiles/.thunderbird/signons.txt signons.txt
 ln -s ~/truecrypt1/dotfiles/.thunderbird/signons3.txt signons3.txt
 
 cd ~/.firefox/*.default
+rm prefs.js
 ln -s ~/truecrypt1/dotfiles/.firefox/cookies.sqlite cookies.sqlite
 ln -s ~/truecrypt1/dotfiles/.firefox/cert8.db cert8.db
 ln -s ~/truecrypt1/dotfiles/.firefox/key3.db key3.db
@@ -350,7 +351,7 @@ NoScriptSTS.db
 cert_override.txt
 ```
 
-# For your Unified Setup pleasures
+# For your Unified Setup pleasures, Thunderbird abook
 
 ```
 ln -s ~/truecrypt1/dotfiles/.thunderbird/abook.mab abook.mab

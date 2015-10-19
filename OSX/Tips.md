@@ -6,14 +6,16 @@
  * [brew Cask](https://github.com/caskroom/homebrew-cask)
   * brew install caskroom/cask/brew-cask
  * Cask packages
-  * brew cask install iterm2 karabiner google-chrome mactex texshop firefox thunderbird xquartz little-snitch gpgtools kaleidoscope keka virtualbox libreoffice macupdate-desktop evernote osxfuse 0xed shiftit adafruit-arduino
+  * brew cask install iterm2 karabiner google-chrome mactex texshop firefox thunderbird xquartz little-snitch gpgtools kaleidoscope keka virtualbox libreoffice macupdate-desktop evernote osxfuse 0xed shiftit adafruit-arduino viber sdformatter
  * Homebrew packages
-  * brew install wget htop-osx tmux irssi zsh rbenv nmap ext2fuse ext4fuse csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate
+  * brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate
+  * chsh -s /bin/zsh
+  * sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  * ext2fuse/ext4fuse now in a tap (homebrew/fuse/ext2fuse_ext4fuse)
   * brew install --with-libotr bitlbee
   * brew tap SteveClement/devel
   * brew install --with-sidebar-patch --with-trash-patch --with-s-lang --with-pgp-combined-crypt-hook-patch mutt-patched
   * brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks
- * chsh -s /bin/zsh
  * gem install tmuxinator
  * Potentially casked
   * 1password
@@ -27,7 +29,7 @@
   * [Solarized iTerm2](http://ethanschoonover.com/solarized)
   * [Xquartz](http://xquartz.macosforge.org/)
   * [MacTex](https://tug.org/mactex/)
-  * [TexXShop](http://pages.uoregon.edu/koch/texshop/installing.html)
+  * [TexShop](http://pages.uoregon.edu/koch/texshop/installing.html)
   * [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
   * [GPGTools](https://gpgtools.org)
   * [ShiftIt](https://github.com/fikovnik/ShiftIt/releases)
@@ -70,6 +72,10 @@
  * brew install sdl sdl_image sdl_mixer sdl_ttf portmidi
  * brew tap homebrew/headonly
  * brew install --HEAD smpeg
+
+### cocos2d-python
+ * mkdir ~/.venv && pyvenv ~/.venv/cocos2d
+ * pip install cocos2d
 
 #### Fixing packages
 
