@@ -1,5 +1,14 @@
 # Sublime 2/3
 
+## subl
+
+To use subl (the CLI for Sublime) make a symlink
+
+```
+mkdir ~/bin
+ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+```
+
 ## ~Library/Application Support/Sublime\ Text\ 3/Packages/User
 ### Preferences.sublime-settings
 
