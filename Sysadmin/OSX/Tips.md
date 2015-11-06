@@ -87,6 +87,22 @@ for PKG in `echo ${PKG_S}`; do
 done 
 ```
 
+## Hiding your Desktop
+
+To hide the Desktop on OSX 10.10, 10.11 open a Terminal and type the following
+
+```
+defaults write com.apple.finder CreateDesktop false
+killall Finder
+```
+
+To make it visible again just flip **false** to **true**
+
+```
+defaults write com.apple.finder CreateDesktop true
+killall Finder
+```
+
 # Potentially obsolete
 ## Mac Ports
 
