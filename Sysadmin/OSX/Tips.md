@@ -45,6 +45,9 @@
  * Fonts
   * [Source Code Pro](https://github.com/adobe-fonts/source-code-pro/releases/tag/1.017R)
   * [Inconsolata-Dz](https://github.com/powerline/fonts/tree/master/InconsolataDz)
+  * git clone git@github.com:powerline/fonts.git
+  * cd fonts
+  * ./install.sh
  * [Synergy](http://synergy-project.org/)
  * [Xcode](https://itunes.apple.com/en/app/xcode/id497799835?mt=12)
  * [Spellchecker.lu](https://spellchecker.lu)
