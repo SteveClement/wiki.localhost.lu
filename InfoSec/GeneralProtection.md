@@ -27,7 +27,7 @@ Under MacOSX this can be achieved in the SystemPreference -> Security -> FileVau
 Also here you need to have a strong Login Password here because it unlocks your keychain as well as your encrypted home (or Disk).
 
  * One drawback is the public ssh key not being available anymore for remote logins if the encrypted store is not mounted. A work around would be to change the Value: *AuthorizedKeysFile* in your *sshd_config* file
- * Another downside is performance if you have Virtual Machines or other Disk IO Intesive tasks and this is platform independent. This might become less crucial in the future once Hardware crypto is used more thoroughly. A workaround is to put your VM on an external Drive. In my experience USB 2.0 is not performant enough but with USB 3.0 more or less widely available this is an interesting alternative. 
+ * Another downside is performance if you have Virtual Machines or other Disk IO Intesive tasks and this is platform independent. This might become less crucial in the future once Hardware crypto is used more thoroughly. A workaround is to put your VM on an external Drive. In my experience USB 2.0 is not performant enough but with USB 3.0 more or less widely available this is an interesting alternative.
 
 ## Locate your valuables
 
@@ -93,34 +93,34 @@ Yes I do save my Passwords from Various web sites on my Laptop. Everyone has mor
 
 You have a few options here
 
- * A cross-platform Password Manager like [[http://github.com/zdia/gorilla/wiki|PasswordGorilla]]
- * A [[http://www.passwordcard.org/en|password card]]
+ * A cross-platform Password Manager like [PasswordGorilla](http://github.com/zdia/gorilla/wiki)
+ * A [password card](http://www.passwordcard.org/en)
 
 I would recommend a cross between the two. Make sure you have your Password card, once in use, always in a safe place, e.g: your wallet or your knickers.
 
 
-## Choose your Encryption Tool(s) ##
+## Choose your Encryption Tool(s)
 
- * TrueCrypt but be aware of the Security implications: http://en.wikipedia.org/wiki/TrueCrypt#Security_concerns
+ * TrueCrypt but be aware of the [Security implications](http://en.wikipedia.org/wiki/TrueCrypt#Security_concerns)
 
 For the subsequent encryption I chose TrueCrypt.
-Some purist will yell traitor BUT I need something that works under Linux, Windows and Mac. TrueCrypt can cope with all of them even if not the securest.
+Some purist will yell traitor BUT I need something that works under Linux, Windows and Mac. TrueCrypt can cope with all of them even if not the most secure.
 
 After FAT32 Formatting a 2Gig USB Disk you can do entire Disk encryption on that Drive and depending on how Paranoia you are you might want to investigate what a Hidden Partition is.
 
 /!\ vFAT/FAT32 was a BAD choice(tm) - So I moved to an ext3/4 Filesystem with MacFuse under OSX (permission et al.)
 
-Also there are Evil Maids that try to get to your Passphrase:
+Also there are Evil Maids that try to get to your Pass-phrase:
 
- * [[http://theinvisiblethings.blogspot.com/2009/10/evil-maid-goes-after-truecrypt.html|Evil Maid goes after TrueCrypt]]
+ * [Evil Maid goes after TrueCrypt](http://theinvisiblethings.blogspot.com/2009/10/evil-maid-goes-after-truecrypt.html)
 
 
 ## ext3/4 on MacOS X
 
-Download [[http://sourceforge.net/projects/fuse-ext2/|fuse-ext2]]
-Also make sure you have [[https://code.google.com/p/macfuse/|MacFUSE]] otherwise fuse-ext2 wont work.
+Download [fuse-ext2](http://sourceforge.net/projects/fuse-ext2/)
+Also make sure you have [MacFUSE](https://code.google.com/p/macfuse/) otherwise fuse-ext2 wont work.
 
-Alternatively you can use MacPorts:
+Alternatively you can use **MacPorts**:
 
 ```
  sudo port install ext2fuse
@@ -128,13 +128,13 @@ Alternatively you can use MacPorts:
 
 Once this is done, you can mount your Linux formatted TrueCrypt Disk but read-only by default only.
 
-You need to add the "rw+" option in /System/Library/Filesystems/fuse-ext2.fs/fuse-ext2.util 
+You need to add the "rw+" option in /System/Library/Filesystems/fuse-ext2.fs/fuse-ext2.util
 Find the OPTIONS variable and make it look like:
 
 OPTIONS="auto_xattr,defer_permissions,rw+"
 
 ```
- vi /System/Library/Filesystems/fuse-ext2.fs/fuse-ext2.util 
+ vi /System/Library/Filesystems/fuse-ext2.fs/fuse-ext2.util
 ```
 
 Permissions need to be fixed under MacOSX OR a UserGroup needs to be added.
