@@ -2,7 +2,7 @@
 
 I frequently need to recompile stuff under Ubuntu.
 
-My favorite ./configure line so far is this one:
+My **favorite** ./configure line so far is this one:
 
 ```
  ./configure  --datadir=/usr --prefix=/usr --localstatedir=/var --sysconfdir=/etc
@@ -10,16 +10,25 @@ My favorite ./configure line so far is this one:
 
 If you get:
 
+```
  warning: macro `AM_GCONF_SOURCE_2' not found in library
+```
 
 all you need to do is:
 
+```
  sudo apt-get install libgconf2-dev
+```
 
 Thanks to:
 
-Milinda Pathirage http://mpathirage.com/fixing-macro-am_gconf_source_2-not-found-in-library-in-ubuntu/
+[Milinda Pathirage](http://mpathirage.com/fixing-macro-am_gconf_source_2-not-found-in-library-in-ubuntu/)
 
+# Adding **add-apt-repository**
+
+```
+sudo apt-get install software-properties-common
+```
 
 # Clean install
 
