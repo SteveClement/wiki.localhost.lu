@@ -89,3 +89,14 @@ sudo apt-get update
 sudo apt-get install sublime-text-installer
 Source: https://gist.github.com/dantoncancella/4977978
 ```
+
+# git
+## Upgrade to more recent git
+
+```
+sudo apt-get remove git
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+git --version
+```
