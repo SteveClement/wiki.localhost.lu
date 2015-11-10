@@ -32,6 +32,35 @@ git config --bool core.bare true
 git clone ssh://aggli/home/steve/code/gpg
 ```
 
+## Syncing a fork
+
+### Configuring a remote for a fork
+
+[Source](https://help.github.com/articles/configuring-a-remote-for-a-fork/)
+
+Make sure you see an upstream in the remotes
+
+```
+git remote -v
+```
+
+If not add it
+
+```
+git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+```
+
+### Sync
+
+[Source](https://help.github.com/articles/syncing-a-fork/)
+
+```
+git fetch upstream
+git checkout master
+git merge upstream/master
+git push
+```
+
 ## Ignore permissions
 
 ```
