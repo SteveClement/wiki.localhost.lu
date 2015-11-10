@@ -32,6 +32,33 @@ git config --bool core.bare true
 git clone ssh://aggli/home/steve/code/gpg
 ```
 
+## Ignore permissions
+
+```
+git config core.fileMode false
+```
+
+From git-config(1):
+
+```
+   core.fileMode
+       If false, the executable bit differences between the index and the
+       working copy are ignored; useful on broken filesystems like FAT.
+       See git-update-index(1). True by default.
+```
+
+The -c flag can be used to set this option for one-off commands:
+
+```
+git -c core.fileMode=false diff
+```
+
+And the --global flag will make it be the default behavior for the logged in user.
+
+```
+git config --global core.fileMode false
+```
+
 ## git ressources
 
 [git Ready](http://gitready.com)
