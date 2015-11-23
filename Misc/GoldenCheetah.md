@@ -32,7 +32,7 @@ http://goldencheetah.org/developers-guide.html
 sudo apt-get install git-core libqt4-dev libboost-dev libqt4-sql-sqlite
 ```
 
-/!\ Missing -lqwt not a cadidate: libqwt5-qt3-dev
+:warning: Missing -lqwt not a cadidate: libqwt5-qt3-dev
 
 ## liboauth
 

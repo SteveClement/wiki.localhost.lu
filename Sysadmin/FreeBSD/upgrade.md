@@ -79,7 +79,7 @@ So do as the man says: cd /usr/src && make kernel
 
 The system must be rebooted with the newly installed kernel before continuing.
 
-/!\ And this is where it begins to be important!
+:warning: And this is where it begins to be important!
 
 If you reboot and you are STILL running 9.1 DO NOT PROCEED!
 
@@ -106,7 +106,7 @@ So do as the man says: cd /usr/src && make kernel
 
 The system must be rebooted with the newly installed kernel before continuing.
 
-/!\ And this is where it begins to be important! 
+:warning: And this is where it begins to be important! 
 
 If you reboot and you are STILL running 8.2 DO NOT PROCEED!
 
@@ -150,7 +150,7 @@ I had massive problems with that upgrade and advise everyone to be very careful 
 
 The system must be rebooted with the newly installed kernel before continuing.
 
-/!\ And this is where it begins to be important! 
+:warning: And this is where it begins to be important! 
 
 If you reboot and you are STILL running 7.2 DO NOT PROCEED!
 

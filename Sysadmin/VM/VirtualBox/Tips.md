@@ -50,7 +50,7 @@ VBoxManage storageattach ${VBOX_NAME} --storagectl "IDE Controller" --port 0 --d
 
 ### Enable VNC access
 
-/!\ This will give VNC access without password
+:warning: This will give VNC access without password
 
 ```
 VBoxHeadless --startvm ${VBOX_NAME} -n -m 5900

@@ -846,7 +846,7 @@ cp -p /usr/local/etc/rc.d/isc-dhcpd.sh /home/bup/update/isc-dhcp3/isc-dhcpd.sh-`
 portupgrade -Rri net/isc-dhcp3-server && /usr/local/etc/rc.d/isc-dhcpd.sh restart ; /usr/local/etc/rc.d/isc-dhcpd.sh status 
 ```
 
-/!\ IF CHROOT ENABLED PORTUPGRADE WILL FAIL!!! UNCOMMENT THE TOUCH LINE FROM create-data-files IN THE MAKEFILE!!!
+:warning: IF CHROOT ENABLED PORTUPGRADE WILL FAIL!!! UNCOMMENT THE TOUCH LINE FROM create-data-files IN THE MAKEFILE!!!
 
 # apache13 to apache2
 build apache2 first and make backups of everything. Make sure your root stays: /home/apache make deinstall old apache, make install new apache Recompile all possible dependencies. (php and the like)

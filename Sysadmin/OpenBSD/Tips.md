@@ -1,6 +1,6 @@
 # Some general need know stuff on OpenBSD for the every-day sysadmin.
 
-/!\ Once OpenBSD is installed you should update it immediately, if needed.
+:warning: Once OpenBSD is installed you should update it immediately, if needed.
 
 cvsup xenoncara version from: 15.05.2012:
 
@@ -141,8 +141,8 @@ OpenBSD-x11
 ```
 
 # Making a new world
-/!\ Read this: http://openbsd.org/faq/upgrade53.html OR http://openbsd.org/faq/upgrade52.html
-/!\ Make sure to skim through the document and use sysmerge as well as "2. Files to delete" (if coming from 5.2)
+:warning: Read this: http://openbsd.org/faq/upgrade53.html OR http://openbsd.org/faq/upgrade52.html
+:warning: Make sure to skim through the document and use sysmerge as well as "2. Files to delete" (if coming from 5.2)
 
 ## pre-update Notes
 ### 5.2 -> 5.3
@@ -313,7 +313,7 @@ Retype new password: ILikeMonkeys
 
 ## Disable root logins
 
-/!\ This is a configuration option during install
+:warning: This is a configuration option during install
 
  1. add a regular user and his SSH keys:
 
@@ -340,7 +340,7 @@ now restart sshd so the changes take effect without rebooting:
 
 ## Encrypting swap
 
-/!\ is by default set to 1 in 4.5
+:warning: is by default set to 1 in 4.5
 
 ```
 # sysctl -w vm.swapencrypt.enable=1
@@ -378,7 +378,7 @@ vm.swapencrypt.enable=1
 
 ## via the ports system
 
-/!\ This will compile bash from source
+:warning: This will compile bash from source
 ```
 # cd /usr/ports/shells/bash
 # make install clean

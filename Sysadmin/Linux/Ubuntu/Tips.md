@@ -59,7 +59,7 @@ apt-get remove --purge EXACT-OLD-KERNEL-NAME
 update-grub
 ```
 
-/!\ Be careful not to remove the currently installed kernel!
+:warning: Be careful not to remove the currently installed kernel!
 
 # postfix redirect
 

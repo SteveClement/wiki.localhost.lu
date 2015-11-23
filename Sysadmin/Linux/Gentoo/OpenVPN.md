@@ -1,4 +1,4 @@
-/!\ Obsolete.
+:warning: Obsolete.
 
 # OpenVPN in Gentoo
 ## Kernel conf

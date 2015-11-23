@@ -84,7 +84,7 @@ If this get's stolen and eventually decrypted, would I be boned?
 
 ## Set master passwords where possible
 
-/!\ Bare in mind that setting a Master Password on your Firefox and Thunderbird is essential.
+:warning: Bare in mind that setting a Master Password on your Firefox and Thunderbird is essential.
 
 Yes I do save my Passwords from Various web sites on my Laptop. Everyone has more than 30 different logins and it is either the same password everywhere or different passwords stored in Mozilla's Password Safe.
 
@@ -108,7 +108,7 @@ Some purist will yell traitor BUT I need something that works under Linux, Windo
 
 After FAT32 Formatting a 2Gig USB Disk you can do entire Disk encryption on that Drive and depending on how Paranoia you are you might want to investigate what a Hidden Partition is.
 
-/!\ vFAT/FAT32 was a BAD choice(tm) - So I moved to an ext3/4 Filesystem with MacFuse under OSX (permission et al.)
+:warning: vFAT/FAT32 was a BAD choice(tm) - So I moved to an ext3/4 Filesystem with MacFuse under OSX (permission et al.)
 
 Also there are Evil Maids that try to get to your Pass-phrase:
 
@@ -327,7 +327,7 @@ ln -s /Volumes/MobileTerra/GoogleDrive Google\ Drive
 ln -s /Volumes/MobileTerra/GoogleDrive/VM  VirtualBox\ VMs
 ln -s GoogleDrive/virtualenvs virtualenvs
 ln -s ~/truecrypt1/dotfiles dotfiles
-# /!\ Broken! ln -s ~/truecrypt1/dotfiles/.chromium/Web\ Data ~/.config/chromium/Default/Web\ Data
+# :warning: Broken! ln -s ~/truecrypt1/dotfiles/.chromium/Web\ Data ~/.config/chromium/Default/Web\ Data
 ln -s ~/truecrypt1/StickiesDatabase ~/Library/StickiesDatabase
 
 cd ~/.thunderbird/*.default

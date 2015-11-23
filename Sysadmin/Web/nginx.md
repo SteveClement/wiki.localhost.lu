@@ -18,7 +18,7 @@ sudo apt-get install nginx php5-cgi php5-cli spawn-fcgi daemontools-run
 ### php5 integration
 
 
-/!\ You should have "cgi.fix_pathinfo = 0;" in php.ini
+:warning: You should have "cgi.fix_pathinfo = 0;" in php.ini
 
 ```
 

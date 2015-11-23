@@ -1,6 +1,6 @@
 # Python Notes
 
-/!\ Needs to be completed
+:warning: Needs to be completed
 
 # pip upgrade all
 
