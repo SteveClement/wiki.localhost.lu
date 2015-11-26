@@ -1,8 +1,10 @@
+# General GitHub Notes
+
 ## Converting git repo to bare
 
 ### Pre-
 
-/!\ Make sure you have ALL your branches merged with the master branch!
+:warning: Make sure you have ALL your branches merged with the master branch!
 
 ### Copy your local copy to remote server
 

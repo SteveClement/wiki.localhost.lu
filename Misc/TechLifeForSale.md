@@ -1,4 +1,4 @@
-/!\ Not up to date!
+:warning: Not up to date!
 
 The following items are sold by me, [@SteveClement](https://twitter.com/SteveClement)
 
