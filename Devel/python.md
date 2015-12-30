@@ -90,6 +90,7 @@ pygame has a lot of rectangular surface functions (you glue, ‘blit’ these pi
 # import pickle to store game data
 
 ## Use the pickle module to store game data
+
 ```python
 import pickle
 game_data = { ‘player_pos’ : ’N23 E45’, ‘pockets’: [‘keys’,’stone’, ‘pocket knife’], ‘money’ : 42.23 }
@@ -172,6 +173,7 @@ http://docs.python.org/3/library/stdtypes.html
 
 #### int, float, bool
 
+```
 foo = 42
 bar = 4.2
 
@@ -187,46 +189,40 @@ help(foo)
 askMeAnything = input("Tell me anything: “)
 
 type(askMeAnything)
+```
 
 more predictive typing:
 
+```
 askMeAnything = eval(input("Tell me anything: “)) # 42 || 4.2
 
 type(askMeAnything)
+```
 
 You could use int() , float() but eval() is more flexible.
 What about catching errors and making sure the range is respected when inputting numerals?
 
 ```python
 def myFunction:
-while True:
-    myInput = input("Gimme some data between 0 and 42: ")
-    try:
-       myInput = int(myInput)
-       print("Good you managed to input something working :)")
-    except ValueError:
-       print("Valid number, please")
-       continue
-    if 0 <= myInput <= 42:
-       break
-    else:
-       print("Valid range, please: 0-42")
+  while True:
+      myInput = input("Gimme some data between 0 and 42: ")
+      try:
+         myInput = int(myInput)
+         print("Good you managed to input something working :)")
+      except ValueError:
+         print("Valid number, please")
+         continue
+      if 0 <= myInput <= 42:
+         break
+      else:
+         print("Valid range, please: 0-42")
 ``` 
-```
-
-if foo:
-
-elif
-
-else
-
-bool?
 
 Keywords: True, False
 
 Try to assign True or False to a variable (pay attention to caps) and type() it.
 
-strings (are immutable)
+**strings (are immutable)**
 
 ```
 myString = ‘some random text’
@@ -246,8 +242,9 @@ print(myHugeString[-1])
 print(myHugeString[1:3] + myHugeString[7:9])
 ```
 
-lists (are mutable)
+**lists (are mutable)**
 
+```
 squares = [ 1,2,4,9,16,25 ]
 print(squares)
 type(squares)
@@ -255,11 +252,14 @@ type(squares)
 print(squares[0])  # -1 or 2:3 (return type?)
 
 squares.append(6 ** 2)
+```
 
-dictionaries
+**dictionaries**
 
+```
 notes = {‘do’: 293.66, ‘re’: 329.63}
 notes[‘do’]
+```
 
 ## BUTTONS with tkInter
 
@@ -451,9 +451,10 @@ for row in cursor:
 
 Classes are how you create your own objects.
 A class is the blueprint of the object.
-An object is an instance of a class
+An object is an instance of a class.
 
 ## Creating objects
+
 ```python
 class Egg:
      def __init__(self, kind = “fried”):
@@ -500,3 +501,79 @@ methods are function (self) is a reference to the class
 encapsulation via __init__
 
 loosely typed: duck typing, if it walks like at duck it looks like a duck
+
+## External classes
+
+Integrating external classes in Python is fairly simple. But the plethora of different terms can be daunting.
+
+To import an external class you need to use the *import* statement.
+
+Your class can reside in a self-contained file with the extension *.py* and is defacto treated as any other module.
+
+:warning: If you import a module named **turtle** for example and your file is called **turtle.py** this will \#fail. Make sure to have unique names that do not clash with any classes that are built-in Python modules.
+
+Another way of importing external classes is to create a *package*.
+
+Packages are directories with an *__init__.py* file and other python files needed for your package.
+
+As long as this directory is in your current path it can be imported as any other module.
+
+To get the current path in your Python project you can use the following simple code.
+
+```python
+import sys
+print(sys.path)
+```
+
+## More on modules
+
+There are many ways to import a module…
+
+### import X
+
+imports module X into your current name-space. Meaning you need to specify **X.foo** every time you access your module.
+
+### from X import *
+
+imports everything from X into the current name-space. Letting you omit X altogether and allowing you to call **foo** directly.
+The common example is *tkinter*. Simply using **from tkinter import \*** allows for more readable code.
+
+### from X import foo, bar, quux
+
+This creates references to *foo*, *bar* and *quux* in the current name-space.
+
+### X = __import__('X')
+
+Same as *import X* but you pass the module name as a *string* and you explicitly assign it to a variable in your current name-space.
+
+### Tweaks
+
+Invoking Python with -O or -OO reduces the size of a compiled module. *-O* removes assert statements and *-OO* removes assert statements and *__doc__* strings.
+
+### .pyc
+
+These files do not run faster, but only load faster.
+
+### compileall
+
+This module can create *.pyc* files for all modules in a directory.
+
+### dir()
+
+This built-in can be used to find out which names a module defines.
+
+dir() does not list the names of built-ins. To achieve this **import builtins** then **dir(builtins)**
+
+### reload
+
+Imported modules are only imported once (efficiency)
+To reload a module, **import imp** then **imp.reload(modulename)**
+
+### PYTHONPATH
+
+A variable much like PATH but for other Python Modules.
+
+### from my.large.module import stuff
+
+Will import the module stuff from a directory structure *my/large/module*
+To use the **\*** the file *__init__.py* must be present in the directory.
