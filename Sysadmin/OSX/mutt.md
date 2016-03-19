@@ -4,11 +4,14 @@ Make sure you add this tap:
 
 ```
 brew tap SteveClement/devel
-brew install --with-sidebar-patch --with-trash-patch --with-s-lang --with-pgp-combined-crypt-hook-patch mutt-patched
+brew install --with-sidebar-patch --with-trash-patch --with-s-lang mutt-patched
 brew install urlview contacts offlineimap msmtp imapfilter findutils dialog elinks
 brew install --with-python --with-python3 notmuch
 ```
 
+```
+This is obsolete, seemingly. --with-pgp-combined-crypt-hook-patch
+```
 
 ## ~/.urlview
 
