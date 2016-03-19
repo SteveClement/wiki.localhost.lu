@@ -33,7 +33,11 @@ auto_view text/html
 For offlineimap use make sure ~/.mail exists and the security command knows your credentials ;)
 
 [1] http://oif.eafarris.com/blog/hooking-os-xs-address-book-to-mutt
+
 [2] http://www.verboom.net/blog/index.html?single=20110518.0
+
 [3] http://linsec.ca/Using_mutt_on_OS_X
+
 [4] http://cheat.errtheblog.com
+
 [5] ﻿﻿﻿http://jstorimer.com/shells/2010/01/19/using-mutt-with-gmail-on-osx.html
