@@ -1,16 +1,16 @@
 To upgrade to the stable release the announce document has an upgrade section:
 
- https://www.freebsd.org/releases/10.2R/announce.html
+ https://www.freebsd.org/releases/10.3R/announce.html
 
-# Upgrading from 10.1-RELEASE to 10.2-RELEASE
+# Upgrading from 10.2-RELEASE to 10.3-RELEASE
 
 ```
 tart ~ # uname -a
-FreeBSD tart 10.1-RELEASE-p16 FreeBSD 10.1-RELEASE-p16 #0: Tue Jul 28 11:41:12 UTC 2015     root@amd64-builder.daemonology.net:/usr/obj/usr/src/sys/GENERIC  i386
+FreeBSD tart 10.2-RELEASE-p14 FreeBSD 10.2-RELEASE-p14 #0: Tue Jul 28 11:41:12 UTC 2015     root@amd64-builder.daemonology.net:/usr/obj/usr/src/sys/GENERIC  i386
 tart ~ #
-tart ~ # freebsd-update -r 10.2-RELEASE upgrade
+tart ~ # freebsd-update -r 10.3-RELEASE upgrade
 Looking up update.FreeBSD.org mirrors... 5 mirrors found.
-Fetching metadata signature for 10.1-RELEASE from update5.freebsd.org... done.
+Fetching metadata signature for 10.2-RELEASE from update5.freebsd.org... done.
 Fetching metadata index... done.
 Fetching 1 metadata patches. done.
 Applying metadata patches... done.
