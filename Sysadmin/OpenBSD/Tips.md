@@ -16,12 +16,12 @@ This file gives users in the wheel group root-level access to all commands, with
 ## htop from source
 
 ```
-pkg_add -v automake autoconf libtool
+pkg_add -v automake autoconf libtool git
 git clone https://github.com/hishamhm/htop
 cd htop
-./autogen.sh
 export AUTOCONF_VERSION=2.69
 export AUTOMAKE_VERSION=1.15
+./autogen.sh
 ./configure
 make
 doas make install
