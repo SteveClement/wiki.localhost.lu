@@ -2,6 +2,31 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+## sudo removed, doas introduced
+
+http://www.openbsd.org/faq/faq10.html#doas
+
+A very basic doas.conf(5) might look like this:
+```
+permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel
+```
+
+This file gives users in the wheel group root-level access to all commands, with the environment variables PKG_PATH, ENV, PS1 and SSH_AUTH_SOCK passed through to the program they are invoking. The user will be asked to verify their password before the command is run.
+
+## htop from source
+
+```
+pkg_add -v automake autoconf libtool
+git clone https://github.com/hishamhm/htop
+cd htop
+./autogen.sh
+export AUTOCONF_VERSION=2.69
+export AUTOMAKE_VERSION=1.15
+./configure
+make
+doas make install
+```
+
 ## Current X.Org version on OpenBSD 5.9
 
 ```
