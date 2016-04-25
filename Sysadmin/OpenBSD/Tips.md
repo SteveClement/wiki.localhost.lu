@@ -15,29 +15,36 @@ Build Date: 15 May 2012  11:02:20AM
  
 Current version of pixman: **0.22.2**
 
-Kernel Version vanilla 5.4:
+Kernel Version vanilla 5.9:
 ```
-OpenBSD foo.lan 5.4 GENERIC.MP#44 i386
+OpenBSD foo.lan 5.9 GENERIC.MP#1616 i386
 ```
 
 This is done through CVSup and takes time.
 
 OpenBSD is not meant to be set up in 5 minutes and your done. It aims at System Administrators that are actually interested in their Systems security.
 
-# Install basic packages on 5.4
+# Install basic packages on 5.9
 
 ```
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/i386/lsof-4.87p2.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/i386/ntp-4.2.6pl5p0.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/i386/munin-node-2.0.14.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/i386/gsed-4.2.2.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.4/packages/i386/pkglocatedb-0.6p0.tgz
+pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/lsof-4.89.tgz
+pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/ntp-4.2.8pl6.tgz
+pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/munin-node-2.0.25p1.tgz
+pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/gsed-4.2.2p0.tgz
+pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/pkglocatedb-1.2.tgz
 ```
 
 Or for the cool kids:
 
+## OLD STYLE
 ```
 export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.3/packages/i386/
+pkg_add -v lsof ntp munin-node gsed pkglocatedb
+```
+
+## NEW STYLE
+```
+echo installpath=http://ftp.belnet.be/pub/OpenBSD/5.9/packages/i386/ > /etc/pkg.conf
 pkg_add -v lsof ntp munin-node gsed pkglocatedb
 ```
 
@@ -45,7 +52,7 @@ pkg_add -v lsof ntp munin-node gsed pkglocatedb
 
 ## cvsync is not installed by default do this now
 ```
-# pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.3/packages/i386/cvsync-0.24.19p1.tgz
+# pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.3/packages/i386/cvsync-0.25.0pre0p1.tgz
 ```
 
 ## Add a cvsync file like
@@ -141,7 +148,7 @@ OpenBSD-x11
 ```
 
 # Making a new world
-:warning: Read this: http://openbsd.org/faq/upgrade53.html OR http://openbsd.org/faq/upgrade52.html
+:warning: Read this: http://openbsd.org/faq/upgrade59.html OR http://openbsd.org/faq/upgrade59.html
 :warning: Make sure to skim through the document and use sysmerge as well as "2. Files to delete" (if coming from 5.2)
 
 ## pre-update Notes
