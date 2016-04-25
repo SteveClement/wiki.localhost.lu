@@ -2,19 +2,29 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
-cvsup xenoncara version from: 15.05.2012:
+## Current X.Org version on OpenBSD 5.9
 
 ```
-X.Org X Server 1.11.4
-Release Date: 2012-01-27
+# X -version
+
+X.Org X Server 1.17.4
+Release Date: 2015-10-28
 X Protocol Version 11, Revision 0
-Build Operating System: OpenBSD 5.1 i386 
-Current Operating System: OpenBSD builder.local 5.1 GENERIC#160 i386
-Build Date: 15 May 2012  11:02:20AM
+Build Operating System: OpenBSD 5.9 i386
+Current Operating System: OpenBSD mirror.osn.de 5.9 GENERIC.MP#1616 i386
+Build Date: 26 February 2016  01:54:40AM
+
+Current version of pixman: 0.32.8
+        Before reporting problems, check http://wiki.x.org
+        to make sure that you have the latest version.
+```
+
+cvsup xenoncara version from: 25.04.2016:
+
+```
+# X -version
 ```
  
-Current version of pixman: **0.22.2**
-
 Kernel Version vanilla 5.9:
 ```
 OpenBSD foo.lan 5.9 GENERIC.MP#1616 i386
