@@ -13,6 +13,107 @@ permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel
 
 This file gives users in the wheel group root-level access to all commands, with the environment variables PKG_PATH, ENV, PS1 and SSH_AUTH_SOCK passed through to the program they are invoking. The user will be asked to verify their password before the command is run.
 
+## adding a new disk
+
+src: https://jreypo.wordpress.com/2011/03/07/how-to-create-a-new-file-system-in-openbsd/
+
+```
+# dmesg |grep SCSI
+sd0 at scsibus1 targ 0 lun 0: <ATA, Samsung SSD 840, DXT0> SCSI3 0/direct fixed naa.500253855010569a
+sd1 at scsibus1 targ 1 lun 0: <ATA, KingSpec KSM-mSA, 1110> SCSI3 0/direct fixed t10.ATA_KingSpec_KSM-mSATA.5-032SJ_MSA0511122700021_
+# fdisk -i sd3
+Do you wish to write new MBR and partition table? [n] y
+Writing MBR at offset 0.
+# disklabel -E sd3
+Label editor (enter '?' for help at any prompt)
+> z
+> p
+OpenBSD area: 64-62524980; size: 62524916; free: 62524916
+#                size           offset  fstype [fsize bsize  cpg]
+  c:         62533296                0  unused
+> a
+partition: [a]
+offset: [64]
+size: [62524916]
+FS type: [4.2BSD]
+Rounding size to bsize (32 sectors): 62524896
+> q
+Write new label?: [y] y
+# disklabel sd3
+# /dev/rsd3c:
+type: ESDI
+disk: ESDI/IDE disk
+label: KingSpec KSM-mSA
+duid: 66aa81aa4da28b05
+flags:
+bytes/sector: 512
+sectors/track: 63
+tracks/cylinder: 255
+sectors/cylinder: 16065
+cylinders: 3892
+total sectors: 62533296
+boundstart: 64
+boundend: 62524980
+drivedata: 0
+
+16 partitions:
+#                size           offset  fstype [fsize bsize  cpg]
+  a:         62524896               64  4.2BSD   2048 16384    1
+  c:         62533296                0  unused
+# newfs /dev/rsd3a
+/dev/rsd3a: 30529.7MB in 62524896 sectors of 512 bytes
+151 cylinder groups of 202.47MB, 12958 blocks, 25984 inodes each
+super-block backups (for fsck -b #) at:
+ 32, 414688, 829344, 1244000, 1658656, 2073312, 2487968, 2902624, 3317280,
+ 3731936, 4146592, 4561248, 4975904, 5390560, 5805216, 6219872, 6634528,
+ 7049184, 7463840, 7878496, 8293152, 8707808, 9122464, 9537120, 9951776,
+ 10366432, 10781088, 11195744, 11610400, 12025056, 12439712, 12854368,
+ 13269024, 13683680, 14098336, 14512992, 14927648, 15342304, 15756960,
+ 16171616, 16586272, 17000928, 17415584, 17830240, 18244896, 18659552,
+ 19074208, 19488864, 19903520, 20318176, 20732832, 21147488, 21562144,
+ 21976800, 22391456, 22806112, 23220768, 23635424, 24050080, 24464736,
+ 24879392, 25294048, 25708704, 26123360, 26538016, 26952672, 27367328,
+ 27781984, 28196640, 28611296, 29025952, 29440608, 29855264, 30269920,
+ 30684576, 31099232, 31513888, 31928544, 32343200, 32757856, 33172512,
+ 33587168, 34001824, 34416480, 34831136, 35245792, 35660448, 36075104,
+ 36489760, 36904416, 37319072, 37733728, 38148384, 38563040, 38977696,
+ 39392352, 39807008, 40221664, 40636320, 41050976, 41465632, 41880288,
+ 42294944, 42709600, 43124256, 43538912, 43953568, 44368224, 44782880,
+ 45197536, 45612192, 46026848, 46441504, 46856160, 47270816, 47685472,
+ 48100128, 48514784, 48929440, 49344096, 49758752, 50173408, 50588064,
+ 51002720, 51417376, 51832032, 52246688, 52661344, 53076000, 53490656,
+ 53905312, 54319968, 54734624, 55149280, 55563936, 55978592, 56393248,
+ 56807904, 57222560, 57637216, 58051872, 58466528, 58881184, 59295840,
+ 59710496, 60125152, 60539808, 60954464, 61369120, 61783776, 62198432,
+# mkdir /ssd
+# mount /dev/sd3a /ssd
+# df -kh /ssd
+Filesystem     Size    Used   Avail Capacity  Mounted on
+/dev/sd1a     29.3G    2.0K   27.9G     0%    /ssd
+echo "/dev/sd3a / ffs rw,softdep 1 1" >> /etc/fstab
+```
+
+## Encrypt USB Disk or other disk
+
+```
+A quick example runthrough of the steps follows, with sd3 being the USB drive.
+# dd if=/dev/random of=/dev/rsd3c bs=1m
+# fdisk -iy sd3
+# disklabel -E sd3 (create an "a" partition, see above for more info)
+# bioctl -c C -l sd3a softraid0
+New passphrase:
+Re-type passphrase:
+softraid0: CRYPTO volume attached as sd3
+# dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
+# disklabel -E sd3 (create an "i" partition, see above for more info)
+# newfs sd3i
+# mkdir -p /mnt/secretstuff
+# mount /dev/sd3i /mnt/secretstuff
+# mv planstotakeovertheworld.txt /mnt/secretstuff/
+# umount /mnt/secretstuff
+# bioctl -d sd3
+```
+
 ## htop from source
 
 ```
