@@ -95,20 +95,45 @@ echo "/dev/sd3a / ffs rw,softdep 1 1" >> /etc/fstab
 
 ## Encrypt USB Disk or other disk
 
+src: https://stephenmaxwell.me/blog/openbsd_encryption.html
+
 ```
 A quick example runthrough of the steps follows, with sd3 being the USB drive.
 # dd if=/dev/random of=/dev/rsd3c bs=1m
 # fdisk -iy sd3
-# disklabel -E sd3 (create an "a" partition, see above for more info)
+Writing MBR at offset 0.
+# disklabel -E sd3  # (create an "a" RAID partition, see above for more info)
+Label editor (enter '?' for help at any prompt)
+> a a
+offset: [64]
+size: [62524916]
+FS type: [4.2BSD] RAID
+> q
+Write new label?: [y] y
 # bioctl -c C -l sd3a softraid0
 New passphrase:
 Re-type passphrase:
-softraid0: CRYPTO volume attached as sd3
-# dd if=/dev/zero of=/dev/rsd3c bs=1m count=1
-# disklabel -E sd3 (create an "i" partition, see above for more info)
-# newfs sd3i
+sd4 at scsibus3 targ 1 lun 0: <OPENBSD, SR CRYPTO, 005> SCSI2 0/direct fixed
+sd4: 30529MB, 512 bytes/sector, 62524388 sectors
+softraid0: CRYPTO volume attached as sd4
+# dd if=/dev/zero of=/dev/rsd4c bs=1m count=1
+# disklabel -E sd4 (create an "i" partition, see above for more info)
+Label editor (enter '?' for help at any prompt)
+> a i
+offset: [0]
+size: [62524388]
+FS type: [4.2BSD]
+Rounding size to bsize (32 sectors): 62524384
+> p
+OpenBSD area: 0-62524388; size: 62524388; free: 4
+#                size           offset  fstype [fsize bsize  cpg]
+  c:         62524388                0  unused
+  i:         62524384                0  4.2BSD   2048 16384    1
+> q
+Write new label?: [y] y
+# newfs sd4i
 # mkdir -p /mnt/secretstuff
-# mount /dev/sd3i /mnt/secretstuff
+# mount /dev/sd4i /mnt/secretstuff
 # mv planstotakeovertheworld.txt /mnt/secretstuff/
 # umount /mnt/secretstuff
 # bioctl -d sd3
