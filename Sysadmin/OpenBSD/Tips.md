@@ -145,8 +145,8 @@ Write new label?: [y] y
 pkg_add -v automake autoconf libtool git
 git clone https://github.com/hishamhm/htop
 cd htop
-export AUTOCONF_VERSION=2.69
 export AUTOMAKE_VERSION=1.15
+export AUTOCONF_VERSION=2.69
 ./autogen.sh
 ./configure
 make
