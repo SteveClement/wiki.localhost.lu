@@ -2,7 +2,7 @@
 
 I frequently need to recompile stuff under Ubuntu.
 
-My **favorite** ./configure line so far is this one:
+My **favorite** ./configure line so far is:
 
 ```
  ./configure  --datadir=/usr --prefix=/usr --localstatedir=/var --sysconfdir=/etc
@@ -32,19 +32,31 @@ sudo apt-get install software-properties-common
 
 # Clean install
 
-## Essential Packages
+## Some of my essential Packages
 
 ```
 vim git-core
 virtualbox virtualbox-guest-additions-iso 
 ipython3-notebook ipython-notebook htop vim mercurial git ntpdate python3-pip geany geany-plugin-lua geany-plugin-prettyprinter geany-plugin-latex geany-plugin-spellcheck python-imaging rrdtool curl wget lynx zip unzip unrar-free nmap gnupg rsync rdiff-backup smartmontools tmux build-essential ca-certificates molly-guard sshfs chromium-browser vlc python-dev python-numpy munin-node python3-dev python3-numpy
-
-
 ```
+
 ## Additionals
 
 firefox extensions
 
+# Ignoring packages
+
+To bar/ignore a package on apt, the tzdata package for example:
+
+```
+echo tzdata hold | sudo dpkg --set-selections
+```
+
+To "unhold" do:
+
+```
+echo tzdata install | sudo dpkg --set-selections
+```
 
 # Removing Kernels
 
