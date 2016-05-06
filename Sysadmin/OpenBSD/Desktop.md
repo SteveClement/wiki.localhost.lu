@@ -3,8 +3,11 @@
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
 ```
+echo installpath=http://ftp.belnet.be/pub/OpenBSD/5.9/packages/i386/ > /etc/pkg.conf
+echo "permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
+pkg_add -v lsof ntp munin-node gsed pkglocatedb
 pkg_add -v openbox slim slim-themes 
-pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool obmenu obconf gnome-icon-theme gnome-themes-standard nitrogen
+pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool obmenu obconf gnome-icon-theme gnome-themes-standard nitrogen conky
 pkg_add -v
 ```
 
@@ -57,3 +60,12 @@ export AUTOCONF_VERSION=2.69
 make
 doas make install
 ```
+
+## US Internation Keyboard
+
+Src: https://unix.stackexchange.com/questions/227756/how-to-use-accent-keys-with-us-keyboard-on-openbsd-5-7
+
+```
+setxkbmap -option compose:menu
+```
+
