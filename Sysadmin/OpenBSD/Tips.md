@@ -2,6 +2,44 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+## munin
+
+### munin-node
+
+```
+doas pkg_add -v munin-node
+/usr/local/sbin/munin-node-configure --shell | sh
+```
+Edit /etc/munin/munin-node.conf to allow the server to poll your host.
+
+### munin-server
+
+```
+doas pkg_add -v munin-server
+```
+
+If this fails with:
+
+```
+Can't install cairo-1.14.6 because of libraries
+|library X11.16.1 not found
+| not found anywhere
+|library Xau.10.0 not found
+| not found anywhere
+…
+```
+
+You are missing the X headers, install them like so:
+
+```
+$ su -
+# wget http://ftp.belnet.be/pub/OpenBSD/5.9/i386/xbase59.tgz
+# wget http://ftp.belnet.be/pub/OpenBSD/5.9/i386/xshare59.tgz
+# tar -C / -xzphf xbase59.tgz
+# tar -C / -xzphf xshare59.tgz
+rm xbase59.tgz xshare59.tgz
+```
+
 ## sudo removed, doas introduced
 
 http://www.openbsd.org/faq/faq10.html#doas
