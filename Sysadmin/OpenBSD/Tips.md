@@ -2,6 +2,19 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+
+## Serial over USB on OpenBSD
+
+Usually I use screen on Linux boxes to connect via serial. This sux under OpenBSD, use 'cu'
+
+```
+cu -s 19200 -l /dev/cuaU0
+```
+Exit with ~. or ~^D
+
+/dev/cuaU0 -> USB-to-Serial Device
+cu -> means 'call UNIX'
+
 ## Sensorsd on OpenBSD
 
 Src: https://calomel.org/sensorsd_config.html
