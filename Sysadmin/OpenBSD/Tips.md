@@ -51,6 +51,30 @@ permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel
 
 This file gives users in the wheel group root-level access to all commands, with the environment variables PKG_PATH, ENV, PS1 and SSH_AUTH_SOCK passed through to the program they are invoking. The user will be asked to verify their password before the command is run.
 
+## OpenSMTPd
+
+Just add this into your /etc/mail/smtpd.conf and restart.
+Where 192.168.0.123 is your local, port 25 reachable, outgoing relay.
+
+```
+echo "accept from local for any relay via smtp://192.168.0.123” >> /etc/mail/smtpd.conf
+/etc/rc.d/smtpd restart
+```
+
+If you need to auth against an Internet relay do:
+
+```
+cd /etc/mail
+echo "label relay@gmail.com:This is my s3cur3 outbound password" >> /etc/mail/secrets
+makemap secrets
+chmod 640 secrets*
+chown root:_smtpd secrets*
+vi /etc/smtpd.conf
+# Add: table secrets db:/etc/mail/secrets.db
+echo "accept from local for any relay via tls+auth://label@mail.outgoing.com:587 auth <secrets>" >> /etc/mail/smtpd.conf
+/etc/rc.d/smtpd restart
+```
+
 ## adding a new disk
 
 src: https://jreypo.wordpress.com/2011/03/07/how-to-create-a-new-file-system-in-openbsd/
