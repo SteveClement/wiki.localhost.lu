@@ -2,6 +2,21 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+## Sensorsd on OpenBSD
+
+Src: https://calomel.org/sensorsd_config.html
+
+This works for a Soekris box.
+
+```
+cat <<EOF > /etc/sensorsd.conf
+hw.sensors.cpu0.temp0:high=90C
+# CPU temperature (degrees Celsius)
+#hw.sensors.lm0.temp1:high=36C:command=echo "%2 \( high=%4 \)" \
+   | mail -s "`hostname` sensorsd WARNING \(cpu temp\)" root
+EOF
+```
+
 ## munin
 
 ### munin-node
