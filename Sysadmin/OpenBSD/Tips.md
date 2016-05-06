@@ -94,6 +94,18 @@ $ cat .forward
 steve@apple.com
 ```
 
+## Forward mbox mails
+
+Src: http://giantdorks.org/alain/resend-mail-thats-locally-stored-in-a-mbox-format-on-a-linux-box-to-a-working-email-address/
+
+```
+doas pkg_add -v procmail
+myemail=steve@apple.com
+cat /var/mail/root |formail -k -X From: -X Subject: -X Message-Id: -X Date: -X To: -I "To: $myemail" -s /usr/sbin/sendmail -t -f $myemail
+cat /var/mail/steve |formail -k  -X From: -X Subject: -X Message-Id: -X Date: -X To: -I "To: $myemail" -s /usr/sbin/sendmail -t -f $myemail
+cat ˜/mbox |formail -k  -X From: -X Subject: -X Message-Id: -X Date: -X To: -I "To: $myemail" -s /usr/sbin/sendmail -t -f $myemail
+```
+
 ## adding a new disk
 
 src: https://jreypo.wordpress.com/2011/03/07/how-to-create-a-new-file-system-in-openbsd/
