@@ -2,6 +2,19 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+## OpenBSD Desktop
+
+### 
+
+Investigate: gnome-session —disable-acceleration
+
+**gnome-session** will fail if no 3D accelation is enabled in xorg
+
+See:
+
+```
+May  3 10:59:18 oBuilder gnome-session-binary[6625]: WARNING: software acceleration check failed: Child process exited with code 1
+```
 
 ## Serial over USB on OpenBSD
 
