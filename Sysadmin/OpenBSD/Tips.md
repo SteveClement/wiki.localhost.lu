@@ -53,6 +53,11 @@ This file gives users in the wheel group root-level access to all commands, with
 
 ## OpenSMTPd
 
+Sources:
+
+https://calomel.org/opensmtpd.html
+http://technoquarter.blogspot.lu/2015/02/openbsd-mail-server-part-2-opensmtpd.html
+
 Just add this into your /etc/mail/smtpd.conf and restart.
 Where 192.168.0.123 is your local, port 25 reachable, outgoing relay.
 
@@ -73,6 +78,20 @@ vi /etc/smtpd.conf
 # Add: table secrets db:/etc/mail/secrets.db
 echo "accept from local for any relay via tls+auth://label@mail.outgoing.com:587 auth <secrets>" >> /etc/mail/smtpd.conf
 /etc/rc.d/smtpd restart
+```
+
+## Looking for a binary in OpenBSD ports
+
+```
+doas pkg_add -v pkglocatedb
+pkglocate formail
+```
+
+## Forward user mails via ~/.forward
+
+```
+$ cat .forward
+steve@apple.com
 ```
 
 ## adding a new disk
