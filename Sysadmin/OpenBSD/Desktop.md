@@ -8,7 +8,19 @@ echo "permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 pkg_add -v lsof ntp munin-node gsed pkglocatedb
 pkg_add -v openbox slim slim-themes 
 pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool obmenu obconf gnome-icon-theme gnome-themes-standard nitrogen conky
-pkg_add -v
+pkg_add -v vim dillo geany roxterm geeqie jhead imagemagick mpv vlc smplayer file-roller bash zsh pcmanfm irssi filezilla
+pkg_add -v toadd youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
+pkg_add -v gnome mutt muttprint terminator cups xfprint
+pkg_add -v urxvt mrxvt rxvt-unicode xfce4-clipman st 
+mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
+ln -s /usr/local/bin/vim /usr/bin/vi
+```
+
+rc.local
+```
+if [ -x /usr/local/bin/slim ]; then
+        echo -n ' slim'; ( sleep 5; /usr/local/bin/slim -nodaemon ) &
+fi
 ```
 
 rc.conf.local
@@ -69,3 +81,37 @@ Src: https://unix.stackexchange.com/questions/227756/how-to-use-accent-keys-with
 setxkbmap -option compose:menu
 ```
 
+/etc/conky.conf
+```
+alignment top_right 
+background yes 
+border_width 1 
+cpu_avg_samples 2 
+default_color black 
+default_outline_color white 
+default_shade_color blue 
+draw_borders yes 
+draw_graph_borders yes 
+draw_outline no 
+draw_shades no 
+use_xft yes 
+xftfont DejaVu Sans Mono:size=10 
+gap_x 5 
+gap_y 60 
+minimum_size 5 5 
+net_avg_samples 2 
+no_buffers yes 
+out_to_console no 
+out_to_stderr no 
+extra_newline no 
+
+own_window no 
+own_window_class Conky 
+own_window_type desktop 
+stippled_borders 0 
+update_interval 1.0 
+uppercase no 
+use_spacer none 
+show_graph_scale no 
+show_graph_range no 
+```
