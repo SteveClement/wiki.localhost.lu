@@ -7,8 +7,8 @@ echo installpath=http://ftp.belnet.be/pub/OpenBSD/5.9/packages/i386/ > /etc/pkg.
 echo "permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 doas pkg_add -v openbox slim slim-themes fbpanel
-doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool obmenu obconf gnome-icon-theme gnome-themes-standard nitrogen conky
-doas pkg_add -v vim dillo geany roxterm geeqie jhead imagemagick mpv vlc smplayer file-roller bash zsh pcmanfm irssi filezilla
+doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool gnome-icon-theme gnome-themes-standard onky
+doas pkg_add -v vim dillo geany roxterm geeqie jhead imagemagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome xfce4 mutt terminator cups xfprint
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat
@@ -124,6 +124,73 @@ restrict 127.127.1.0
 .xinitrc
 ```
 exec openbox-session
+```
+
+/etc/xdg/openbox/autostart
+```
+DESKTOP_ENV="OPENBOX"
+if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
+  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel &
+  ##/usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & sudo nitrogen --restore /home/2.jpg &
+fi
+```
+
+## lxappearance
+
+```
+doas pkg_add -v gmake
+cd work
+wget http://downloads.sourceforge.net/project/lxde/LXAppearance/lxappearance-0.6.2.tar.xz\?r\=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flxde%2Ffiles%2FLXAppearance%2F\&ts\=1462583628\&use_mirror\=heanet -O lxappearance-0.6.2.tar.xz
+unxz lxappearance-0.6.2.tar.xz
+tar xfv lxappearance-0.6.2.tar
+cd lxappearance-0.6.2
+./configure --enable-dbus
+gmake
+doas gmake install
+```
+
+/etc/rc.shutdown
+```
+powerdown=Yes
+```
+
+.config/fbpanel/default
+
+Change sudo to doas (if you do not require a password)
+
+```
+            item {
+                name = Reboot
+                icon = gnome-session-reboot
+                action = doas reboot
+            }
+            item {
+                name = Shutdown
+                icon = gnome-session-halt
+                action = doas shutdown -h +0
+            }
+```
+
+.config/pcmanfm/main
+```
+[General] 
+
+[Window] 
+width=604 
+height=472 
+splitterPos=160 
+maximized=0 
+
+[Desktop] 
+showDesktop=1 
+```
+
+.config/nitrogen/bg-saved.cfg
+```
+[:0.0]
+file=/home/steve/background.jpg
+mode=0
+bgcolor=#3f3f3f
 ```
 
 .Xdefaults (! == comment)
