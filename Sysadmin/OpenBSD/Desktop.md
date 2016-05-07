@@ -159,6 +159,17 @@ rmdir fonts
 fc-cache -vf ~/.fonts
 ```
 
+.vimrc
+```
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set enc=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf8,prc
+let g:airline_powerline_fonts = 1
+```
+
 ## oh-my-zsh
 
 ```
