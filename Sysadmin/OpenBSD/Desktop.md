@@ -159,6 +159,15 @@ if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
   /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg & 
 fi
 ```
+
+## virtualenv
+
+```
+doas ln -sf /usr/local/bin/pip3.4 /usr/local/bin/pip
+doas ln -s /usr/local/bin/python3.4 /usr/local/bin/python
+doas pip install virtualenvwrapper virtualenv
+```
+
 ## htop
 
 ```
@@ -179,6 +188,8 @@ doas make install
 ```
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 cd ~/.rbenv && src/configure && make -C src
+# rbenv install
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
 ## virtualenv
