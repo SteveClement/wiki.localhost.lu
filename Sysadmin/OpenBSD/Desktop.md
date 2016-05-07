@@ -8,13 +8,36 @@ echo "permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 doas pkg_add -v openbox slim slim-themes fbpanel
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool gnome-icon-theme gnome-themes-standard onky
-doas pkg_add -v vim dillo geany roxterm geeqie jhead imagemagick mpv vlc smplayer file-roller bash zsh irssi filezilla
+doas pkg_add -v vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
-doas pkg_add -v gnome xfce4 mutt terminator cups xfprint
+doas pkg_add -v gnome xfce4 mutt terminator cups xfprint gimp libreoffice
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/vim /usr/bin/vi
 ```
+
+/etc/login.conf
+```
+--- /etc/login.conf     Fri Mar  7 19:28:16 2014
++++ /etc/login.conf     Fri Mar  7 19:32:31 2014
+@@ -43,8 +43,8 @@
+ default:\
+        :path=/usr/bin /bin /usr/sbin /sbin /usr/X11R6/bin /usr/local/bin /usr/local/sbin:\
+        :umask=022:\
+-       :datasize-max=512M:\
+-       :datasize-cur=512M:\
++       :datasize-max=1024M:\
++       :datasize-cur=1024M:\
+        :maxproc-max=256:\
+        :maxproc-cur=128:\
+        :openfiles-cur=512:\
+```
+
+/etc/fstab
+```
+/dev/wd0a / ffs rw,noatime,softdep 1 1
+```
+
 
 rc.local
 ```
