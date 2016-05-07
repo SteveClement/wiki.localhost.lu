@@ -156,6 +156,21 @@ if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
   /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg & 
 fi
 ```
+## htop
+
+```
+doas pkg_add -v automake autoconf libtool git
+cd
+mkdir work && cd work
+git clone https://github.com/hishamhm/htop
+cd htop
+export AUTOMAKE_VERSION=1.15
+export AUTOCONF_VERSION=2.69
+./autogen.sh
+./configure
+make
+doas make install
+```
 
 ## lxappearance
 
@@ -253,22 +268,6 @@ let g:airline_powerline_fonts = 1
 
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-## htop
-
-```
-doas pkg_add -v automake autoconf libtool git
-cd
-mkdir work && cd work
-git clone https://github.com/hishamhm/htop
-cd htop
-export AUTOMAKE_VERSION=1.15
-export AUTOCONF_VERSION=2.69
-./autogen.sh
-./configure
-make
-doas make install
 ```
 
 ## US Internation Keyboard
