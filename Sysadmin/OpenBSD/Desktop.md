@@ -153,8 +153,7 @@ exec openbox-session
 ```
 DESKTOP_ENV="OPENBOX"
 if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
-  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel &
-  ##/usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & sudo nitrogen --restore /home/2.jpg &
+  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg & 
 fi
 ```
 
@@ -223,16 +222,6 @@ URxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=
 !URxvt*font: xft:Inconsolata-dz\ for\ Powerline:size=12
 !URxvt*font: xft:Inconsolata\ For\ Powerline:size=11
 !URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true
-```
-
-/etc/xdg/openbox/autostart.sh 
-```
-# Run XDG autostart things.  By default don't run anything desktop-specific 
-# See xdg-autostart --help more info 
-DESKTOP_ENV="OPENBOX" 
-if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then 
-  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg & 
-fi 
 ```
 
 ## vim
