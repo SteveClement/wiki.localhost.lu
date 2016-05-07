@@ -208,7 +208,7 @@ URxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=
 # See xdg-autostart --help more info 
 DESKTOP_ENV="OPENBOX" 
 if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then 
-  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & sudo nitrogen --restore /home/2.jpg & 
+  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg & 
 fi 
 ```
 
