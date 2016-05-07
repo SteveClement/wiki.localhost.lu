@@ -13,7 +13,7 @@ doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-font
 doas pkg_add -v gnome xfce4 mutt terminator cups xfprint gimp libreoffice
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee
-doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip 
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/vim /usr/bin/vi
 ```
@@ -32,7 +32,8 @@ doas ln -s /usr/local/bin/vim /usr/bin/vi
 +       :datasize-cur=1024M:\
         :maxproc-max=256:\
         :maxproc-cur=128:\
-        :openfiles-cur=512:\
+-        :openfiles-cur=512:\
++        :openfiles-cur=4096:\
 ```
 
 /etc/fstab
