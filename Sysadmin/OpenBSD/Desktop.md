@@ -9,11 +9,11 @@ doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 doas pkg_add -v openbox slim slim-themes fbpanel
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool obmenu obconf gnome-icon-theme gnome-themes-standard nitrogen conky
 doas pkg_add -v vim dillo geany roxterm geeqie jhead imagemagick mpv vlc smplayer file-roller bash zsh pcmanfm irssi filezilla
-doas pkg_add -v toadd youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
-doas pkg_add -v gnome mutt muttprint terminator cups xfprint
-doas pkg_add -v urxvt mrxvt rxvt-unicode xfce4-clipman st 
-mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
-ln -s /usr/local/bin/vim /usr/bin/vi
+doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
+doas pkg_add -v gnome xfce4 mutt terminator cups xfprint
+doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat
+doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
+doas ln -s /usr/local/bin/vim /usr/bin/vi
 ```
 
 rc.local
@@ -145,10 +145,25 @@ if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
 fi 
 ```
 
+## vim
+
+```
+mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+cd ~/.vim/bundle && git clone git://github.com/tpope/vim-sensible.git
+mkdir .fonts
+cd .fonts
+git clone https://github.com/powerline/fonts.git
+mv fonts/* .
+mv fonts/.git .
+rmdir fonts
+fc-cache -vf ~/.fonts
+```
 ## htop
 
 ```
-pkg_add -v automake autoconf libtool git
+doas pkg_add -v automake autoconf libtool git
+cd
+mkdir work && cd work
 git clone https://github.com/hishamhm/htop
 cd htop
 export AUTOMAKE_VERSION=1.15
