@@ -7,7 +7,7 @@ echo installpath=http://ftp.belnet.be/pub/OpenBSD/5.9/packages/i386/ > /etc/pkg.
 echo "permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 doas pkg_add -v openbox slim slim-themes fbpanel
-doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool gnome-icon-theme gnome-themes-standard onky
+doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
 doas pkg_add -v vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome xfce4 mutt terminator cups xfprint gimp libreoffice
