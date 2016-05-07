@@ -149,7 +149,7 @@ fi
 
 ```
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-cd ~/.vim/bundle && git clone git://github.com/tpope/vim-sensible.git
+cd ~/.vim/bundle && git clone git://github.com/tpope/vim-sensible.git && git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 mkdir .fonts
 cd .fonts
 git clone https://github.com/powerline/fonts.git
@@ -158,6 +158,13 @@ mv fonts/.git .
 rmdir fonts
 fc-cache -vf ~/.fonts
 ```
+
+## oh-my-zsh
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
 ## htop
 
 ```
