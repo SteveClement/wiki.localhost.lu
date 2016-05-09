@@ -16,6 +16,15 @@ See:
 May  3 10:59:18 oBuilder gnome-session-binary[6625]: WARNING: software acceleration check failed: Child process exited with code 1
 ```
 
+## OpenBSD 5.9 Linux Emulation
+
+Only exists on i386 and NOT on amd64
+
+To enable:
+```
+doas sysctl kern.emul.linux=1
+```
+
 ## Serial over USB on OpenBSD
 
 Usually I use screen on Linux boxes to connect via serial. This sux under OpenBSD, use 'cu'

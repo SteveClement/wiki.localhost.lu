@@ -11,8 +11,8 @@ doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-termi
 doas pkg_add -v vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome xfce4 mutt terminator cups xfprint gimp libreoffice
-doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat
-doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee
+doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
+doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix elinks ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip 
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/vim /usr/bin/vi
@@ -168,6 +168,17 @@ doas ln -s /usr/local/bin/python3.4 /usr/local/bin/python
 doas pip install virtualenvwrapper virtualenv
 ```
 
+## LaTeX
+
+```
+doas pkg_add -v texlive_texmf-full texlive_base texworks gedit-latex 
+```
+
+## Chromium
+```
+doas pkg_add -v chromium
+```
+
 ## htop
 
 ```
@@ -306,6 +317,12 @@ Src: https://unix.stackexchange.com/questions/227756/how-to-use-accent-keys-with
 setxkbmap -option compose:menu
 ```
 
+Use ibus! 
+
+```
+ibus-setup
+```
+
 /etc/conky/conky.conf
 ```
 alignment top_right
@@ -360,4 +377,30 @@ ${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
 ${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
 ${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
 ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+```
+
+## Bleachbit
+
+https://www.bleachbit.org/
+https://www.bleachbit.org/download/source
+
+```
+tar xfvz bleachbit-1.10.tar.gz
+cd bleachbit-1.10
+make -C po local
+python2.7 bleachbit/GUI.py
+```
+
+## winff
+
+https://docs.google.com/uc?authuser=0&id=0B8HoAIi30ZDkMHlvVkVtNHJnLVE&export=download
+https://github.com/WinFF/winff/tree/master/winff
+
+```
+doas pkg_add -v lazarus 
+git clone https://github.com/WinFF/winff.git
+cd winff/winff
+lazbuild --lazarusdir=/usr/local/share/lazarus -B winff.lpr
+# https://code.google.com/archive/p/winff/downloads
+# presets-libavcodec54_v3.wff
 ```
