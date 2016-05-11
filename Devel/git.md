@@ -159,24 +159,17 @@ $ git push origin my-devel-branch
 To be investigated:
 
 ```
-git diff HEAD
-git diff HEAD my-devel-branch
-git diff HEAD^
 git diff my-devel-branch:
-git diff my-devel-branch:HEAD
-git diff my-devel-branch:/HEAD
 git diff origin/master
 git merge my-devel-branch:
 git merge
-git merge HEAD my-devel-branch:
-git merge HEAD my-devel-branch
 git merge my-devel-branch:text
 git fetch origin
 ```
 
 Some questions to be answered:
 
-* Is HEAD == master
+* Is HEAD == master <--- The HEAD notation is only supported for historical reasons, do NOT use src: [git-merge](https://git-scm.com/docs/git-merge)
 * Is : == origin
 * what is ^
 
