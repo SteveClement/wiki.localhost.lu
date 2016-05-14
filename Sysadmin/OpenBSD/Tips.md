@@ -2,6 +2,21 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+
+## Log directory empty
+
+If the log directory seems empty, this will re-create all the relevant files, plus munin
+
+```
+cd /var/log
+doas touch authlog daemon daily.out failedlogin ftpd lastlog lpd-errs maillog messages pflog secure security.out weekly.out wtmp xferlog
+doas mkdir munin rdist
+doas touch munin/munin-node.log
+doas chmod 640 authlog daemon ftpd lpd-errs maillog xferlog
+doas chmod 600 daily.out failedlogin pflog secure security.out weekly.out
+doas chmod 644 lastlog messages wtmp munin/munin-node.log
+```
+
 ## OpenBSD Desktop
 
 ### 
