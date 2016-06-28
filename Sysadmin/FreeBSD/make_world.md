@@ -57,8 +57,9 @@ OR
  pkg_info  > /dump/pkg_info.txt
  tar cfvpj /dump/root.tbz /root/
  tar cfvpj /dump/tmp.tbz /tmp/
- tar cfvpj /dump/py24-site-packages.tbz /usr/local/lib/python2.4/site-packages/
- tar cfvpj /dump/py25-site-packages.tbz /usr/local/lib/python2.5/site-packages/
+ tar cfvpj /dump/py27-site-packages.tbz /usr/local/lib/python2.7/site-packages/
+ tar cfvpj /dump/py33-site-packages.tbz /usr/local/lib/python3.3/site-packages/
+ tar cfvpj /dump/py34-site-packages.tbz /usr/local/lib/python3.4/site-packages/
  tar --exclude var/db/portsnap/files/* -c -v -p -j -f /dump/var.tbz /var/
 # /etc is always good to backup aswell
  tar cfvpj /dump/etc.tbz /etc/
