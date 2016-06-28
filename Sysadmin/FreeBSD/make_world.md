@@ -49,12 +49,13 @@ python packages...
 /usr/local/lib/python2.5/site-packages
 OR
 /usr/local/lib/python2.6/site-packages
+OR any other newer version (2.7/3.3/3.4/3.5
 
 ```
  mkdir /dump
  uname -a > /dump/uname.all
  hostname > /dump/hostname.txt
- pkg_info  > /dump/pkg_info.txt
+ pkg info  > /dump/pkg_info.txt
  tar cfvpj /dump/root.tbz /root/
  tar cfvpj /dump/tmp.tbz /tmp/
  tar cfvpj /dump/py27-site-packages.tbz /usr/local/lib/python2.7/site-packages/
@@ -88,9 +89,9 @@ mistakes and I tend to put too much stuff into /tmp , so ls -la /tmp and see
 if anything valuable is still in there. (on Solaris this is done for you on
 each reboot on some other unices too)
 
-pkg_info tells you the stat of each package that is installed via ports/pkg's
+pkg info tells you the stat of each package that is installed via ports/pkg's
 
-pkg_version |awk {'print $1'} > /dump/INSTALLED.pkg
+pkg version |awk {'print $1'} > /dump/INSTALLED.pkg
 
 This will give you an exact list of all the package base names that are
 installed. It will be easier for later importing. The command will take a
