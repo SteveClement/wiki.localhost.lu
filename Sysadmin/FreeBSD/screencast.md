@@ -46,7 +46,7 @@ Tweak ~/.vnc/xstartup
 don't forget to vncserver -kill :1 when you change xstartup
 
 
-= Record a session via vncrec =
+# Record a session via vncrec
 
 ```
  vncrec -record test.vnc
