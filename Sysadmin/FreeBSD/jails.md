@@ -96,9 +96,9 @@ sshd_enable="YES"
 EOF
 ```
 
-== rc.conf on local machine hosting the Jail ==
+## rc.conf on local machine hosting the Jail
 
-=== Initial === 
+### Initial
 
 ```
 cat << EOF >> /etc/rc.conf
