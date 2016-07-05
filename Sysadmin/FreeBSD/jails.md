@@ -4,7 +4,7 @@ This document outlines the installation of a FreeBSD Jail
 
 ## pre-requisites
 
-* Unix Skills (ION Unix Profile Level 4)
+* Unix Skills (Unix Profile Level 4)
 
 * Buildworld FreeBSD knowledge
 
@@ -23,18 +23,25 @@ export ROUTER="80.90.47.161"
 export FQDN="proton.pronto.lu" 
 export HOST="proton" 
 export NETIF="em0" 
+export DESTDIR="/Jails/{HOST}"
 ```
 
 ## First jail
 
 ```
-mkdir -p /usr/home/Jails/${HOST} && export JAILDIR="/usr/home/Jails/${HOST}" && export JAIL="${HOST}" && ln -s /usr/home/Jails /Jails 
+mkdir -p ${DESTDIR} && export JAILDIR="${DSETDIR}" && export JAIL="${HOST}"
+mkdir /Jails/ISO
+cd /Jails/ISO
+wget http://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-i386-disc1.iso
+mount -t cd9660 /dev/`mdconfig -f FreeBSD-10.3-RELEASE-i386-disc1.iso` /mnt/
+tar -xf /mnt/usr/freebsd-dist/base.txz -C $DESTDIR
 ```
 
 ## Follow up Jails
 
 ```
-mkdir -p /usr/home/Jails/${HOST} && export JAILDIR="/usr/home/Jails/${HOST}" && export JAIL="${HOST}"
+mkdir -p ${DESTDIR} && export JAILDIR="${DESTDIR}" && export JAIL="${HOST}"
+mount -t cd9660 /dev/`mdconfig -f /Jails/ISO/FreeBSD-10.3-RELEASE-i386-disc1.iso` /mnt/
 
 cd /usr/src 
 
