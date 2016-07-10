@@ -1,5 +1,5 @@
+### This can be considered obolete, refer to: https://www.freebsd.org/doc/handbook/disks-encrypting.html
 # This file explains how to do Crypted FS on FreeBSD
-
 
 ## DOESN'T COMPILE ON 7.x YET
 

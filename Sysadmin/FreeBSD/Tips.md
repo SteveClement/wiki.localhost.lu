@@ -12,3 +12,8 @@ Make sure settings remains same after you reboot the machine, enter:
 ```
 # echo "hw.syscons.bell=0" >> /etc/sysctl.conf
 ```
+
+# Install pip3
+
+python3.5 -m ensurepip
+pip3 install -U pip
