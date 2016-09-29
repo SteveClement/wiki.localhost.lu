@@ -73,6 +73,32 @@ update-grub
 
 :warning: Be careful not to remove the currently installed kernel!
 
+# Remove broken packages
+
+## Display them
+```
+sudo dpkg -l | grep "^iU"
+```
+
+## Remove them
+```
+sudo apt-get -f install
+sudo apt-get remove --purge $(sudo dpkg -l | grep "^iU" | awk '{print $2}' | tr '\n' ' ')
+```
+
+# Remove residual packages (rc)
+
+## Display them
+```
+sudo dpkg -l | grep "^rc"
+```
+
+## Remove them
+```
+sudo apt-get remove --purge $(sudo dpkg -l | grep "^rc" | awk '{print $2}' | tr '\n' ' ')
+```
+
+
 # postfix redirect
 
 
