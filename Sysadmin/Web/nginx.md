@@ -12,10 +12,10 @@ portinstall sysutils/daemontools
 ## Ubuntu
 
 ```
-sudo apt-get install nginx php5-cgi php5-cli spawn-fcgi daemontools-run
+sudo apt-get install nginx php7.0-cgi php7.0-cli spawn-fcgi daemontools-run
 ```
 
-### php5 integration
+### php7 integration
 
 
 :warning: You should have "cgi.fix_pathinfo = 0;" in php.ini
@@ -31,15 +31,12 @@ sudo vi /etc/nginx/sites-enabled/default
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
         location ~ \.php$ {
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        #       # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+                include snippets/fastcgi-php.conf;
         #
-        #       # With php5-cgi alone:
+        #       # With php7.0-cgi alone:
                 fastcgi_pass 127.0.0.1:9000;
-        #       # With php5-fpm:
-        #       fastcgi_pass unix:/var/run/php5-fpm.sock;
-                fastcgi_index index.php;
-                include fastcgi_params;
+        #       # With php7.0-fpm:
+        #       fastcgi_pass unix:/run/php/php7.0-fpm.sock;
         }
 …
 ```
@@ -63,7 +60,7 @@ My run script for spawn-fcgi looks like the following:
 ```
 server:/etc/sv/spawn-fcgi# cat run
 #!/bin/sh
-exec /usr/bin/spawn-fcgi -n -a 127.0.0.1 -p 9000 -u www-data -g www-data -C 5 /usr/bin/php5-cgi
+exec /usr/bin/spawn-fcgi -n -a 127.0.0.1 -p 9000 -u www-data -g www-data -C 5 /usr/bin/php-cgi
 
 
 server:/etc/sv/spawn-fcgi# chmod +x run
@@ -71,19 +68,21 @@ server:/etc/sv/spawn-fcgi# initctl start svscan
 server:/etc/sv/spawn-fcgi# update-service --add /etc/sv/spawn-fcgi spawn-fcgi
 server:# ps -edf
 [ ... ]
-root     25995 19315  0 09:39 ?        00:00:00 supervise spawn-fcgi-jve
-www-data 26231 25995  0 09:54 ?        00:00:00 /usr/bin/php5-cgi
-www-data 26233 26231  0 09:54 ?        00:00:00 /usr/bin/php5-cgi
-www-data 26234 26231  0 09:54 ?        00:00:00 /usr/bin/php5-cgi
-www-data 26235 26231  0 09:54 ?        00:00:00 /usr/bin/php5-cgi
-www-data 26236 26231  0 09:54 ?        00:00:00 /usr/bin/php5-cgi
-www-data 26237 26231  0 09:54 ?        00:00:00 /usr/bin/php5-cgi
+root     25995 19315  0 09:39 ?        00:00:00 supervise spawn-fcgi
+www-data 26231 25995  0 09:54 ?        00:00:00 /usr/bin/php-cgi
+www-data 26233 26231  0 09:54 ?        00:00:00 /usr/bin/php-cgi
+www-data 26234 26231  0 09:54 ?        00:00:00 /usr/bin/php-cgi
+www-data 26235 26231  0 09:54 ?        00:00:00 /usr/bin/php-cgi
+www-data 26236 26231  0 09:54 ?        00:00:00 /usr/bin/php-cgi
+www-data 26237 26231  0 09:54 ?        00:00:00 /usr/bin/php-cgi
+
+
 update-service has created a symlink into /etc/service and internal control files into /var/lib/supervise.
 
 server# ls -l /etc/service
 total 0
 lrwxrwxrwx 1 root root 22  1 sept. 10:34 spawn-fcgi -> /etc/sv/spawn-fcgi
- 
+
 server# ls -l /var/lib/supervise/spawn-fcgi/
 total 4
 prw------- 1 root root  0  1 sept. 10:34 control

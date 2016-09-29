@@ -33,7 +33,7 @@ May  3 10:59:18 oBuilder gnome-session-binary[6625]: WARNING: software accelerat
 
 ## OpenBSD 5.9 Linux Emulation
 
-Only exists on i386 and NOT on amd64
+Only exists on i386 and NOT on amd64 OR OpenBSD 6.0
 
 To enable:
 ```
@@ -111,7 +111,7 @@ http://www.openbsd.org/faq/faq10.html#doas
 
 A very basic doas.conf(5) might look like this:
 ```
-permit keepenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel
+permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel
 ```
 
 This file gives users in the wheel group root-level access to all commands, with the environment variables PKG_PATH, ENV, PS1 and SSH_AUTH_SOCK passed through to the program they are invoking. The user will be asked to verify their password before the command is run.
@@ -363,7 +363,7 @@ pkg_add -v lsof ntp munin-node gsed pkglocatedb
 
 ## NEW STYLE
 ```
-echo installpath=http://ftp.belnet.be/pub/OpenBSD/5.9/packages/i386/ > /etc/pkg.conf
+echo "installpath=http://ftp.spline.de/pub/OpenBSD/%c/packages/%a/" > /etc/pkg.conf
 pkg_add -v lsof ntp munin-node gsed pkglocatedb
 ```
 
