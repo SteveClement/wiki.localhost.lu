@@ -15,7 +15,7 @@
   * brew install --with-libotr bitlbee
   * brew tap SteveClement/devel
   * brew install --with-sidebar-patch --with-trash-patch --with-s-lang --with-pgp-combined-crypt-hook-patch mutt-patched
-  * brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks
+  * brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks mu muttils
  * gem install tmuxinator
  * Potentially casked
   * 1password
