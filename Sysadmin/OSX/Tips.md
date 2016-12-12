@@ -14,7 +14,7 @@
   * ext2fuse/ext4fuse now in a tap (homebrew/fuse/ext2fuse_ext4fuse)
   * brew install --with-libotr bitlbee
   * brew tap SteveClement/devel
-  * brew install --with-sidebar-patch --with-trash-patch --with-s-lang --with-pgp-combined-crypt-hook-patch mutt-patched
+  * brew install --with-s-lang --with-pgp-combined-crypt-hook-patch mutt-patched
   * brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks mu muttils
  * gem install tmuxinator
  * Potentially casked
@@ -71,13 +71,22 @@
 
  * brew install android-sdk go jq phantomjs python3 mercurial 
 
-### pygame
- * brew install sdl sdl_image sdl_mixer sdl_ttf portmidi
- * brew tap homebrew/headonly
- * brew install --HEAD smpeg
+### python virtualenv
 
+Various possibilities, make sure virtualenvwrapper works.
+Default virtualenv folder: ~/.virtualenvs
+
+ * mkdir ~/.virtualenvs
+
+### pygame
+
+ * brew install sdl sdl_image sdl_mixer sdl_ttf portmidi smpeg pyenv-virtualenv pyenv-virtualenvwrapper
+ * virtualenv -p python3 ~/.virtualenvs/pygame
+ * source ~/.virtualenvs/pygame/bin/acitvate
+ * pip3 install hg+http://bitbucket.org/pygame/pygame
+ 
 ### cocos2d-python
- * mkdir ~/.venv && pyvenv ~/.venv/cocos2d
+ * virtualenv -p python3 ~/.virtualenvs/cocos2d
  * pip install cocos2d
 
 #### Fixing packages
@@ -92,7 +101,7 @@ done
 
 ## Hiding your Desktop
 
-To hide the Desktop on OSX 10.10, 10.11 open a Terminal and type the following
+To hide the Desktop on OSX 10.10, 10.11, 10.12 open a Terminal and type the following
 
 ```
 defaults write com.apple.finder CreateDesktop false
