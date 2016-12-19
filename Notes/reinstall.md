@@ -22,8 +22,8 @@ To be completed
 * [Slack](https://itunes.apple.com/us/app/slack/id803453959)
 * [Keka](https://itunes.apple.com/lu/app/keka/id470158793)
 * [Kaleidoscope](https://itunes.apple.com/us/app/kaleidoscope/id587512244)
-* [Xcode](https://itunes.apple.com/us/app/xcode/id497799835)
 * [Evernote](https://itunes.apple.com/us/app/evernote-stay-organized/id406056744)
+* [Xcode](https://itunes.apple.com/us/app/xcode/id497799835) -> xcode-select --install
 
 ### Drag to applications folder Apps
 
@@ -77,7 +77,9 @@ cd fonts
 #### pygame in virtualenv
 
 ```
-brew install sdl sdl_image sdl_mixer sdl_ttf portmidi smpeg pyenv-virtualenv pyenv-virtualenvwrapper
+brew install sdl sdl_image sdl_mixer sdl_ttf portmidi smpeg pyenv-virtualenv pyenv-virtualenvwrapper python3
+pip3 install --upgrade pip setuptools wheel
+mkdir ~/.virtualenvs
 virtualenv -p python3 ~/.virtualenvs/pygame
 source ~/.virtualenvs/pygame/bin/acitvate
 pip3 install hg+http://bitbucket.org/pygame/pygame
@@ -104,7 +106,7 @@ brew install caskroom/cask/brew-cask
 ##### brew packages
 
 ```
-brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting 
+brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting python3
 ```
 
 * [Install mutt](../Sysadmin/OSX/mutt.md)
