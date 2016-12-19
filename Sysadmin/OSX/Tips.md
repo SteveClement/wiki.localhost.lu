@@ -6,7 +6,7 @@
  * [brew Cask](https://github.com/caskroom/homebrew-cask)
   * brew install caskroom/cask/brew-cask
  * Cask packages
-  * brew cask install iterm2 karabiner google-chrome mactex texshop firefox thunderbird xquartz little-snitch gpgtools kaleidoscope keka virtualbox libreoffice macupdate-desktop evernote osxfuse 0xed shiftit adafruit-arduino viber sdformatter
+  * brew cask install iterm2 google-chrome mactex texshop firefox thunderbird xquartz little-snitch gpgtools kaleidoscope keka virtualbox libreoffice macupdate-desktop evernote osxfuse 0xed shiftit adafruit-arduino viber sdformatter
  * Homebrew packages
   * brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate
   * chsh -s /bin/zsh
