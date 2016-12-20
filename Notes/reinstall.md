@@ -20,7 +20,7 @@ To be completed
 * [Gemini 2](https://itunes.apple.com/us/app/id1090488118)
 * [RegExRx](https://itunes.apple.com/us/app/regexrx/id498370702)
 * [Slack](https://itunes.apple.com/us/app/slack/id803453959)
-* [Keka](https://itunes.apple.com/lu/app/keka/id470158793)
+* [Keka](https://itunes.apple.com/lu/app/keka/id470158793) cmd + , -> Extraction -> Move to trash
 * [Kaleidoscope](https://itunes.apple.com/us/app/kaleidoscope/id587512244)
 * [Evernote](https://itunes.apple.com/us/app/evernote-stay-organized/id406056744)
 * [Xcode](https://itunes.apple.com/us/app/xcode/id497799835) -> xcode-select --install
@@ -33,11 +33,11 @@ To be completed
 * [ShifIt](https://github.com/fikovnik/ShiftIt/releases)
 * [Synergy](http://synergy-project.org/)
 * [Firefox](https://getfirefox.com)
-* [Thunderbird](https://getthunderbird.com)
+* [Thunderbird](https://www.mozilla.org/en-US/thunderbird/)
 * [Xquartz](http://xquartz.macosforge.org/)
-* [MacTex](https://tug.org/mactex/)
+* [MacTex](http://tug.org/cgi-bin/mactex-download/MacTeX.pkg)
 * [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
-* [Virtualbox](https://virtualbox.org)
+* [Virtualbox & Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 * [LibreOffice](https://www.libreoffice.org/download)
 * [Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)
 * [Sublime Text 3](https://www.sublimetext.com/3)
