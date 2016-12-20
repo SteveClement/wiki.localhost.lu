@@ -99,3 +99,101 @@ VBoxHeadless --startvm ${VBOX_NAME} -n -m 5900
 ```
 rm -r ~/VirtualBox\ VMs/${VBOX_NAME}
 ```
+
+## Create/Manage VirtualBox VMs from the Command Line
+
+### Create the VM
+
+```
+VBoxManage createvm --name "io" --register
+VBoxManage modifyvm "io" --memory 512 --acpi on --boot1 dvd
+VBoxManage modifyvm "io" --nic1 bridged --bridgeadapter1 eth0
+VBoxManage modifyvm "io" --macaddress1 XXXXXXXXXXXX
+VBoxManage modifyvm "io" --ostype Debian
+```
+
+### Attach storage, add an IDE controller with a CD/DVD drive attached, and the install ISO inserted into the drive
+
+```
+VBoxManage createhd --filename ./io.vdi --size 10000
+VBoxManage storagectl "io" --name "IDE Controller" --add ide
+
+VBoxManage storageattach "io" --storagectl "IDE Controller"  \
+    --port 0 --device 0 --type hdd --medium ./io.vdi
+
+VBoxManage storageattach "io" --storagectl "IDE Controller" \
+    --port 1 --device 0 --type dvddrive --medium debian-6.0.2.1-i386-CD-1.iso
+```
+
+### Starting the VM for installation
+
+```
+VBoxHeadless --startvm "io" &
+```
+
+### This starts the VM and a remote desktop server. Redirect RDP port if necessary,
+
+```
+ssh -L 3389:127.0.0.1:3389 <host>
+```
+
+### Shutting down the VM
+
+```
+VBoxManage controlvm "io" poweroff
+```
+
+### Remove install Media
+
+```
+VBoxManage modifyvm "io" --dvd none
+```
+
+### Alternatively install OS using the GUI, configure it then export is as an appliance upload to the server then import it using
+
+```
+VBoxManage export "io" --output ioClone.ovf
+VBoxManage import ioClone.ovf
+```
+
+### Starting the VM
+
+```
+VBoxHeadless --startvm "io" --vrde off &
+```
+This starts the VM without remote desktop support.
+
+### Delete the VM
+
+```
+VBoxManage unregistervm io --delete
+```
+
+### Mount Guest Additions
+
+```
+VBoxManage storageattach "io" --storagectl "IDE Controller" \
+    --port 1 --device 0 --type hdd --medium /usr/share/virtualbox/VBoxGuestAdditions.iso
+```
+
+### Install Guest Additions
+
+```
+mkdir /mnt/dvd
+mount -t iso9660 -o ro /dev/dvd /mnt/dvd
+cd /mnt/dvd
+./VBoxLinuxAdditions.run
+```
+
+### Adding/removing shared folders
+
+```
+vboxmanage sharedfolder add "io" --name share-name --hostpath /path/to/folder/ --automount
+vboxmanage sharedfolder remove "io" --name share-name
+```
+
+### To mount it on the guest
+
+```
+sudo mount -t vboxsf -o uid=$UID share-name /path/to/folder/share/
+```
