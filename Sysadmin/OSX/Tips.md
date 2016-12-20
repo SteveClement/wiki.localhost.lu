@@ -67,6 +67,22 @@
   * LiveReload
   * WordCount
 
+## CLI
+
+### Enabling OS X Screen Sharing from the Command Line
+
+#### Enables Screen Sharing and Remote Management
+
+```
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers
+```
+
+#### Enables only Screen Sharing
+```
+sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist
+```
+
 ## Development
 
  * brew install android-sdk go jq phantomjs python3 mercurial 

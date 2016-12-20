@@ -106,7 +106,7 @@ brew install caskroom/cask/brew-cask
 ##### brew packages
 
 ```
-brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting python3
+brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting python3 terminal-notifier
 ```
 
 * [Install mutt](../Sysadmin/OSX/mutt.md)
