@@ -65,6 +65,15 @@ To be completed
 
 ### Shell install things
 
+#### zsh
+
+```
+chsh -s /bin/zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+cp bin/virtualenvwrapper.sh /usr/local/bin/
+pip3 install virtualenvwrapper
+```
+
 #### Fonts
 
 ```
@@ -74,12 +83,57 @@ cd fonts
 ./install.sh
 ```
 
+#### Sublime
+
+```
+
+```
+
+#### iTerm2
+
+https://draculatheme.com/iterm/
+
+#### Apple Mail
+
+##### SpamSieve
+
+SpamSieve stores its training data in the folder:
+
+```
+/Users/<username>/Library/Application Support/SpamSieve/
+```
+
+and it stores its preferences in the file:
+
+```
+/Users/<username>/Library/Preferences/com.c-command.SpamSieve.plist
+```
+
+You should back up both of these. (See the How can I open the Library folder? section for how to access them.)
+
+Moving or Copying SpamSieve to Another Mac
+
+To transfer SpamSieve’s data to another machine, first quit both copies of SpamSieve. Then copy the folder and the preferences file to the corresponding locations on the other machine.
+
+Your SpamSieve license will be transferred when you copy the preferences file. You can also transfer it manually, by looking up your order information.
+
+When copying your SpamSieve setup to a Mac that didn’t previously have SpamSieve installed, you’ll need to put the SpamSieve application file in the Applications folder and do the setup in your mail program, but you can skip the initial training process because of the files that you copied above.
+
+If you are copying the training data because you want to use SpamSieve on both Macs (rather than just moving it from one to the other), please see the SpamSieve and Multiple Macs section.
+
+Restoring From a Backup
+
+Restore the SpamSieve folder and the com.c-command.SpamSieve.plist file that are mentioned above.
+Go to the SpamSieve Web site and click the Download button.
+Complete the installation steps in the Installing SpamSieve and Using SpamSieve sections, except that you can skip the initial training.
+
+##### Filters
+
 #### pygame in virtualenv
 
 ```
 brew install sdl sdl_image sdl_mixer sdl_ttf portmidi smpeg pyenv-virtualenv pyenv-virtualenvwrapper python3
 pip3 install --upgrade pip setuptools wheel
-mkdir ~/.virtualenvs
 virtualenv -p python3 ~/.virtualenvs/pygame
 source ~/.virtualenvs/pygame/bin/acitvate
 pip3 install hg+http://bitbucket.org/pygame/pygame
@@ -106,7 +160,22 @@ brew install caskroom/cask/brew-cask
 ##### brew packages
 
 ```
-brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting python3 terminal-notifier
+brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting python3 z terminal-notifier
+brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks mu muttils youtube-dl ffmpeg libav
+brew install --with-override-system-vi --with-python3  vim
+brew install --with-libotr bitlbee
+
+```
+
+#### mutt
+
+```
+brew tap neomutt/homebrew-neomutt
+brew install --HEAD --with-gpgme --with-libidn --with-notmuch-patch --with-s-lang --with-sidebar-patch neomutt
+sudo -u steve /usr/bin/security -v add-internet-password -a steve@localhost.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
+sudo -u steve /usr/bin/security -v add-internet-password -a steve@codeclub.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
+sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@securitymadein.lu -s mail.myoffice.lu /Users/steve/Library/Keychains/login.keychain
+sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@x.circl.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
 ```
 
 * [Install mutt](../Sysadmin/OSX/mutt.md)

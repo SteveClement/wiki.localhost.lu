@@ -8,7 +8,7 @@
  * Cask packages
   * brew cask install iterm2 google-chrome mactex texshop firefox thunderbird xquartz little-snitch gpgtools kaleidoscope keka virtualbox libreoffice macupdate-desktop evernote osxfuse 0xed shiftit adafruit-arduino viber sdformatter
  * Homebrew packages
-  * brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate
+  * brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate termimal-notifier
   * chsh -s /bin/zsh
   * sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   * ext2fuse/ext4fuse now in a tap (homebrew/fuse/ext2fuse_ext4fuse)
@@ -134,9 +134,19 @@ killall Finder
 # Potentially obsolete
 ## Mac Ports
 
- * port install pidgin pidgin-otr
+  * port install pidgin pidgin-otr
   * brew install pidgin
 
 ## Tier 2
  * [tftpserver](http://ww2.unime.it/flr/tftpserver)
   * brew cask install tftpserver
+
+# Apple Mail
+
+## Rebuild the index
+
+```
+rm ~/Library/Mail/V4/MailData/Envelope\ Index
+rm ~/Library/Mail/V4/MailData/Envelope\ Index-shm
+rm ~/Library/Mail/V4/MailData/Envelope\ Index-wal
+```
