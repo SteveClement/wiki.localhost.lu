@@ -131,6 +131,21 @@ defaults write com.apple.finder CreateDesktop true
 killall Finder
 ```
 
+## Showing hidden files in Finder
+
+### Enabling in Terminal
+```
+defaults write com.apple.finder AppleShowAllFiles YES
+killall Finder
+```
+
+
+### Disabling in Terminal
+```
+defaults write com.apple.finder AppleShowAllFiles NO
+killall Finder
+```
+
 # Potentially obsolete
 ## Mac Ports
 

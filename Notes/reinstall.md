@@ -89,9 +89,23 @@ cd fonts
 
 ```
 
+
+#### Xcode
+
+https://draculatheme.com/xcode/
+
+#### Terminals
+
+Font used: Meslo LG L DZ for Powerline
 #### iTerm2
 
 https://draculatheme.com/iterm/
+
+git@github.com:mbadolato/iTerm2-Color-Schemes.git
+
+#### Terminal.app
+
+https://draculatheme.com/terminal/
 
 #### Apple Mail
 
@@ -160,10 +174,52 @@ brew install caskroom/cask/brew-cask
 ##### brew packages
 
 ```
-brew install wget htop-osx tmux irssi zsh rbenv nmap csshx exiftool dos2unix findutils gnu-tar hunspell lynx ngrep p7zip mercurial ssh-copy-id imagemagick unrar redis rmate zsh-syntax-highlighting python3 z terminal-notifier
-brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks mu muttils youtube-dl ffmpeg libav
+brew install \ 
+contacts \
+csshx \
+dialog \
+dos2unix \
+elinks \
+exiftool \
+ffmpeg \
+findutils \
+findutils \
+gnu-tar \
+htop-osx \
+hunspell \
+imagemagick \
+imapfilter \
+irssi \
+libav \
+lynx \
+mercurial \
+msmtp \
+mu \
+muttils \
+ngrep \
+node \
+nodeenv \
+offlineimap \
+p7zip \
+python3 \
+rbenv \
+redis \
+rmate \
+ssh-copy-id \
+terminal-notifier \
+tmux \
+unrar \
+urlview \
+wget \
+z \
+zsh \
+zsh-syntax-highlighting
+
+brew install --with-rtmpdump youtube-dl
 brew install --with-override-system-vi --with-python3  vim
 brew install --with-libotr bitlbee
+brew install --with-python3 notmuch
+brew install --with-pygtk nmap # Adds zenmap
 
 ```
 
@@ -188,3 +244,15 @@ sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@x.circ
 * cmd , -> General, Sidebar, Advanced
 * List view -> View -> Show View Options -> Calculate all sizes etc -> Use as Defaults
 
+## Webapps
+
+### Slack Dracula
+
+https://draculatheme.com/slack/
+
+### Ruby Gems
+
+```
+sudo gem install i2cssh
+sudo gem install tmuxinator
+```
