@@ -174,7 +174,7 @@ brew install caskroom/cask/brew-cask
 ##### brew packages
 
 ```
-brew install \ 
+brew install \
 contacts \
 csshx \
 dialog \
@@ -182,7 +182,6 @@ dos2unix \
 elinks \
 exiftool \
 ffmpeg \
-findutils \
 findutils \
 gnu-tar \
 htop-osx \
