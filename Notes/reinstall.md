@@ -71,7 +71,7 @@ To be completed
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp bin/virtualenvwrapper.sh /usr/local/bin/
-pip3 install virtualenvwrapper
+pip3 install virtualenvwrapper nodeenv
 ```
 
 #### Fonts
