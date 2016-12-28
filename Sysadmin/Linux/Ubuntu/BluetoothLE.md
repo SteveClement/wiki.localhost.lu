@@ -11,9 +11,9 @@ You need a Bluetooth 4.0 adapter with LE (http://en.wikipedia.org/wiki/Bluetooth
 ```
  mkdir bluez
  cd bluez
- wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.27.tar.gz
- tar xfvz bluez-5.27.tar.gz
- cd bluez-5.27
+ wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.43.tar.gz
+ tar xfvz bluez-5.43.tar.gz
+ cd bluez-5.43
  LDFLAGS=-lrt ./configure --disable-systemd --datadir=/usr --prefix=/usr --localstatedir=/var --sysconfdir=/etc
  make
  sudo make install
