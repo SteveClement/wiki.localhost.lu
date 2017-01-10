@@ -210,6 +210,7 @@ terminal-notifier \
 tmux \
 unrar \
 urlview \
+wemux \
 wget \
 z \
 zsh \
