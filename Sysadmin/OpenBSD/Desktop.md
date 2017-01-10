@@ -10,7 +10,7 @@ doas pkg_add -v openbox slim slim-themes fbpanel
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
 doas pkg_add -v vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
-doas pkg_add -v gnome xfce4 mutt terminator cups xfprint gimp libreoffice
+doas pkg_add -v gnome xfce4 neomutt terminator cups xfprint gimp libreoffice
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix elinks ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip 

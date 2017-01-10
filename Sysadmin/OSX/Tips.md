@@ -13,8 +13,8 @@
   * sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   * ext2fuse/ext4fuse now in a tap (homebrew/fuse/ext2fuse_ext4fuse)
   * brew install --with-libotr bitlbee
-  * brew tap SteveClement/devel
-  * brew install --with-s-lang --with-pgp-combined-crypt-hook-patch mutt-patched
+  * brew tap neomutt/homebrew-neomutt
+  * brew install --with-s-lang --with-sidebar-patch --with-notmuch-patch --with-gettext --with-gpgme --with-libidn --HEAD neomutt
   * brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks mu muttils
  * gem install tmuxinator
  * Potentially casked

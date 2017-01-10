@@ -1,16 +1,14 @@
 # Efficient mutt on OSX
 
-Make sure you add this tap:
+The new kid on the block in the Mutt arena is [NeoMutt](https://neomutt.org)
+
+Luckily there is brew for that.
 
 ```
-brew tap SteveClement/devel
-brew install --with-sidebar-patch --with-trash-patch --with-s-lang mutt-patched
+brew tap neomutt/homebrew-neomutt
+brew install --with-s-lang --with-sidebar-patch --with-notmuch-patch --with-gettext --with-gpgme --with-libidn --HEAD neomutt
 brew install urlview contacts offlineimap msmtp imapfilter findutils dialog elinks
 brew install --with-python --with-python3 notmuch
-```
-
-```
-This is obsolete, seemingly. --with-pgp-combined-crypt-hook-patch
 ```
 
 ## ~/.urlview
