@@ -234,6 +234,12 @@ sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@securi
 sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@x.circl.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
 ```
 
+To make sure gpg works add a symlink to gpg from gpg2
+
+```
+ln -s /usr/local/bin/gpg2  /usr/local/bin/gpg
+```
+
 * [Install mutt](../Sysadmin/OSX/mutt.md)
 * [Old Docs](../Sysadmin/OSX/Tips.md)
 * [More Docs](../InfoSec/GeneralProtection.md)
