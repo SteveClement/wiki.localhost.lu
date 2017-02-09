@@ -10,6 +10,15 @@ ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/s
 ```
 
 ## ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+
+### Linking from dotfiles
+
+```
+ln -s ~/dotfiles/sublime/Default.sublime-commands ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default.sublime-commands
+ln -s ~/dotfiles/sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
+ln -s ~/dotfiles/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+```
+
 ### Preferences.sublime-settings
 
 ```
