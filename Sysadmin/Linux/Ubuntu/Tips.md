@@ -67,8 +67,8 @@ To remove these obsolete kernels do:
 ```
 uname -a
 dpkg -l |grep linux-
-apt-get remove --purge EXACT-OLD-KERNEL-NAME
-update-grub
+sudo apt-get remove --purge EXACT-OLD-KERNEL-NAME
+sudo update-grub
 ```
 
 :warning: Be careful not to remove the currently installed kernel!
