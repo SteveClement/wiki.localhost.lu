@@ -1,4 +1,4 @@
-# Building an OpenBSD 6.0 Desktop
+# Building an OpenBSD 6.1 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
@@ -6,23 +6,78 @@ Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-in
 # OpenUP NOT OpenBSD 6.1 ready, yet
 
 https://www.mtier.org/solutions/apps/openup/
+
 https://stable.mtier.org/openup
 
 ```
 echo http://ftp.belnet.be/pub/OpenBSD/ > /etc/installurl
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
-doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
-doas pkg_add -v openbox slim slim-themes fbpanel
-doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen gnash xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
+doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
+doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
 doas pkg_add -v vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
-doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
-doas pkg_add -v gnome xfce4 neomutt terminator cups xfprint gimp libreoffice
+doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
+doas pkg_add -v gnome neomutt terminator cups gimp libreoffice
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
-doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix elinks ibus
+doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/vim /usr/bin/vi
 ```
+
+# The following new rcscripts were installed
+```
+/etc/rc.d/munin_asyncd /etc/rc.d/munin_node /etc/rc.d/xntpd
+/etc/rc.d/messagebus /etc/rc.d/slim
+/etc/rc.d/avahi_daemon /etc/rc.d/avahi_dnsconfd
+/etc/rc.d/cups_browsed /etc/rc.d/cupsd /etc/rc.d/gdm /etc/rc.d/nmbd /etc/rc.d/samba /etc/rc.d/samba_ad_dc /etc/rc.d/saslauthd /etc/rc.d/smbd /etc/rc.d/winbindd
+/etc/rc.d/vnstatd
+```
+
+# Package Messages
+```
+--- +python-2.7.13p0 -------------------
+If you want to use this package as your default system python, as root
+create symbolic links like so (overwriting any previous default):
+ ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
+ ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
+ ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
+ ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
+--- +cantarell-fonts-0.0.25 -------------------
+You may wish to update your font path for /usr/local/share/fonts/cantarell
+--- +hunspell-1.3.2p2 -------------------
+Install mozilla dictionaries for extra hunspell languages.
+e.g.
+    # pkg_add mozilla-dicts-ca
+--- +ruby-1.8.7.374p8 -------------------
+If you want to use this package as your default system ruby, as root
+create symbolic links like so (overwriting any previous default):
+ ln -sf /usr/local/bin/ruby18 /usr/local/bin/ruby
+ ln -sf /usr/local/bin/erb18 /usr/local/bin/erb
+ ln -sf /usr/local/bin/irb18 /usr/local/bin/irb
+ ln -sf /usr/local/bin/rdoc18 /usr/local/bin/rdoc
+ ln -sf /usr/local/bin/ri18 /usr/local/bin/ri
+ ln -sf /usr/local/bin/testrb18 /usr/local/bin/testrb
+--- +smplayer-17.3.0 -------------------
+Please note that the audio equaliser option can not be used with smplayer.
+--- +ubuntu-fonts-0.83 -------------------
+You may wish to update your font path for /usr/local/share/fonts/ubuntu
+--- +ghostscript-fonts-8.11p3 -------------------
+You may wish to update your font path for /usr/local/share/fonts/ghostscript
+--- +webkit-gtk3-2.4.11p1v1 -------------------
+!!! WARNING: WebKitGTK+ 2.4 is known to have many security vulnerabilities that
+!!! will NOT be fixed. Avoid browsing with it.
+--- +noto-emoji-20150929p0 -------------------
+You may wish to update your font path for /usr/local/share/fonts/noto
+--- +py-pip-9.0.1p0 -------------------
+If you want to use this package as default pip, as root create a
+symbolic link like so (overwriting any previous default):
+    ln -sf /usr/local/bin/pip2.7 /usr/local/bin/pip
+--- +py3-pip-9.0.1p0 -------------------
+If you want to use this package as default pip, as root create a
+symbolic link like so (overwriting any previous default):
+    ln -sf /usr/local/bin/pip3.6 /usr/local/bin/pip
+```
+
 
 /etc/login.conf
 ```
@@ -61,14 +116,14 @@ fi
 
 rc.conf.local
 ```
-# Make sure to disable xdm by NOT setting the next flag
-#xdm_flags=
+# Make sure to disable xenodm by NOT setting the next flag
+#xenodm_flags=
 inetd_flags=NO
 ntpd_flags="-s"
 hotplugd_flags=""
 multicast_host=YES
-#pkg_scripts="messagebus avahi_daemon toadd gdm"
-pkg_scripts="messagebus avahi_daemon toadd cupsd munin_node"
+#pkg_scripts="messagebus avahi_daemon gdm"
+pkg_scripts="messagebus avahi_daemon cupsd munin_node"
 ```
 
 ntp.conf
@@ -260,10 +315,10 @@ pip install virtualenv
 ```
 doas pkg_add -v gmake
 cd work
-wget http://downloads.sourceforge.net/project/lxde/LXAppearance/lxappearance-0.6.2.tar.xz\?r\=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flxde%2Ffiles%2FLXAppearance%2F\&ts\=1462583628\&use_mirror\=heanet -O lxappearance-0.6.2.tar.xz
-unxz lxappearance-0.6.2.tar.xz
-tar xfv lxappearance-0.6.2.tar
-cd lxappearance-0.6.2
+wget -O lxappearance-0.6.3.tar.xz https://downloads.sourceforge.net/project/lxde/LXAppearance/lxappearance-0.6.3.tar.xz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flxde%2Ffiles%2FLXAppearance%2F&ts=1492517080&use_mirror=freefr
+unxz lxappearance-0.6.3.tar.xz
+tar xfv lxappearance-0.6.3.tar
+cd lxappearance-0.6.3
 ./configure --enable-dbus
 gmake
 doas gmake install
