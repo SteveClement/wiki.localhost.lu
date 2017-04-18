@@ -2,8 +2,14 @@
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
+
+# OpenUP NOT OpenBSD 6.1 ready, yet
+
+https://www.mtier.org/solutions/apps/openup/
+https://stable.mtier.org/openup
+
 ```
-echo installpath=http://ftp.belnet.be/pub/OpenBSD/%c/packages/%a/ > /etc/pkg.conf
+echo http://ftp.belnet.be/pub/OpenBSD/ > /etc/installurl
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 doas pkg_add -v openbox slim slim-themes fbpanel
@@ -13,7 +19,7 @@ doas pkg_add -v toad youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-font
 doas pkg_add -v gnome xfce4 neomutt terminator cups xfprint gimp libreoffice
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix elinks ibus
-doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip 
+doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/vim /usr/bin/vi
 ```
@@ -68,7 +74,7 @@ pkg_scripts="messagebus avahi_daemon toadd cupsd munin_node"
 ntp.conf
 ```
 #
-# $FreeBSD: release/10.0.0/etc/ntp.conf 259975 2013-12-27 23:13:38Z delphij $
+# $FreeBSD: releng/11.0/etc/ntp.conf 294773 2016-01-26 07:06:44Z cy $
 #
 # Default NTP servers for the FreeBSD operating system.
 #
@@ -112,8 +118,8 @@ server 2.freebsd.pool.ntp.org iburst
 # See http://support.ntp.org/bin/view/Support/AccessRestrictions
 # for more information.
 #
-restrict default kod nomodify notrap nopeer noquery
-restrict -6 default kod nomodify notrap nopeer noquery
+restrict default limited kod nomodify notrap nopeer noquery
+restrict -6 default limited kod nomodify notrap nopeer noquery
 #
 # Alternatively, the following rules would block all unauthorized access.
 #
@@ -146,6 +152,13 @@ restrict 127.127.1.0
 #
 #server 127.127.1.0
 #fudge 127.127.1.0 stratum 10
+
+# See http://support.ntp.org/bin/view/Support/ConfiguringNTP#Section_6.14.
+# for documentation regarding leapfile. Updates to the file can be obtained
+# from ftp://time.nist.gov/pub/ or ftp://tycho.usno.navy.mil/pub/ntp/.
+# Use either leapfile in /etc/ntp or weekly updated leapfile in /var/db.
+#leapfile "/etc/ntp/leap-seconds"
+leapfile "/var/db/ntpd.leap-seconds.list"
 ```
 .xinitrc
 ```
@@ -156,22 +169,22 @@ exec openbox-session
 ```
 DESKTOP_ENV="OPENBOX"
 if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
-  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg & 
+  /usr/local/libexec/openbox-xdg-autostart $DESKTOP_ENV & conky & fbpanel & nitrogen --restore /home/background.jpg &
 fi
 ```
 
 ## virtualenv
 
 ```
-doas ln -sf /usr/local/bin/pip3.4 /usr/local/bin/pip
-doas ln -s /usr/local/bin/python3.4 /usr/local/bin/python
+doas ln -sf /usr/local/bin/pip3.6 /usr/local/bin/pip
+doas ln -s /usr/local/bin/python3.6 /usr/local/bin/python
 doas pip install virtualenvwrapper virtualenv
 ```
 
 ## LaTeX
 
 ```
-doas pkg_add -v texlive_texmf-full texlive_base texworks gedit-latex 
+doas pkg_add -v texlive_texmf-full texlive_base texworks
 ```
 
 ## Chromium
@@ -203,7 +216,7 @@ doas make install
 ### From source
 
 ```
-doas pkg_add -v automake autoconf libtool git gcc g++ swig python3
+doas pkg_add -v automake autoconf libtool git gcc g++ swig python
 cd
 mkdir work
 cd work
@@ -219,7 +232,7 @@ git clone https://github.com/znc/znc.git --recursive
 cd znc
 ./bootstrap.sh
 
-CPPFLAGS="-I/usr/local/include " LDFLAGS="-L/usr/local/lib" python_LIBS="`pkg-config --libs python-3.4`" python_CFLAGS="`pkg-config --cflags python-3.4`" ac_cv_path_GNUMAKE=gmake CXX=egcc ./configure --disable-charset --disable-optimization
+CPPFLAGS="-I/usr/local/include " LDFLAGS="-L/usr/local/lib" python_LIBS="`pkg-config --libs python-3.6`" python_CFLAGS="`pkg-config --cflags python-3.6`" ac_cv_path_GNUMAKE=gmake CXX=egcc ./configure --disable-charset --disable-optimization
 
 configure --enable-charset --enable-optimization --prefix=/usr/local --sysconfdir=/etc --mandir=/usr/local/man --infodir=/usr/local/info --localstatedir=/var --disable-silent-rules --disable-gtk-doc
 
@@ -280,16 +293,16 @@ Change sudo to doas (if you do not require a password)
 
 .config/pcmanfm/main
 ```
-[General] 
+[General]
 
-[Window] 
-width=604 
-height=472 
-splitterPos=160 
-maximized=0 
+[Window]
+width=604
+height=472
+splitterPos=160
+maximized=0
 
-[Desktop] 
-showDesktop=1 
+[Desktop]
+showDesktop=1
 ```
 
 .config/nitrogen/bg-saved.cfg
@@ -350,7 +363,7 @@ Src: https://unix.stackexchange.com/questions/227756/how-to-use-accent-keys-with
 setxkbmap -option compose:menu
 ```
 
-Use ibus! 
+Use ibus!
 
 ```
 ibus-setup
@@ -430,7 +443,7 @@ https://docs.google.com/uc?authuser=0&id=0B8HoAIi30ZDkMHlvVkVtNHJnLVE&export=dow
 https://github.com/WinFF/winff/tree/master/winff
 
 ```
-doas pkg_add -v lazarus 
+doas pkg_add -v lazarus
 git clone https://github.com/WinFF/winff.git
 cd winff/winff
 lazbuild --lazarusdir=/usr/local/share/lazarus -B winff.lpr
