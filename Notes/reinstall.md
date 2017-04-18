@@ -62,6 +62,7 @@ To be completed
 * [Dia](http://dia-installer.de/download/macosx.html.en)
 * [Dropbox](https://www.dropbox.com/downloading)
 * [Owncloud](https://owncloud.org/install/#install-clients)
+* [Jdisk Report](http://www.jgoodies.com/downloads/jdiskreport/)
 
 ### Shell install things
 
@@ -89,6 +90,10 @@ cd fonts
 
 ```
 
+#### msmtp
+
+http://www.futurile.net/resources/msmtp-a-simple-mail-transfer-agent/#queuing-outgoing-email
+https://wiki.archlinux.org/index.php/Msmtp#Using_msmtp_offline
 
 #### Xcode
 
