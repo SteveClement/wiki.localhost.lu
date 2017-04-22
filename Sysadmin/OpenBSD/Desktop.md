@@ -89,8 +89,8 @@ symbolic link like so (overwriting any previous default):
         :umask=022:\
 -       :datasize-max=512M:\
 -       :datasize-cur=512M:\
-+       :datasize-max=1024M:\
-+       :datasize-cur=1024M:\
++       :datasize-max=2048M:\
++       :datasize-cur=2048M:\
         :maxproc-max=256:\
         :maxproc-cur=128:\
 -        :openfiles-cur=512:\
