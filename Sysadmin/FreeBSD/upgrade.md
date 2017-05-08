@@ -34,7 +34,7 @@ Fetching 44043 patches.....10....20....30....40....50....60....70....80....90...
 ---8<---
 ....13890....13900....13910....13920....13930....13940....13950....13960....13970....13980....13990....14000....14010....14020....14030....14040....14050....44040. done.
 Applying patches... done.
-Fetching 5814 files... done.
+Fetching 12882 files... done.
 Attempting to automatically merge changes in files... done.
 
 The following file could not be merged automatically: /etc/mail/mailer.conf
