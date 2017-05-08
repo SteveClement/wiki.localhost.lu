@@ -1,40 +1,38 @@
 To upgrade to the stable release the announce document has an upgrade section:
 
- https://www.freebsd.org/releases/10.3R/announce.html
+ https://www.freebsd.org/releases/11.0R/announce.html
 
-# Upgrading from 10.2-RELEASE to 10.3-RELEASE
+# Upgrading from 10.3-RELEASE to 11.0-RELEASE
 
 ```
 tart ~ # uname -a
-FreeBSD tart 10.2-RELEASE-p14 FreeBSD 10.2-RELEASE-p14 #0: Tue Jul 28 11:41:12 UTC 2015     root@amd64-builder.daemonology.net:/usr/obj/usr/src/sys/GENERIC  i386
-tart ~ #
-tart ~ # freebsd-update -r 10.3-RELEASE upgrade
-Looking up update.FreeBSD.org mirrors... 5 mirrors found.
-Fetching metadata signature for 10.2-RELEASE from update5.freebsd.org... done.
+FreeBSD tart 10.3-RELEASE-p18 FreeBSD 10.3-RELEASE-p18 #0: Tue Jul 28 11:41:12 UTC 2015     root@amd64-builder.daemonology.net:/usr/obj/usr/src/sys/GENERIC  i386
+tart ~ # freebsd-update -r 11.0-RELEASE upgrade
+Looking up update.FreeBSD.org mirrors... 4 mirrors found.
+Fetching metadata signature for 10.3-RELEASE from update4.freebsd.org... done.
 Fetching metadata index... done.
 Fetching 1 metadata patches. done.
 Applying metadata patches... done.
 Inspecting system... done.
 
 The following components of FreeBSD seem to be installed:
-kernel/generic src/src world/base
+kernel/generic src/src world/base world/doc world/games
 
 The following components of FreeBSD do not seem to be installed:
-world/doc world/games
 
 Does this look reasonable (y/n)? y
 
-Fetching metadata signature for 10.2-RELEASE from update5.freebsd.org... done.
+Fetching metadata signature for 11.0-RELEASE from update4.freebsd.org... done.
 Fetching metadata index... done.
 Fetching 1 metadata patches. done.
 Applying metadata patches... done.
 Fetching 1 metadata files... done.
 Inspecting system... done.
-Fetching files from 10.2-RELEASE for merging... done.
-Preparing to download files...
-Fetching 39558 patches.....10....20....30....40....50....60....70....80....90....100....110....120....130....140....150....160....170....180....190....200....210....220....230....240....250....260....270....280....290....300....310....320....330....340....350....360....370....380....390....400....410....420....
+Fetching files from 10.3-RELEASE for merging... done.
+Preparing to download files... done.
+Fetching 44043 patches.....10....20....30....40....50....60....70....80....90....100....110....120....130....140....150....160....170....180....190....200....210....220....230....240....250....260....270....280....290....300....310....320....330....340....350....360....370....380....390....400....410....420....
 ---8<---
-....13890....13900....13910....13920....13930....13940....13950....13960....13970....13980....13990....14000....14010....14020....14030....14040....14050....39550. done.
+....13890....13900....13910....13920....13930....13940....13950....13960....13970....13980....13990....14000....14010....14020....14030....14040....14050....44040. done.
 Applying patches... done.
 Fetching 5814 files... done.
 Attempting to automatically merge changes in files... done.
