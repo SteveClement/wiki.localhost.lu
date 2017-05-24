@@ -14,7 +14,7 @@
   * ext2fuse/ext4fuse now in a tap (homebrew/fuse/ext2fuse_ext4fuse)
   * brew install --with-libotr bitlbee
   * brew tap neomutt/homebrew-neomutt
-  * brew install --with-s-lang --with-sidebar-patch --with-notmuch-patch --with-gettext --with-gpgme --with-libidn --HEAD neomutt
+  * brew install --with-s-lang --with-sidebar-patch --with-notmuch-patch --with-gpgme --with-libidn --HEAD neomutt
   * brew install urlview contacts offlineimap notmuch msmtp imapfilter findutils dialog elinks mu muttils
  * gem install tmuxinator
  * Potentially casked
