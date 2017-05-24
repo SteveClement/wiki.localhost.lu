@@ -6,7 +6,7 @@ Luckily there is brew for that.
 
 ```
 brew tap neomutt/homebrew-neomutt
-brew install --with-s-lang --with-sidebar-patch --with-notmuch-patch --with-gettext --with-gpgme --with-libidn --HEAD neomutt
+brew install --with-s-lang --with-sidebar-patch --with-notmuch-patch --with-gpgme --with-libidn --HEAD neomutt
 brew install urlview contacts offlineimap msmtp imapfilter findutils dialog elinks
 brew install --with-python --with-python3 notmuch
 ```
