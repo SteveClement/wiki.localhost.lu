@@ -101,3 +101,9 @@ The Teredo protocol client is the Miredo package. It can be used by dual-stack c
  * Simplified header structure
  * Mobile IP
  * IPv6-to-IPv4 transition mechanisms
+
+https://www.freebsd.org/doc/en/books/developers-handbook/ipv6.html
+v6 + oBsd
+https://webcache.googleusercontent.com/search?q=cache:jr6Iq4J6sEoJ:kurt.seifried.org/2010/04/26/ipv6-and-openbsd-part-1/+&cd=10&hl=en&ct=clnk&gl=lu
+
+

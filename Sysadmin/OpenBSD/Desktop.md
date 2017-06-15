@@ -228,14 +228,6 @@ if which /usr/local/libexec/openbox-xdg-autostart >/dev/null; then
 fi
 ```
 
-## virtualenv
-
-```
-doas ln -sf /usr/local/bin/pip3.6 /usr/local/bin/pip
-doas ln -s /usr/local/bin/python3.6 /usr/local/bin/python
-doas pip install virtualenvwrapper virtualenv
-```
-
 ## LaTeX
 
 ```
@@ -307,7 +299,9 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ## virtualenv
 
 ```
-pip install virtualenv
+doas ln -sf /usr/local/bin/pip3.6 /usr/local/bin/pip
+doas ln -s /usr/local/bin/python3.6 /usr/local/bin/python
+doas pip install virtualenvwrapper virtualenv
 ```
 
 ## lxappearance
