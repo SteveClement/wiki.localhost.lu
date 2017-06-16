@@ -1,6 +1,6 @@
 <<TableOfContents>>
 
-# Protecting your Valuables on modern *nix systems in 2015
+# Protecting your Valuables on modern *nix systems in 2017
 
 As a modern-day Sysadmin Pirate (or Ninja) you have a few artefacts you don't want to loose or leave lying around plain-text on your Disk or take to con.
 
@@ -124,6 +124,12 @@ Alternatively you can use **MacPorts**:
 
 ```
  sudo port install ext2fuse
+```
+
+or brew:
+
+```
+brew install ext2fuse
 ```
 
 Once this is done, you can mount your Linux formatted TrueCrypt Disk but read-only by default only.
