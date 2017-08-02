@@ -478,10 +478,11 @@ ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
 
 https://www.bleachbit.org/
 https://www.bleachbit.org/download/source
+http://sourceforge.net/projects/bleachbit/files/bleachbit-1.12.tar.bz2
 
 ```
-tar xfvz bleachbit-1.10.tar.gz
-cd bleachbit-1.10
+tar xfvz bleachbit-1.12.tar.gz
+cd bleachbit-1.12
 make -C po local
 python2.7 bleachbit/GUI.py
 ```

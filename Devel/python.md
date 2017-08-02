@@ -2,7 +2,33 @@
 
 :warning: Needs to be completed
 
+# What's new in python 3.6 (and why we <3 it)
+
+f-strings: x = "world"; y = 42; print(f"Hello {x}, {y}")
+
+Secrets module, example:
+
+$$$$
+
+Underscore in numbers
+
+100_000 --
+
 # pip upgrade all
+
+Good:
+
+try:
+        os.remove('someFie.tmp')
+except OSError:
+        pass
+
+Better:
+
+with ignored(OSError):
+        os.remove('someFie.tmp')
+
+
 
 ```
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
@@ -577,3 +603,39 @@ A variable much like PATH but for other Python Modules.
 
 Will import the module stuff from a directory structure *my/large/module*
 To use the **\*** the file *__init__.py* must be present in the directory.
+
+# IPv6 and other IP Addresses
+
+Easy module to work with IP Interfaces
+
+pip install netifaces
+
+```
+>>> from netifaces import AF_INET, AF_INET6, AF_LINK, AF_PACKET, AF_BRIDGE
+>>> import netifaces as ni
+>>> ni.interfaces()
+['lo', 'eth0', 'eth1', 'vboxnet0', 'dummy1']
+>>>
+>>> ni.ifaddresses('eth0')[AF_LINK]   # NOTE: AF_LINK is an alias for AF_PACKET
+[{'broadcast': 'ff:ff:ff:ff:ff:ff', 'addr': '00:02:55:7b:b2:f6'}]
+>>> ni.ifaddresses('eth0')[AF_INET]
+[{'broadcast': '172.16.161.7', 'netmask': '255.255.255.248', 'addr': '172.16.161.6'}]
+>>>
+>>> # eth0 ipv4 interface address
+>>> ni.ifaddresses('eth0')[AF_INET][0]['addr']
+'172.16.161.6'
+>>>>
+
+```
+
+import socket
+import fcntl
+import struct
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])
