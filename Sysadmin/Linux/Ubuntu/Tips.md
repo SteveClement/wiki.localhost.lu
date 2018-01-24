@@ -60,7 +60,7 @@ echo tzdata install | sudo dpkg --set-selections
 
 # Removing Kernels
 
-Over time an awful lot of kernels gathe in Debian or Ubuntu.
+Over time an awful lot of kernels gather in Debian or Ubuntu.
 
 To remove these obsolete kernels do:
 
