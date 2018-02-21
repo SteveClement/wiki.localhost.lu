@@ -302,6 +302,8 @@ ln -s /Volumes/NO\ NAME/truecrypt1 ~/truecrypt1
 ln -s ~/truecrypt1/dotfiles/.ssh ~/.ssh
 ln -s ~/truecrypt1/dotfiles/.gnupg ~/.gnupg
 ln -s ~/truecrypt1/dotfiles/.purple ~/.purple
+ln -s ~/truecrypt1/bin ~/bin
+rm ~/.bash_history
 ln -s ~/truecrypt1/dotfiles/.bash_history ~/.bash_history
 ln -s ~/truecrypt1/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/truecrypt1/dotfiles/.bashrc ~/.bashrc
@@ -360,6 +362,8 @@ cert_override.txt
 # For your Unified Setup pleasures, Thunderbird abook
 
 ```
+cd ~/.thunderbird/*.default
+rm abook.mab
 ln -s ~/truecrypt1/dotfiles/.thunderbird/abook.mab abook.mab
 ln -s ~/truecrypt1/dotfiles/.thunderbird/abook-1.mab abook-1.mab
 ln -s ~/truecrypt1/dotfiles/.thunderbird/abook-2.mab abook-2.mab
