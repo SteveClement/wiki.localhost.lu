@@ -220,11 +220,11 @@ unrar \
 urlview \
 wemux \
 wget \
+youtube-dl \
 z \
 zsh \
 zsh-syntax-highlighting
 
-brew install --with-rtmpdump youtube-dl
 brew install --with-override-system-vi --with-python3  vim
 brew install --with-libotr bitlbee
 brew install --with-python3 notmuch
