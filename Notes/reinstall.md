@@ -235,7 +235,7 @@ brew install --with-pygtk nmap # Adds zenmap
 
 ```
 brew tap neomutt/homebrew-neomutt
-brew install --HEAD --with-gpgme --with-libidn --with-notmuch-patch --with-s-lang --with-sidebar-patch neomutt
+brew install --with-gpgme --with-libidn --with-notmuch-patch --with-s-lang neomutt
 sudo -u steve /usr/bin/security -v add-internet-password -a steve@localhost.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
 sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@securitymadein.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
 sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@x.circl.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
