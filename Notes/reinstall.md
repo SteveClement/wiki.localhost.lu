@@ -41,8 +41,6 @@ To be completed
 * [Sublime Text 3](https://www.sublimetext.com/3)
 * [CleanMyMac 3](http://macpaw.com/cleanmymac)
 * [0xed](http://www.suavetech.com/cgi-bin/download.cgi?0xED.tar.bz2)
-* [Viber Desktop](https://download.cdn.viber.com/desktop/mac/Viber.dmg)
-* [Whatsapp](https://web.whatsapp.com/desktop/mac/files/WhatsApp.dmg)
 * [Google Drive](https://www.google.com/drive/download/)
 * [SpamSieve](https://c-command.com/spamsieve/)
 * [TorBrowser](https://www.torproject.org/projects/torbrowser.html.en#downloads)
@@ -50,6 +48,9 @@ To be completed
 * [Adobe CC](https://creative.adobe.com/products/download/creative-cloud)
 * [SDFormatter](https://www.sdcard.org/downloads/formatter_4/eula_mac/index.html)
 * [Steam](https://steamcdn-a.akamaihd.net/client/installer/steam.dmg)
+* [Viber Desktop](https://download.cdn.viber.com/desktop/mac/Viber.dmg)
+* [Whatsapp](https://web.whatsapp.com/desktop/mac/files/WhatsApp.dmg)
+* [Line](https://line.me/download)
 
 #### Archived
 * [Jdisk Report](http://www.jgoodies.com/downloads/jdiskreport/)
