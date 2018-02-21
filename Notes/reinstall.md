@@ -51,6 +51,7 @@ To be completed
 * [Viber Desktop](https://download.cdn.viber.com/desktop/mac/Viber.dmg)
 * [Whatsapp](https://web.whatsapp.com/desktop/mac/files/WhatsApp.dmg)
 * [Line](https://line.me/download)
+* [Spotify](https://www.spotify.com/lu-de/download/mac/)
 
 #### Archived
 * [Jdisk Report](http://www.jgoodies.com/downloads/jdiskreport/)
