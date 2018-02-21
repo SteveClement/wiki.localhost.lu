@@ -182,7 +182,8 @@ brew install caskroom/cask/brew-cask
 
 ```
 brew install \
-baobab \ # Disk usage
+baobab \
+neovim \
 contacts \
 csshx \
 dialog \
