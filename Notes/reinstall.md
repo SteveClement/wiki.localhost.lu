@@ -19,7 +19,6 @@ To be completed
 * [pwSafe](https://itunes.apple.com/us/app/pwsafe-password-safe-compatible/id520993579)
 * [Gemini 2](https://itunes.apple.com/us/app/id1090488118)
 * [RegExRx](https://itunes.apple.com/us/app/regexrx/id498370702)
-* [Slack](https://itunes.apple.com/us/app/slack/id803453959)
 * [Keka](https://itunes.apple.com/lu/app/keka/id470158793) cmd + , -> Extraction -> Move to trash
 * [Kaleidoscope](https://itunes.apple.com/us/app/kaleidoscope/id587512244)
 * [Evernote](https://itunes.apple.com/us/app/evernote-stay-organized/id406056744)
@@ -39,30 +38,31 @@ To be completed
 * [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
 * [Virtualbox & Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 * [LibreOffice](https://www.libreoffice.org/download)
-* [Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)
 * [Sublime Text 3](https://www.sublimetext.com/3)
 * [CleanMyMac 3](http://macpaw.com/cleanmymac)
-* [Geany](https://www.geany.org/Download/Releases)
-* [Gimp](https://www.gimp.org/downloads/)
 * [0xed](http://www.suavetech.com/cgi-bin/download.cgi?0xED.tar.bz2)
 * [Viber Desktop](https://download.cdn.viber.com/desktop/mac/Viber.dmg)
 * [Whatsapp](https://web.whatsapp.com/desktop/mac/files/WhatsApp.dmg)
-* [f.lux](https://justgetflux.com/dlmac.html)
 * [Google Drive](https://www.google.com/drive/download/)
-* [mBlock](http://www.mblock.cc/)
-* [Arduino](https://www.arduino.cc/en/Main/Software)
-* [Ardublock](http://blog.ardublock.com/engetting-started-ardublockzhardublock/)
 * [SpamSieve](https://c-command.com/spamsieve/)
-* [Steam](https://steamcdn-a.akamaihd.net/client/installer/steam.dmg)
 * [TorBrowser](https://www.torproject.org/projects/torbrowser.html.en#downloads)
-* [Tunnelblick](https://tunnelblick.net/downloads.html)
 * [VLC](https://www.videolan.org/vlc/download-macosx.html)
 * [Adobe CC](https://creative.adobe.com/products/download/creative-cloud)
 * [SDFormatter](https://www.sdcard.org/downloads/formatter_4/eula_mac/index.html)
-* [Dia](http://dia-installer.de/download/macosx.html.en)
-* [Dropbox](https://www.dropbox.com/downloading)
-* [Owncloud](https://owncloud.org/install/#install-clients)
+* [Steam](https://steamcdn-a.akamaihd.net/client/installer/steam.dmg)
+
+#### Archived
 * [Jdisk Report](http://www.jgoodies.com/downloads/jdiskreport/)
+* [Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)
+* [Owncloud](https://owncloud.org/install/#install-clients)
+* [Dropbox](https://www.dropbox.com/downloading)
+* [Dia](http://dia-installer.de/download/macosx.html.en)
+* [Gimp](https://www.gimp.org/downloads/)
+* [f.lux](https://justgetflux.com/dlmac.html)
+* [mBlock](http://www.mblock.cc/)
+* [Arduino](https://www.arduino.cc/en/Main/Software)
+* [Ardublock](http://blog.ardublock.com/engetting-started-ardublockzhardublock/)
+* [Tunnelblick](https://tunnelblick.net/downloads.html)
 
 ### Shell install things
 
@@ -180,6 +180,7 @@ brew install caskroom/cask/brew-cask
 
 ```
 brew install \
+baobab \ # Disk usage
 contacts \
 csshx \
 dialog \
