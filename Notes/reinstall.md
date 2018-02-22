@@ -154,9 +154,9 @@ Complete the installation steps in the Installing SpamSieve and Using SpamSieve 
 
 ```
 brew install sdl sdl_image sdl_mixer sdl_ttf portmidi smpeg pyenv-virtualenv pyenv-virtualenvwrapper python3
-pip3 install --upgrade pip setuptools wheel
-virtualenv -p python3 ~/.virtualenvs/pygame
-source ~/.virtualenvs/pygame/bin/acitvate
+pip3 install --upgrade pip setuptools wheel virtaulenv virtualenvwrapper
+mkvirtualenv -p python3 ~/.virtualenvs/pygame
+source ~/.virtualenvs/pygame/bin/activate
 pip3 install hg+http://bitbucket.org/pygame/pygame
 ```
 
