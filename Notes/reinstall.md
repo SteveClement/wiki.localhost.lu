@@ -183,12 +183,12 @@ brew install caskroom/cask/brew-cask
 ```
 brew install \
 baobab \
-neovim \
 contacts \
 csshx \
 dialog \
 dos2unix \
 elinks \
+enscript \
 exiftool \
 ffmpeg \
 findutils \
@@ -204,6 +204,7 @@ mercurial \
 msmtp \
 mu \
 muttils \
+neovim \
 ngrep \
 node \
 nodeenv \
