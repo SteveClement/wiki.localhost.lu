@@ -233,9 +233,22 @@ brew install --with-pygtk nmap # Adds zenmap
 
 ```
 
+#### Printing with lpr
+
+First, add LPD Printer. Second check what the device name is.
+
+~/bin/mylpr
+```bash
+#!/bin/bash
+ENSCRIPT="--no-header --margins=36:36:36:36 --font=Courier11 --word-wrap --media=A4"
+export ENSCRIPT
+/usr/local/bin/enscript -p - $1 | /usr/bin/lpr -P printer_office_lan_LPD
+```
+
 #### mutt
 
 ```
+pip3 install git+https://github.com/honza/mutt-notmuch-py.git
 brew tap neomutt/homebrew-neomutt
 brew install --with-gpgme --with-libidn --with-notmuch-patch --with-s-lang neomutt
 sudo -u steve /usr/bin/security -v add-internet-password -a steve@localhost.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
