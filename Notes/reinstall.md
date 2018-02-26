@@ -269,6 +269,6 @@ https://draculatheme.com/slack/
 ### Ruby Gems
 
 ```
-sudo gem install i2cssh
-sudo gem install tmuxinator
+# gem install i2cssh <- Broken
+gem install tmuxinator
 ```
