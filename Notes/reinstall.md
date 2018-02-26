@@ -219,6 +219,7 @@ terminal-notifier \
 tmux \
 unrar \
 urlview \
+w3m \
 wemux \
 wget \
 youtube-dl \
