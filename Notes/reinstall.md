@@ -218,7 +218,6 @@ redis \
 rmate \
 ssh-copy-id \
 terminal-notifier \
-tmux \
 unrar \
 urlview \
 vdirsyncer \
@@ -234,7 +233,7 @@ brew install --with-override-system-vi --with-python3  vim
 brew install --with-libotr bitlbee
 brew install --with-python3 notmuch
 brew install --with-pygtk nmap # Adds zenmap
-
+brew install --with-utf8proc tmux
 ```
 
 #### Printing with lpr
