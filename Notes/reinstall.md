@@ -214,6 +214,7 @@ offlineimap \
 p7zip \
 python3 \
 rbenv \
+reattach-to-user-namespace \
 redis \
 rmate \
 ssh-copy-id \
