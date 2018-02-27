@@ -329,6 +329,7 @@ ln -s ~/truecrypt1/dotfiles/.notmuch-config .notmuch-config
 ln -s ~/truecrypt1/dotfiles/.tmuxinator .tmuxinator
 ln -s ~/truecrypt1/dotfiles/.zshrc .zshrc
 ln -s ~/truecrypt1/dotfiles/.zshrc-e .zshrc-e
+ln -s ~/truecrypt1/dotfiles/.config/vdirsyncer .vdirsyncer
 ln -s Library/Audio Audio
 ln -s /Volumes/MobileTerra/GoogleDrive GoogleDrive
 ln -s /Volumes/MobileTerra/GoogleDrive Google\ Drive
