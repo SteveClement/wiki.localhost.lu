@@ -261,6 +261,20 @@ sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@x.circ
 sudo -u steve /usr/bin/security -v add-internet-password -a steve@ion.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
 ```
 
+#### vdirsyncer et al.
+
+brew install vdirsyncer khal khard
+
+```bash
+ln -s ~/truecrypt1/dotfiles/.config/vdirsyncer .vdirsyncer
+vdirsyncer discover steve_calendar
+vdirsyncer discover steve_contacts
+vdirsyncer sync
+```
+
+
+
+
 To make sure gpg works add a symlink to gpg from gpg2
 
 ```
