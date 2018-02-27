@@ -249,6 +249,12 @@ export ENSCRIPT
 /usr/local/bin/enscript -p - $1 | /usr/bin/lpr -P printer_office_lan_LPD
 ```
 
+#### lessfilter
+
+```
+pip3 install pygments
+```
+
 #### mutt
 
 ```
