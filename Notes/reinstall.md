@@ -255,9 +255,10 @@ export ENSCRIPT
 pip3 install pygments
 ```
 
-#### mutt
+#### mutt et al.
 
 ```
+mkdir ~/.signatures # ln -s your sigs.
 pip3 install git+https://github.com/honza/mutt-notmuch-py.git
 brew tap neomutt/homebrew-neomutt
 brew install --with-gpgme --with-libidn --with-notmuch-patch --with-s-lang neomutt
