@@ -308,10 +308,11 @@ ln -s ~/truecrypt1/dotfiles/.bash_history ~/.bash_history
 ln -s ~/truecrypt1/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/truecrypt1/dotfiles/.bashrc ~/.bashrc
 ln -s ~/truecrypt1/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/truecrypt1/dotfiles/.gitignore ~/.gitignore
 ln -s ~/truecrypt1/dotfiles/.gitignore_global ~/.gitignore_global
 ln -s ~/truecrypt1/dotfiles/.imapfilter ~/.imapfilter
 ln -s ~/truecrypt1/dotfiles/.mutt ~/.mutt
+ln -s ~/truecrypt1/dotfiles/.muttilsrc ~/.muttilsrc
+ln -s ~/truecrypt1/dotfiles/.lessfilter ~/.lessfilter
 ln -s ~/truecrypt1/dotfiles/.msmtprc ~/.msmtprc
 ln -s ~/truecrypt1/dotfiles/.offlineimaprc ~/.offlineimaprc
 ln -s ~/truecrypt1/dotfiles/.procmailrc ~/.procmailrc
@@ -328,7 +329,6 @@ ln -s ~/truecrypt1/dotfiles .dotfiles
 ln -s ~/truecrypt1/dotfiles/.notmuch-config .notmuch-config
 ln -s ~/truecrypt1/dotfiles/.tmuxinator .tmuxinator
 ln -s ~/truecrypt1/dotfiles/.zshrc .zshrc
-ln -s ~/truecrypt1/dotfiles/.zshrc-e .zshrc-e
 ln -s ~/truecrypt1/dotfiles/.config/vdirsyncer .vdirsyncer
 ln -s Library/Audio Audio
 ln -s /Volumes/MobileTerra/GoogleDrive GoogleDrive
