@@ -198,6 +198,8 @@ hunspell \
 imagemagick \
 imapfilter \
 irssi \
+khard \
+khal \
 libav \
 lynx \
 mercurial \
@@ -219,6 +221,7 @@ terminal-notifier \
 tmux \
 unrar \
 urlview \
+vdirsyncer \
 w3m \
 wemux \
 wget \
