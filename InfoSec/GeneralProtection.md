@@ -324,6 +324,7 @@ ln -s ~/truecrypt1/dotfiles/.vim ~/.vim
 ln -s ~/truecrypt1/dotfiles/.vimrc ~/.vimrc
 ln -s ~/truecrypt1/dotfiles/.bitlbee .bitlbee
 ln -s ~/truecrypt1/dotfiles/.irssi .irssi
+ln -s ~/truecrypt1/dotfiles/.hgrc .hgrc
 ln -s ~/truecrypt1/dotfiles/.config .config
 ln -s ~/truecrypt1/dotfiles .dotfiles
 ln -s ~/truecrypt1/dotfiles/.notmuch-config .notmuch-config
@@ -335,6 +336,7 @@ ln -s /Volumes/MobileTerra/GoogleDrive GoogleDrive
 ln -s /Volumes/MobileTerra/GoogleDrive Google\ Drive
 ln -s /Volumes/MobileTerra/GoogleDrive/VM  VirtualBox\ VMs
 ln -s GoogleDrive/virtualenvs virtualenvs
+ln -s ~/truecrypt1/dotfiles/.procmailrc .procmailrc
 ln -s ~/truecrypt1/dotfiles dotfiles
 # :warning: Broken! ln -s ~/truecrypt1/dotfiles/.chromium/Web\ Data ~/.config/chromium/Default/Web\ Data
 ln -s ~/truecrypt1/StickiesDatabase ~/Library/StickiesDatabase
