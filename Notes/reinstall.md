@@ -192,6 +192,7 @@ enscript \
 exiftool \
 ffmpeg \
 findutils \
+git-lfs \
 gnu-tar \
 htop-osx \
 hunspell \
