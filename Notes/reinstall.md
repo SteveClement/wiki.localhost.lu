@@ -205,6 +205,7 @@ hunspell \
 imagemagick \
 imapfilter \
 irssi \
+jq \
 khard \
 khal \
 libav \
