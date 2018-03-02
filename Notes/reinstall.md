@@ -92,6 +92,12 @@ cd fonts
 
 ```
 
+#### Usb-Serial
+
+Download and install the PL2303 Driver
+
+http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=229&pcid=41
+
 #### msmtp
 
 http://www.futurile.net/resources/msmtp-a-simple-mail-transfer-agent/#queuing-outgoing-email
