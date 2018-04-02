@@ -288,7 +288,7 @@ doas make install
 ### From source
 
 ```
-doas pkg_add -v automake autoconf libtool git gcc g++ swig python
+doas pkg_add -v automake autoconf libtool git gcc g++ swig python gmake
 cd
 mkdir work
 cd work
@@ -306,8 +306,7 @@ cd znc
 
 CPPFLAGS="-I/usr/local/include " LDFLAGS="-L/usr/local/lib" python_LIBS="`pkg-config --libs python-3.6`" python_CFLAGS="`pkg-config --cflags python-3.6`" ac_cv_path_GNUMAKE=gmake CXX=egcc ./configure --disable-charset --disable-optimization
 
-configure --enable-charset --enable-optimization --prefix=/usr/local --sysconfdir=/etc --mandir=/usr/local/man --infodir=/usr/local/info --localstatedir=/var --disable-silent-rules --disable-gtk-doc
-
+#./configure --enable-charset --enable-optimization --prefix=/usr/local --sysconfdir=/etc --mandir=/usr/local/man --infodir=/usr/local/info --localstatedir=/var --disable-silent-rules --disable-gtk-doc
 
 gmake -j4
 doas gmake install
