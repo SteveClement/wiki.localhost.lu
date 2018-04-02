@@ -47,9 +47,9 @@ create symbolic links like so (overwriting any previous default):
  ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
  ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
  ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
---- +cantarell-fonts-0.0.25 -------------------
+--- +cantarell-fonts-0.101 -------------------
 You may wish to update your font path for /usr/local/share/fonts/cantarell
---- +hunspell-1.3.2p2 -------------------
+--- +hunspell-1.6.1p2 -------------------
 Install mozilla dictionaries for extra hunspell languages.
 e.g.
     # pkg_add mozilla-dicts-ca
