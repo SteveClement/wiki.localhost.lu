@@ -332,8 +332,9 @@ doas pip install virtualenvwrapper virtualenv
 
 ```
 doas pkg_add -v gmake
+cd
 cd work
-wget -O lxappearance-0.6.3.tar.xz https://downloads.sourceforge.net/project/lxde/LXAppearance/lxappearance-0.6.3.tar.xz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flxde%2Ffiles%2FLXAppearance%2F&ts=1492517080&use_mirror=freefr
+wget -O lxappearance-0.6.3.tar.xz "https://downloads.sourceforge.net/project/lxde/LXAppearance/lxappearance-0.6.3.tar.xz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flxde%2Ffiles%2FLXAppearance%2F&ts=1492517080&use_mirror=freefr"
 unxz lxappearance-0.6.3.tar.xz
 tar xfv lxappearance-0.6.3.tar
 cd lxappearance-0.6.3
