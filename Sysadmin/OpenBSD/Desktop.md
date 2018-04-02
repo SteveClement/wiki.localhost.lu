@@ -14,7 +14,7 @@ echo http://ftp.belnet.be/pub/OpenBSD/ > /etc/installurl
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
-doas pkg_add -v vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
+doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome neomutt terminator cups gimp libreoffice
 doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
@@ -26,7 +26,7 @@ doas ln -s /usr/local/bin/vim /usr/bin/vi
 
 # one-liner of all the above
 ```
-doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky vim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts gnome neomutt terminator cups gimp libreoffice mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts gnome neomutt terminator cups gimp libreoffice mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 ```
 
 # The following new rcscripts were installed
@@ -53,16 +53,17 @@ You may wish to update your font path for /usr/local/share/fonts/cantarell
 Install mozilla dictionaries for extra hunspell languages.
 e.g.
     # pkg_add mozilla-dicts-ca
---- +ruby-1.8.7.374p8 -------------------
+--- +ruby-2.4.3p0 -------------------
 If you want to use this package as your default system ruby, as root
 create symbolic links like so (overwriting any previous default):
- ln -sf /usr/local/bin/ruby18 /usr/local/bin/ruby
- ln -sf /usr/local/bin/erb18 /usr/local/bin/erb
- ln -sf /usr/local/bin/irb18 /usr/local/bin/irb
- ln -sf /usr/local/bin/rdoc18 /usr/local/bin/rdoc
- ln -sf /usr/local/bin/ri18 /usr/local/bin/ri
- ln -sf /usr/local/bin/testrb18 /usr/local/bin/testrb
---- +smplayer-17.3.0 -------------------
+ ln -sf /usr/local/bin/ruby24 /usr/local/bin/ruby
+ ln -sf /usr/local/bin/erb24 /usr/local/bin/erb
+ ln -sf /usr/local/bin/irb24 /usr/local/bin/irb
+ ln -sf /usr/local/bin/rdoc24 /usr/local/bin/rdoc
+ ln -sf /usr/local/bin/ri24 /usr/local/bin/ri
+ ln -sf /usr/local/bin/rake24 /usr/local/bin/rake
+ ln -sf /usr/local/bin/gem24 /usr/local/bin/gem
+--- +smplayer-18.2.2 -------------------
 Please note that the audio equaliser option can not be used with smplayer.
 --- +ubuntu-fonts-0.83 -------------------
 You may wish to update your font path for /usr/local/share/fonts/ubuntu
