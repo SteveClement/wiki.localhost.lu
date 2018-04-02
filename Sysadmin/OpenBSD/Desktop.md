@@ -503,22 +503,25 @@ ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
 
 https://www.bleachbit.org/
 https://www.bleachbit.org/download/source
-http://sourceforge.net/projects/bleachbit/files/bleachbit-1.12.tar.bz2
+http://sourceforge.net/projects/bleachbit/files/bleachbit-2.0.tar.bz2
 
 ```
-tar xfvz bleachbit-1.12.tar.gz
-cd bleachbit-1.12
+cd
+cd work
+wget https://download.bleachbit.org/bleachbit-2.0.tar.bz2
+tar xfvj bleachbit-2.0.tar.bz2
+cd bleachbit-2.0
 make -C po local
 python2.7 bleachbit/GUI.py
 ```
 
-## winff
+## winff (defunct, lazarus not in OpenBSD 6.3)
 
 https://docs.google.com/uc?authuser=0&id=0B8HoAIi30ZDkMHlvVkVtNHJnLVE&export=download
 https://github.com/WinFF/winff/tree/master/winff
 
 ```
-doas pkg_add -v lazarus
+doas pkg_add -v lazarus # 6.1< only
 git clone https://github.com/WinFF/winff.git
 cd winff/winff
 lazbuild --lazarusdir=/usr/local/share/lazarus -B winff.lpr
