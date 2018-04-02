@@ -19,7 +19,7 @@ doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal in
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome neomutt terminator cups gimp libreoffice
-doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
+doas pkg_add -v rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
@@ -28,7 +28,7 @@ doas ln -s /usr/local/bin/nvim /usr/bin/vi
 
 # one-liner of all the above
 ```
-doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts gnome neomutt terminator cups gimp libreoffice mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts gnome neomutt terminator cups gimp libreoffice mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 ```
 
 # The following new rcscripts were installed
