@@ -9,6 +9,8 @@ https://www.mtier.org/solutions/apps/openup/
 
 https://stable.mtier.org/openup
 
+Packages asking questions: irssi, conky, neomutt
+
 ```
 echo http://ftp.belnet.be/pub/OpenBSD/ > /etc/installurl
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
@@ -21,7 +23,7 @@ doas pkg_add -v mrxvt rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
-doas ln -s /usr/local/bin/vim /usr/bin/vi
+doas ln -s /usr/local/bin/nvim /usr/bin/vi
 ```
 
 # one-liner of all the above
