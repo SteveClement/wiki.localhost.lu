@@ -1,9 +1,9 @@
-# Building an OpenBSD 6.2 Desktop
+# Building an OpenBSD 6.3 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
 
-# OpenUP NOT OpenBSD 6.2 ready, yet (but 6.1 is ok)
+# OpenUP
 
 https://www.mtier.org/solutions/apps/openup/
 
