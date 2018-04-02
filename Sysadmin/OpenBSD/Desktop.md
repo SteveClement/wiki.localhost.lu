@@ -35,7 +35,7 @@ doas ln -s /usr/local/bin/vim /usr/bin/vi
 
 # Package Messages
 ```
---- +python-2.7.13p0 -------------------
+--- +python-2.7.14p1 -------------------
 If you want to use this package as your default system python, as root
 create symbolic links like so (overwriting any previous default):
  ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
