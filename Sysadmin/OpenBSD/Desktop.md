@@ -9,7 +9,7 @@ https://www.mtier.org/solutions/apps/openup/
 
 https://stable.mtier.org/openup
 
-Packages asking questions: irssi, conky, neomutt
+Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee, 
 
 ```
 echo http://ftp.belnet.be/pub/OpenBSD/ > /etc/installurl
@@ -71,9 +71,6 @@ Please note that the audio equaliser option can not be used with smplayer.
 You may wish to update your font path for /usr/local/share/fonts/ubuntu
 --- +ghostscript-fonts-8.11p3 -------------------
 You may wish to update your font path for /usr/local/share/fonts/ghostscript
---- +webkit-gtk3-2.4.11p1v1 -------------------
-!!! WARNING: WebKitGTK+ 2.4 is known to have many security vulnerabilities that
-!!! will NOT be fixed. Avoid browsing with it.
 --- +noto-emoji-20150929p0 -------------------
 You may wish to update your font path for /usr/local/share/fonts/noto
 --- +py-pip-9.0.1p0 -------------------
