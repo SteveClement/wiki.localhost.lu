@@ -12,6 +12,17 @@ See [OpenBSD Desktop](../Sysadmin/OpenBSD/Desktop.md)
 
 To be completed
 
+## New tools
+
+* https://mosh.org/#getting
+* http://spacevim.org/quick-start-guide/
+* brew tap caskroom/fonts
+* brew cask install font-hack-nerd-font
+* https://gist.github.com/BretFisher/78a90d4e39e79d5f3c9769d4002f67a7
+* http://betterthanack.com/
+* https://github.com/axiros/terminal_markdown_viewer
+* https://gist.github.com/BretFisher/6f688dde0122399efdca5a9d26100437
+
 ## OSX
 
 ### AppStore Apps
