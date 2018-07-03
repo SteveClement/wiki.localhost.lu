@@ -39,7 +39,13 @@ Attempting to automatically merge changes in files... done.
 
 Fix whatever issues yielded above.
 
-
+```
+To install the downloaded upgrades, run "/usr/sbin/freebsd-update install".
+root@dot60:~ # freebsd-update install
+Installing updates...
+ernel updates have been installed.  Please reboot and run
+"/usr/sbin/freebsd-update install" again to finish installing updates.
+```
 
 
 
@@ -91,7 +97,6 @@ Merge conflicts et al.
 freebsd-update install
 Installing updates...
 ```
-
 
 ```
 cd /usr/src && make kernel
