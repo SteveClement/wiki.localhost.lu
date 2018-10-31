@@ -15,7 +15,7 @@ root@myserver# mysql -u root mysql
 ```
 
 ```
-mysql> update user set Password=PASSWORD('new-password');
+mysql> update user set Password=PASSWORD('new-password') WHERE User='root';
 mysql> flush privileges;
 mysql exit;
 ```
