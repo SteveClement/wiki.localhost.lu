@@ -273,7 +273,7 @@ mkdir work
 cd work
 git clone https://github.com/hishamhm/htop
 cd htop
-export AUTOMAKE_VERSION=1.15
+export AUTOMAKE_VERSION=1.16
 export AUTOCONF_VERSION=2.69
 ./autogen.sh
 ./configure
@@ -292,7 +292,7 @@ doas pkg_add -v automake autoconf libtool git gcc g++ swig python gmake
 cd
 mkdir work
 cd work
-export AUTOMAKE_VERSION=1.15
+export AUTOMAKE_VERSION=1.16
 export AUTOCONF_VERSION=2.69
 git clone https://github.com/swig/swig.git
 cd swig
