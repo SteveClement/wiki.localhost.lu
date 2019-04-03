@@ -1,34 +1,35 @@
 To upgrade to the stable release the announce document has an upgrade section:
 
- https://www.freebsd.org/releases/11.2R/announce.html
+ https://www.freebsd.org/releases/12.0R/announce.html
 
-# Upgrading from 11.1-RELEASE to 11.2-RELEASE
+# Upgrading from 11.2-RELEASE to 12.0-RELEASE
 
 ```
-root@dot60:~ # freebsd-update -r 11.2-RELEASE upgrade
+root@dot60:~ # freebsd-update -r 12.0-RELEASE upgrade
 Looking up update.FreeBSD.org mirrors... 3 mirrors found.
-Fetching metadata signature for 11.1-RELEASE from update6.freebsd.org... done.
+Fetching metadata signature for 11.2-RELEASE from update4.freebsd.org... done.
 Fetching metadata index... done.
-Fetching 1 metadata files... done.
+Fetching 1 metadata patches. done.
+Applying metadata patches... done.
 Inspecting system... done.
 
 The following components of FreeBSD seem to be installed:
-kernel/generic src/src world/base world/doc world/lib32
+kernel/generic kernel/generic-dbg src/src world/base world/lib32
 
 The following components of FreeBSD do not seem to be installed:
-kernel/generic-dbg world/base-dbg world/lib32-dbg
+world/base-dbg world/doc world/lib32-dbg
 
 Does this look reasonable (y/n)? y
 
-Fetching metadata signature for 11.2-RELEASE from update6.freebsd.org... done.
+Fetching metadata signature for 12.0-RELEASE from update6.freebsd.org... done.
 Fetching metadata index... done.
 Fetching 1 metadata patches. done.
 Applying metadata patches... done.
 Fetching 1 metadata files... done.
 Inspecting system... done.
-Fetching files from 11.1-RELEASE for merging... done.
+Fetching files from 11.2-RELEASE for merging... done.
 Preparing to download files... done.
-Fetching 48515 patches.....10....20....30....40....50....60....70....80....90....100....110....120....130....140....150....160....170....180....190....200....210....220....230....240....250....260....270....280....290....300....310....320....330....340....350....360....370....380....390....400....410....420....430....440....450....460....470....480....490....500....510....520....530....540....550....560....570....580....590....600....610....620....630....640....650....660....670....680....690....700....710....720....730....740....750....760....770....780....790....800....810....820....830....840....850....860....870....880....890....900....910....920....930....940....950....960....970....980....990.
+Fetching 41823 patches.....10....20....30....40....50....60....70....80....90....100....110....120....130....140....150....160....170....180....190....200....210....220....230....240....250....260....270....280....290....300....310....320....330....340....350....360....370....380....390....400....410....420....430....440....450....460....470....480....490....500....510....520....530....540....550....560....570....580....590....600....610....620....630....640....650....660....670....680....690....700....710....720....730....740....750....760....770....780....790....800....810....820....830....840....850....860....870....880....890....900....910....920....930....940....950....960....970....980....990.
 ---8<---
 ....47890....47900....47910....47920....47930....47940....47950....47960....47970....47980....47990....48000....48010....48020....48030....48040....48050....48060....48070....48080....48090....48100....48110....48120....48130....48140....48150....48160....48170....48180....48190....48200....48210....48220....48230....48240....48250....48260....48270....48280....48290....48300....48310....48320....48330....48340....48350....48360....48370....48380....48390....48400....48410....48420....48430....48440....48450....48460....48470....48480....48490....48500....48510.. done.
 Applying patches... done.
