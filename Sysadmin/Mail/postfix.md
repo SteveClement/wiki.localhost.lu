@@ -15,6 +15,9 @@ Create /etc/postfix/sasl_passwd
 ```
 echo "mail.mbox.lu:587 steve@example.com:MySuper Secure Passw0rd" |sudo tee /etc/postfix/sasl_passwd
 sudo postmap hash:/etc/postfix/sasl_passwd
+sudo chown root:root /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+sudo chmod 0600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+sudo service postfix restart
 ```
 
 Done :)
