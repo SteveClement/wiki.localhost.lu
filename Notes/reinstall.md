@@ -8,9 +8,9 @@ See [FreeBSD Install](https://github.com/SteveClement/sysadmin/tree/master/tools
 
 See [OpenBSD Desktop](../Sysadmin/OpenBSD/Desktop.md)
 
-## Ubuntu
+## Debian/Ubuntu
 
-To be completed
+See [Debian Desktop](../Sysadmin/Linux/Debian/Desktop.md)
 
 ## New tools
 
