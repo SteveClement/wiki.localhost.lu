@@ -75,6 +75,16 @@ VBoxHeadless --startvm ${VBOX_NAME}
 VBoxManage storageattach ${VBOX_NAME} --storagectl "IDE Controller" --port 0 --device 1 --type dvddrive --medium none
 ```
 
+### List Disks
+```
+vboxmanage list hdds
+```
+
+### Delete disks
+```
+vboxmanage closemedium disk <uuid> --delete
+```
+
 ### Move from NAT to Bridged configuration
 ```
 VBoxManage modifyvm ${VBOX_NAME} --nic1 bridged --bridgeadapter1 eth0
