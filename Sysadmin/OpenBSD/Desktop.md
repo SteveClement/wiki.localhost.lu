@@ -1,4 +1,4 @@
-# Building an OpenBSD 6.3 Desktop
+# Building an OpenBSD 6.5 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
@@ -12,7 +12,7 @@ https://stable.mtier.org/openup
 Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee, 
 
 ```
-echo http://ftp.belnet.be/pub/OpenBSD/ > /etc/installurl
+echo http://cdn.openbsd.org/pub/OpenBSD/ > /etc/installurl
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
