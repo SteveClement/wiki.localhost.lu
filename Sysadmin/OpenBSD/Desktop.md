@@ -2,13 +2,6 @@
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
-
-# OpenUP
-
-https://www.mtier.org/solutions/apps/openup/
-
-https://stable.mtier.org/openup
-
 Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee, 
 
 ```
