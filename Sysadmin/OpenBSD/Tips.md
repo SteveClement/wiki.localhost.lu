@@ -98,11 +98,11 @@ You are missing the X headers, install them like so:
 
 ```
 $ su -
-# wget http://ftp.belnet.be/pub/OpenBSD/5.9/i386/xbase59.tgz
-# wget http://ftp.belnet.be/pub/OpenBSD/5.9/i386/xshare59.tgz
-# tar -C / -xzphf xbase59.tgz
-# tar -C / -xzphf xshare59.tgz
-rm xbase59.tgz xshare59.tgz
+# wget http://ftp.belnet.be/pub/OpenBSD/6.6/amd64/xbase66.tgz
+# wget http://ftp.belnet.be/pub/OpenBSD/6.6/amd64/xshare66.tgz
+# tar -C / -xzphf xbase66.tgz
+# tar -C / -xzphf xshare66.tgz
+rm xbase66.tgz xshare66.tgz
 ```
 
 ## sudo removed, doas introduced
