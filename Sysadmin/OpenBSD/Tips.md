@@ -313,21 +313,20 @@ make
 doas make install
 ```
 
-## Current X.Org version on OpenBSD 5.9
+## Current X.Org version on OpenBSD 6.6
 
 ```
 # X -version
 
-X.Org X Server 1.17.4
-Release Date: 2015-10-28
+X.Org X Server 1.20.5
 X Protocol Version 11, Revision 0
-Build Operating System: OpenBSD 5.9 i386
-Current Operating System: OpenBSD mirror.osn.de 5.9 GENERIC.MP#1616 i386
-Build Date: 26 February 2016  01:54:40AM
-
-Current version of pixman: 0.32.8
-        Before reporting problems, check http://wiki.x.org
-        to make sure that you have the latest version.
+Build Operating System: OpenBSD 6.6 amd64 
+Current Operating System: OpenBSD tokyo.office.lan 6.6 GENERIC.MP#0 amd64
+Build Date: 12 October 2019  11:22:22AM
+ 
+Current version of pixman: 0.38.4
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
 ```
 
 cvsup xenoncara version from: 25.04.2016:
@@ -336,36 +335,42 @@ cvsup xenoncara version from: 25.04.2016:
 # X -version
 ```
  
-Kernel Version vanilla 5.9:
+Kernel Version vanilla 6.6:
 ```
-OpenBSD foo.lan 5.9 GENERIC.MP#1616 i386
+OpenBSD foo.lan 6.6 GENERIC.MP#0 amd64
 ```
 
 This is done through CVSup and takes time.
 
 OpenBSD is not meant to be set up in 5 minutes and your done. It aims at System Administrators that are actually interested in their Systems security.
 
-# Install basic packages on 5.9
+# Install basic packages on 6.6
 
 ```
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/lsof-4.89.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/ntp-4.2.8pl6.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/munin-node-2.0.25p1.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/gsed-4.2.2p0.tgz
-pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.9/packages/i386/pkglocatedb-1.2.tgz
+pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/lsof-4.89.tgz
+pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/ntp-4.2.8pl6.tgz
+pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/munin-node-2.0.25p1.tgz
+pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/gsed-4.2.2p0.tgz
+pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/pkglocatedb-1.2.tgz
 ```
 
 Or for the cool kids:
 
-## OLD STYLE
+## OLD STYLE (obsolete)
 ```
 export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.3/packages/i386/
 pkg_add -v lsof ntp munin-node gsed pkglocatedb
 ```
 
-## NEW STYLE
+## OLD-NEW STYLE (obsolete)
 ```
 echo "installpath=http://ftp.spline.de/pub/OpenBSD/%c/packages/%a/" > /etc/pkg.conf
+pkg_add -v lsof ntp munin-node gsed pkglocatedb
+```
+
+## NEW STYLE
+```
+echo "https://cdn.openbsd.org/pub/OpenBSD" > /etc/installurl
 pkg_add -v lsof ntp munin-node gsed pkglocatedb
 ```
 
