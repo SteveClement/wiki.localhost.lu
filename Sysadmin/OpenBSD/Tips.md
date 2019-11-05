@@ -248,7 +248,9 @@ super-block backups (for fsck -b #) at:
 # df -kh /ssd
 Filesystem     Size    Used   Avail Capacity  Mounted on
 /dev/sd1a     29.3G    2.0K   27.9G     0%    /ssd
-echo "/dev/sd3a / ffs rw,softdep 1 1" >> /etc/fstab
+# sysctl hw.disknames # Identify 
+hw.disknames=sd0:52059ef2c26253c1,sd1:72950db7c2c6d489
+echo "72950db7c2c6d489.a /ssd ffs rw,nodev,nosuid,softdep 1 2" >> /etc/fstab
 ```
 
 ## Encrypt USB Disk or other disk
