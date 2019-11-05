@@ -135,8 +135,8 @@ Just add this into your /etc/mail/smtpd.conf and restart.
 Where 192.168.0.123 is your local, port 25 reachable, outgoing relay.
 
 ```
-echo "accept from local for any relay via smtp://192.168.0.123” >> /etc/mail/smtpd.conf
-/etc/rc.d/smtpd restart
+echo 'action "outbound" relay host smtp://192.168.0.123” >> /etc/mail/smtpd.conf
+rcctl enable smtpd && rcctl start smtpd
 ```
 
 If you need to auth against an Internet relay do:
@@ -149,8 +149,9 @@ chmod 640 secrets*
 chown root:_smtpd secrets*
 vi /etc/smtpd.conf
 # Add: table secrets db:/etc/mail/secrets.db
-echo "accept from local for any relay via tls+auth://label@mail.outgoing.com:587 auth <secrets>" >> /etc/mail/smtpd.conf
-/etc/rc.d/smtpd restart
+echo 'action "outbound" relay host smtp+tls://label@mail.outgoing.com:587 auth <secrets>' >> /etc/mail/smtpd.conf
+
+rcctl enable smtpd && rcctl start smtpd
 ```
 
 ## Looking for a binary in OpenBSD ports
