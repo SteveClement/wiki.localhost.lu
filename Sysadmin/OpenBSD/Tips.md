@@ -17,6 +17,14 @@ doas chmod 600 daily.out failedlogin pflog secure security.out weekly.out
 doas chmod 644 lastlog messages wtmp munin/munin-node.log
 ```
 
+# PiHole on OpenBSD
+
+Src: https://bghost.xyz/post/pihole_on_openbsd/
+
+# Blocking Ads using unbound
+
+Src: https://www.tumfatig.net/20190405/blocking-ads-using-unbound8-on-openbsd/
+
 ## OpenBSD Desktop
 
 ### 
