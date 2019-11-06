@@ -1,6 +1,6 @@
 To upgrade to the stable release the announce document has an upgrade section:
 
- https://www.freebsd.org/releases/12.0R/announce.html
+ https://www.freebsd.org/releases/12.1R/announce.html
 
 # Upgrading from 11.2-RELEASE to 12.0-RELEASE
 
