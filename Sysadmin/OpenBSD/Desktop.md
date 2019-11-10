@@ -1,4 +1,4 @@
-# Building an OpenBSD 6.5 Desktop
+# Building an OpenBSD 6.6 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
