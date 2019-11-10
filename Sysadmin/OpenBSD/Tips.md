@@ -2,6 +2,11 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+## termite issues add it to termcap
+
+```bash
+infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr/share/misc/termcap
+```
 
 ## Log directory empty
 
