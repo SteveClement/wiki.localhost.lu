@@ -127,8 +127,8 @@ You may wish to update your font path for /usr/local/share/fonts/ubuntu
  default:\
         :path=/usr/bin /bin /usr/sbin /sbin /usr/X11R6/bin /usr/local/bin /usr/local/sbin:\
         :umask=022:\
--       :datasize-max=512M:\
--       :datasize-cur=512M:\
+-       :datasize-max=768M:\
+-       :datasize-cur=768M:\
 +       :datasize-max=2048M:\
 +       :datasize-cur=2048M:\
         :maxproc-max=256:\
@@ -139,7 +139,7 @@ You may wish to update your font path for /usr/local/share/fonts/ubuntu
 
 /etc/fstab
 ```
-/dev/wd0a / ffs rw,noatime,softdep 1 1
+12cba83c3f56c5cc.a / ffs rw,noatime,softdep 1 1
 ```
 
 
