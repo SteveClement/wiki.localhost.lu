@@ -6,6 +6,7 @@ Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee,
 
 ```
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
+infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr/share/misc/termcap
 doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
