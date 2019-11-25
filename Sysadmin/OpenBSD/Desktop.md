@@ -26,54 +26,96 @@ doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkgloc
 
 # The following new rcscripts were installed
 ```
-/etc/rc.d/munin_asyncd /etc/rc.d/munin_node /etc/rc.d/xntpd
-/etc/rc.d/messagebus /etc/rc.d/slim
-/etc/rc.d/avahi_daemon /etc/rc.d/avahi_dnsconfd
-/etc/rc.d/cups_browsed /etc/rc.d/cupsd /etc/rc.d/gdm /etc/rc.d/nmbd /etc/rc.d/samba /etc/rc.d/samba_ad_dc /etc/rc.d/saslauthd /etc/rc.d/smbd /etc/rc.d/winbindd
+/etc/rc.d/avahi_daemon
+/etc/rc.d/avahi_dnsconfd
+/etc/rc.d/bitlbee
+/etc/rc.d/cups_browsed
+/etc/rc.d/cupsd
+/etc/rc.d/gdm
+/etc/rc.d/messagebus
+/etc/rc.d/munin_asyncd
+/etc/rc.d/munin_node
+/etc/rc.d/nmbd
+/etc/rc.d/samba
+/etc/rc.d/samba_ad_dc
+/etc/rc.d/saslauthd
+/etc/rc.d/slim
+/etc/rc.d/smbd
 /etc/rc.d/vnstatd
+/etc/rc.d/winbindd
+/etc/rc.d/xntpd
+```
+
+# New and changed readme(s):
+```
+ /usr/local/share/doc/pkg-readmes/avahi
+	/usr/local/share/doc/pkg-readmes/bitlbee
+	/usr/local/share/doc/pkg-readmes/consolekit2
+	/usr/local/share/doc/pkg-readmes/cups
+	/usr/local/share/doc/pkg-readmes/cups-filters
+	/usr/local/share/doc/pkg-readmes/dbus
+	/usr/local/share/doc/pkg-readmes/ffmpeg
+	/usr/local/share/doc/pkg-readmes/firefox
+	/usr/local/share/doc/pkg-readmes/foomatic-db-engine
+	/usr/local/share/doc/pkg-readmes/gamin
+	/usr/local/share/doc/pkg-readmes/glib2
+	/usr/local/share/doc/pkg-readmes/gnome
+	/usr/local/share/doc/pkg-readmes/gnupg
+	/usr/local/share/doc/pkg-readmes/gtk+2
+	/usr/local/share/doc/pkg-readmes/gtk+3
+	/usr/local/share/doc/pkg-readmes/ibus
+	/usr/local/share/doc/pkg-readmes/libtermkey
+	/usr/local/share/doc/pkg-readmes/mplayer
+	/usr/local/share/doc/pkg-readmes/munin-node
+	/usr/local/share/doc/pkg-readmes/neovim
+	/usr/local/share/doc/pkg-readmes/ntp
+	/usr/local/share/doc/pkg-readmes/rxvt-unicode
+	/usr/local/share/doc/pkg-readmes/samba
+	/usr/local/share/doc/pkg-readmes/sdl2
+	/usr/local/share/doc/pkg-readmes/slim
+	/usr/local/share/doc/pkg-readmes/texlive_base
+	/usr/local/share/doc/pkg-readmes/thunderbird
+	/usr/local/share/doc/pkg-readmes/upower
+	/usr/local/share/doc/pkg-readmes/vnstat
+	/usr/local/share/doc/pkg-readmes/xdg-utils
+	/usr/local/share/doc/pkg-readmes/xfce
 ```
 
 # Package Messages
 ```
---- +python-2.7.14p1 -------------------
+--- +adobe-source-code-pro-2.030p0 -------------------
+You may wish to update your font path for /usr/local/share/fonts/adobe-source-code-pro
+--- +cantarell-fonts-0.111 -------------------
+You may wish to update your font path for /usr/local/share/fonts/cantarell
+--- +ghostscript-fonts-8.11p3 -------------------
+You may wish to update your font path for /usr/local/share/fonts/ghostscript
+--- +hunspell-1.6.2p0 -------------------
+Install mozilla dictionaries for extra hunspell languages.
+e.g.
+    # pkg_add mozilla-dicts-ca
+--- +noto-emoji-20180810 -------------------
+You may wish to update your font path for /usr/local/share/fonts/noto
+--- +noto-fonts-20171024 -------------------
+You may wish to update your font path for /usr/local/share/fonts/noto
+--- +py-pip-19.1.1 -------------------
+If you want to use this package as default pip, as root create a
+symbolic link like so (overwriting any previous default):
+    ln -sf /usr/local/bin/pip2.7 /usr/local/bin/pip
+--- +py3-pip-19.1.1 -------------------
+If you want to use this package as default pip, as root create a
+symbolic link like so (overwriting any previous default):
+    ln -sf /usr/local/bin/pip3.7 /usr/local/bin/pip
+--- +python-2.7.16p1 -------------------
 If you want to use this package as your default system python, as root
 create symbolic links like so (overwriting any previous default):
  ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
  ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
  ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
  ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
---- +cantarell-fonts-0.101 -------------------
-You may wish to update your font path for /usr/local/share/fonts/cantarell
---- +hunspell-1.6.1p2 -------------------
-Install mozilla dictionaries for extra hunspell languages.
-e.g.
-    # pkg_add mozilla-dicts-ca
---- +ruby-2.4.3p0 -------------------
-If you want to use this package as your default system ruby, as root
-create symbolic links like so (overwriting any previous default):
- ln -sf /usr/local/bin/ruby24 /usr/local/bin/ruby
- ln -sf /usr/local/bin/erb24 /usr/local/bin/erb
- ln -sf /usr/local/bin/irb24 /usr/local/bin/irb
- ln -sf /usr/local/bin/rdoc24 /usr/local/bin/rdoc
- ln -sf /usr/local/bin/ri24 /usr/local/bin/ri
- ln -sf /usr/local/bin/rake24 /usr/local/bin/rake
- ln -sf /usr/local/bin/gem24 /usr/local/bin/gem
---- +smplayer-18.2.2 -------------------
+--- +smplayer-19.5.0 -------------------
 Please note that the audio equaliser option can not be used with smplayer.
---- +ubuntu-fonts-0.83 -------------------
+--- +ubuntu-fonts-0.83p1 -------------------
 You may wish to update your font path for /usr/local/share/fonts/ubuntu
---- +ghostscript-fonts-8.11p3 -------------------
-You may wish to update your font path for /usr/local/share/fonts/ghostscript
---- +noto-emoji-20150929p0 -------------------
-You may wish to update your font path for /usr/local/share/fonts/noto
---- +py-pip-9.0.1p0 -------------------
-If you want to use this package as default pip, as root create a
-symbolic link like so (overwriting any previous default):
-    ln -sf /usr/local/bin/pip2.7 /usr/local/bin/pip
---- +py3-pip-9.0.1p0 -------------------
-If you want to use this package as default pip, as root create a
-symbolic link like so (overwriting any previous default):
-    ln -sf /usr/local/bin/pip3.6 /usr/local/bin/pip
 ```
 
 
