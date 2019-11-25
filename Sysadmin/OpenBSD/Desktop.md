@@ -308,8 +308,8 @@ mkdir work
 cd work
 git clone https://github.com/hishamhm/htop
 cd htop
-export AUTOMAKE_VERSION=1.16
-export AUTOCONF_VERSION=2.69
+export AUTOMAKE_VERSION=1.16 # 7
+export AUTOCONF_VERSION=2.69 # 16
 ./autogen.sh
 ./configure
 make
