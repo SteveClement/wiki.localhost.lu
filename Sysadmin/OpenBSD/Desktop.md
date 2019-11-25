@@ -275,6 +275,13 @@ restrict -6 ::1
 #leapfile "/etc/ntp/leap-seconds"
 leapfile "/var/db/ntpd.leap-seconds.list"
 ```
+
+# Update leap-seconds file
+
+```
+doas update-leap
+```
+
 .xinitrc
 ```
 exec openbox-session
