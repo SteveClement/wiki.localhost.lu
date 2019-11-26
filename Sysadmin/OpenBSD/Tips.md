@@ -490,19 +490,22 @@ $ cvs up -Pd
 ## dir sizes after reposync
 ```
 OpenBSD-all
-    All available OpenBSD collections (~3.8GB)
+    All available OpenBSD collections (~6.6GB)
 OpenBSD-src
-    The source distribution (~1.5GB)
+    The source distribution (~2.9GB)
 OpenBSD-ports
-    The ports distribution (~390MB)
+    The ports distribution (~1.1GB)
 OpenBSD-www
-    The OpenBSD web pages (~375MB)
+    The OpenBSD web pages (~787MB)
 OpenBSD-xenocara
-    The current X.Org v7 tree (~676MB)
-OpenBSD-xf4
-    The previous X.Org v6 tree (~564MB)
-OpenBSD-x11
-    The old XFree86-3 distribution (~200MB) 
+    The current X.Org v7 tree (~1.7GB)
+
+$ du -sh /home/cvs/*
+176M	/home/cvs/CVSROOT
+1.1G	/home/cvs/ports
+2.9G	/home/cvs/src
+787M	/home/cvs/www
+1.7G	/home/cvs/xenocara
 ```
 
 # Making a new world
