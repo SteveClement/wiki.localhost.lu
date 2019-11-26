@@ -403,10 +403,20 @@ Current version of pixman: 0.38.4
 	to make sure that you have the latest version.
 ```
 
-cvsup xenoncara version from: 25.04.2016:
+cvsup xenoncara version from: 26.11.2019:
 
 ```
-# X -version
+$ X -version
+
+X.Org X Server 1.20.5
+X Protocol Version 11, Revision 0
+Build Operating System: OpenBSD 6.6 amd64 
+Current Operating System: OpenBSD cdn.openbsd.org 6.6 GENERIC#3 amd64
+Build Date: 26 November 2019  11:42:27AM
+ 
+Current version of pixman: 0.38.4
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
 ```
  
 Kernel Version vanilla 6.6:
