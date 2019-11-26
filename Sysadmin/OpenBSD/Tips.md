@@ -419,8 +419,7 @@ $ doas pkg_add -v cvsync
 
 ## Add a cvsync file like
 ```
-cat < EOF > /etc/cvsync.conf
-# $Id: cvsync-all,v 1.1 2010/02/12 17:02:49 cvs Exp $
+echo "# $Id: cvsync-all,v 1.1 2010/02/12 17:02:49 cvs Exp $
 #
 # Print list of available collections
 #
@@ -461,8 +460,7 @@ config {
 # Replace "name openbsd" with e.g. "name openbsd-src" to get only
 # part of the repository. Repeat the config { } stanza to select
 # more than one collection.
-#
-EOF
+#" |doas tee /etc/cvsync.conf
 ```
 
 ## Make sure you can run everything as your non-privileged user
@@ -478,7 +476,9 @@ doas chmod 775  xenocara ports
 
 ## Run cvsync
 ```
-$ mkdir /home/cvs
+$ doas mkdir /home/cvs
+$ doas chgrp wsrc /home/cvs
+$ doas chmod 775 /home/cvs
 $ cvsync
 ```
 
