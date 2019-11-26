@@ -410,57 +410,13 @@ echo "https://cdn.openbsd.org/pub/OpenBSD" |doas tee /etc/installurl
 doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 ```
 
-# Install CVSync
+# Install reposync
 
-## cvsync is not installed by default do this now
 ```
-$ doas pkg_add -v cvsync
-```
-
-## Add a cvsync file like
-```
-echo '# $Id: cvsync-all,v 1.1 2010/02/12 17:02:49 cvs Exp $
-#
-# Print list of available collections
-#
-config {
-    hostname cdn.openbsd.org
-    collection {
-        name all
-        release list
-    }
-}
-#
-# Mirror complete CVS repository
-#
-config {
-    hostname cdn.openbsd.org
-    collection {
-        name openbsd-cvsroot
-        release rcs
-        prefix /home/cvs
-    }
-    collection {
-        name openbsd-src
-        release rcs
-        prefix /home/cvs
-    }
-    collection {
-        name openbsd-ports
-        release rcs
-        prefix /home/cvs
-    }
-#   collection {
-#       name openbsd-xenocara
-#       release rcs
-#       prefix /home/cvs
-#   }
-}
-#
-# Replace "name openbsd" with e.g. "name openbsd-src" to get only
-# part of the repository. Repeat the config { } stanza to select
-# more than one collection.
-#' |doas tee /etc/cvsync.conf
+$ doas pkg_add -v reposync
+$ doas useradd cvs
+$ doas install -d -o cvs /home/cvs /var/db/reposync
+$ doas -u cvs reposync rsync://anoncvs.jp.openbsd.org/cvs /home/cvs
 ```
 
 ## Make sure you can run everything as your non-privileged user
@@ -474,20 +430,15 @@ doas chgrp wsrc xenocara ports
 doas chmod 775  xenocara ports
 ```
 
-## Run cvsync
-```
-$ doas mkdir /home/cvs
-$ doas chgrp wsrc /home/cvs
-$ doas chmod 775 /home/cvs
-$ cvsync
-```
-
 ## Checkout the repos
 ```
+# If /usr/src exist, checkout with local repo
+$ cd /usr/src
+$ cvs -d /home/cvs up -Pd
 $ cd /usr
-$ cvs -d/home/cvs checkout -P src
-$ cvs -d/home/cvs checkout -P ports
-$ cvs -d/home/cvs checkout -P xenocara
+$ cvs -d /home/cvs checkout -P src
+$ cvs -d /home/cvs checkout -P ports
+$ cvs -d /home/cvs checkout -P xenocara
 ```
 
 ## Update the repos
