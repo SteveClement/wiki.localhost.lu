@@ -545,14 +545,14 @@ http://sourceforge.net/projects/bleachbit/files/bleachbit-2.0.tar.bz2
 ```
 cd
 cd work
-wget https://download.bleachbit.org/bleachbit-2.0.tar.bz2
-tar xfvj bleachbit-2.0.tar.bz2
-cd bleachbit-2.0
+wget https://download.bleachbit.org/bleachbit-3.0.tar.bz2
+tar xfvj bleachbit-3.0.tar.bz2
+cd bleachbit-3.0
 make -C po local
 python2.7 bleachbit/GUI.py
 ```
 
-## winff (defunct, lazarus not in OpenBSD 6.3)
+## winff (defunct, lazarus not in OpenBSD 6.6)
 
 https://docs.google.com/uc?authuser=0&id=0B8HoAIi30ZDkMHlvVkVtNHJnLVE&export=download
 https://github.com/WinFF/winff/tree/master/winff
