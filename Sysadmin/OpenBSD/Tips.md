@@ -447,12 +447,7 @@ $ cd /usr/src
 $ cvs up -Pd
 ```
 
-## Installing cvsync from source/ports without X11
-```
-cd /usr/ports/net/cvsync && make
-```
-
-## dir sizes after cvsync
+## dir sizes after reposync
 ```
 OpenBSD-all
     All available OpenBSD collections (~3.8GB)
@@ -471,8 +466,8 @@ OpenBSD-x11
 ```
 
 # Making a new world
-:warning: Read this: http://openbsd.org/faq/upgrade59.html OR http://openbsd.org/faq/upgrade59.html
-:warning: Make sure to skim through the document and use sysmerge as well as "2. Files to delete" (if coming from 5.2)
+:warning: Read this: https://openbsd.org/faq/upgrade66.html
+:warning: Make sure to skim through the document and use sysmerge as well as "2. Files to delete" (if coming from prior versions)
 
 ## pre-update Notes
 ### 5.2 -> 5.3
@@ -692,13 +687,9 @@ vm.swapencrypt.enable=1
 
 ### bash
 
+ 1. Add the package for the BASH shell via pkg_add as a binary
 ```
-# export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.2/packages/i386/
-```
-
- 1. Add the i386 package for the BASH shell via pkg_add as a binary
-```
-# pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.1/packages/i386/bash-4.2.10.tgz
+# pkg_add -v bash
 ```
 
  2. Setting BASH as your login shell
@@ -710,8 +701,9 @@ vm.swapencrypt.enable=1
 
 :warning: This will compile bash from source
 ```
-# cd /usr/ports/shells/bash
-# make install clean
+$ cd /usr/ports/shells/bash
+$ make
+$ doas make install clean
 ```
 
 ## Locking A User Out of Their Account
@@ -1066,7 +1058,7 @@ done
 ## Updating single port
 ### Firefox seem out-of-date to update
 ```
-# find /usr/ports/ -name mozilla-firefox
-# cd /usr/ports/www/mozilla-firefox/
-# make update
+$ find /usr/ports/ -name mozilla-firefox
+$ cd /usr/ports/www/mozilla-firefox/
+$ doas make update
 ```
