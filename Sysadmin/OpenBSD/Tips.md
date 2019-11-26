@@ -331,7 +331,7 @@ make
 doas make install
 ```
 
-## Building xenocara
+## Building xenocara-stable
 
 ```
 doas user mod -G wsrc YOUR_USER
@@ -340,7 +340,7 @@ cd /usr/
 doas mkdir -p xenocara
 doas chgrp wsrc xenocara
 doas chmod 775  xenocara
-cvs -qd anoncvs@anoncvs.example.org:/cvs checkout -rOPENBSD_6_6 -P xenocara
+cvs -qd anoncvs@anoncvs.openbsd.org:/cvs checkout -rOPENBSD_6_6 -P xenocara
 cd /usr/xenocara
 doas make bootstrap
 doas make obj
@@ -380,6 +380,7 @@ OpenBSD is not meant to be set up in 5 minutes and your done. It aims at System 
 
 # Install basic packages on 6.6
 
+## From URL
 ```
 pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/lsof-4.89.tgz
 pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/ntp-4.2.8pl6.tgz
@@ -404,15 +405,16 @@ pkg_add -v lsof ntp munin-node gsed pkglocatedb
 
 ## NEW STYLE
 ```
-echo "https://cdn.openbsd.org/pub/OpenBSD" > /etc/installurl
-pkg_add -v lsof ntp munin-node gsed pkglocatedb
+# The following might already be done if installed from a recent build
+echo "https://cdn.openbsd.org/pub/OpenBSD" |doas tee /etc/installurl
+doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
 ```
 
 # Install CVSync
 
 ## cvsync is not installed by default do this now
 ```
-# pkg_add -v ftp://ftp.openbsd.org/pub/OpenBSD/5.3/packages/i386/cvsync-0.25.0pre0p1.tgz
+$ doas pkg_add -v cvsync
 ```
 
 ## Add a cvsync file like
@@ -423,7 +425,7 @@ cat < EOF > /etc/cvsync.conf
 # Print list of available collections
 #
 config {
-    hostname mirror.osn.de
+    hostname cdn.openbsd.org
     collection {
         name all
         release list
@@ -433,7 +435,7 @@ config {
 # Mirror complete CVS repository
 #
 config {
-    hostname mirror.osn.de
+    hostname cdn.openbsd.org
     collection {
         name openbsd-cvsroot
         release rcs
@@ -463,31 +465,41 @@ config {
 EOF
 ```
 
+## Make sure you can run everything as your non-privileged user
+```
+doas user mod -G wsrc YOUR_USER
+# Eventually log out and in again
+cd /usr/
+# xenocara and ports need manual permissions
+doas mkdir -p xenocara ports
+doas chgrp wsrc xenocara ports
+doas chmod 775  xenocara ports
+```
+
 ## Run cvsync
 ```
-# mkdir /home/cvs
-# cvsync
+$ mkdir /home/cvs
+$ cvsync
 ```
 
 ## Checkout the repos
 ```
-# cd /usr
-# cvs -d/home/cvs checkout -P src
-# cvs -d/home/cvs checkout -P ports
-# cvs -d/home/cvs checkout -P xenocara
+$ cd /usr
+$ cvs -d/home/cvs checkout -P src
+$ cvs -d/home/cvs checkout -P ports
+$ cvs -d/home/cvs checkout -P xenocara
 ```
 
 ## Update the repos
 ```
-# cd /usr/src
-# cvs up -Pd
+$ cd /usr/src
+$ cvs up -Pd
 ```
 
 ## Installing cvsync from source/ports without X11
 ```
 cd /usr/ports/net/cvsync && make
 ```
-
 
 ## dir sizes after cvsync
 ```
