@@ -336,17 +336,11 @@ mkdir work
 cd work
 export AUTOMAKE_VERSION=1.16
 export AUTOCONF_VERSION=2.69
-git clone https://github.com/swig/swig.git
-cd swig
-./autogen.sh
-./configure
-make
-doas make install
 git clone https://github.com/znc/znc.git --recursive
 cd znc
 ./bootstrap.sh
 
-CPPFLAGS="-I/usr/local/include " LDFLAGS="-L/usr/local/lib" python_LIBS="`pkg-config --libs python-3.6`" python_CFLAGS="`pkg-config --cflags python-3.6`" ac_cv_path_GNUMAKE=gmake CXX=egcc ./configure --disable-charset --disable-optimization
+CPPFLAGS="-I/usr/local/include " LDFLAGS="-L/usr/local/lib" python_LIBS="`pkg-config --libs python-3.7`" python_CFLAGS="`pkg-config --cflags python-3.7`" ac_cv_path_GNUMAKE=gmake CXX=egcc ./configure --enable-charset --disable-optimization --enable-python
 
 #./configure --enable-charset --enable-optimization --prefix=/usr/local --sysconfdir=/etc --mandir=/usr/local/man --infodir=/usr/local/info --localstatedir=/var --disable-silent-rules --disable-gtk-doc
 
@@ -356,18 +350,19 @@ doas gmake install
 
 ## rbenv
 ```
+cd
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 cd ~/.rbenv && src/configure && make -C src
 # rbenv install
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
-## virtualenv
+## virtualenv/pipenv
 
 ```
-doas ln -sf /usr/local/bin/pip3.6 /usr/local/bin/pip
-doas ln -s /usr/local/bin/python3.6 /usr/local/bin/python
-doas pip install virtualenvwrapper virtualenv
+doas ln -sf /usr/local/bin/pip3.7 /usr/local/bin/pip
+doas ln -s /usr/local/bin/python3.7 /usr/local/bin/python
+doas pip install virtualenvwrapper virtualenv pipenv
 ```
 
 ## lxappearance
