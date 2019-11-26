@@ -1033,26 +1033,25 @@ ln -s /home/ports /usr/ports
 
 ## listing ports to be updated
 ```
-# cd /usr/ports/infrastructure/bin/
-# ./out-of-date
+$ cd /usr/ports/infrastructure/bin/
+$ ./pkg_outdated
 Collecting installed packages: ok                                                                                                                                 
 Collecting port versions: ok                                                                                                                                      
 Collecting port signatures: ok 
 Outdated ports:
 www/mozilla-firefox         # 3.0.6 -> 3.0.7
-#
+$
 ```
 
 ## updating all out-dated ports
 
-This works on OpenBSD 5.x
+This works on OpenBSD 6.x
 
 ```
 cd /usr/ports/infrastructure/bin
-for port in `./out-of-date |awk '{ print $1 }'`; do
+for port in `./pkg_outdated |awk '{ print $1 }'`; do
     cd /usr/ports/${port}
-    make clean
-    make update
+    doas make clean update
 done
 ```
 
