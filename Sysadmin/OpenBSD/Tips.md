@@ -704,6 +704,7 @@ vm.swapencrypt.enable=1
 $ cd /usr/ports/shells/bash
 $ make
 $ doas make install clean
+# This might do nothing, in that case it is already installed perhaps as a binary via pkg_add
 ```
 
 ## Locking A User Out of Their Account
