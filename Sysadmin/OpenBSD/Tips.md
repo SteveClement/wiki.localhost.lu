@@ -2,6 +2,10 @@
 
 :warning: Once OpenBSD is installed you should update it immediately, if needed.
 
+```
+doas syspatch
+```
+
 ## termite issues add it to termcap
 
 ```bash
@@ -325,6 +329,22 @@ export AUTOCONF_VERSION=2.69
 ./configure
 make
 doas make install
+```
+
+## Building xenocara
+
+```
+doas user mod -G wsrc YOUR_USER
+# Eventually log out and in again
+cd /usr/
+doas mkdir -p xenocara
+doas chgrp wsrc xenocara
+doas chmod 775  xenocara
+cvs -qd anoncvs@anoncvs.example.org:/cvs checkout -rOPENBSD_6_6 -P xenocara
+cd /usr/xenocara
+doas make bootstrap
+doas make obj
+doas make build
 ```
 
 ## Current X.Org version on OpenBSD 6.6
