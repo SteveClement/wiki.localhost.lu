@@ -12,6 +12,46 @@ doas syspatch
 infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr/share/misc/termcap
 ```
 
+## Virtualbox Guest custom resolution
+
+```
+VBoxManage setextradata "OpenBSD VM Name" CustomVideoMode1 1360x768x32
+# Double check
+VBoxManage getextradata "OpenBSD VM Name"
+# Remove CustomVideoMode1
+VBoxManage setextradata "OpenBSD VM Name" CustomVideoMode1
+```
+
+```
+$ doas mkdir -p /etc/X11/xorg.conf.d
+echo '# X11 configuration for VirtualBox
+Section "Device"
+  Identifier   "VirtualBox-Card"
+  Driver       "vesa"
+  VendorName   "InnoTek"
+  BoardName    "VirtualBox Graphics Adapter"
+EndSection
+Section "Monitor"
+  Identifier   "VirtualBox-Monitor"
+  VendorName   "InnoTek"
+  ModelName    "VirtualBox Screen"
+  HorizSync    1.0 - 1000.0
+  VertRefresh  1.0 - 1000.0
+EndSection
+Section "Screen"
+  Identifier   "VirtualBox-Screen"
+  Device       "VirtualBox-Card"
+  Monitor      "VirtualBox-Monitor"
+  DefaultDepth 24
+  SubSection "Display"
+    Viewport   0 0
+    Depth      24
+    #Modes "1368x768" "1360x768" "1280x800" "1024x768"
+    Modes  "1360x768"
+  EndSubSection
+EndSection' |doas sudo tee /etc/X11/xorg.conf.d/00-virtualbox-monitor.conf
+```
+
 ## Log directory empty
 
 If the log directory seems empty, this will re-create all the relevant files, plus munin
