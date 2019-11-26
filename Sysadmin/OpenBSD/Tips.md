@@ -1050,6 +1050,11 @@ This works on OpenBSD 6.x
 ```
 cd /usr/ports/infrastructure/bin
 for port in `./pkg_outdated |awk '{ print $1 }'`; do
+    if [[ "$port" == "" ]]; then
+       continue
+    fi
+    echo "Updating '$port' - Enter to continue."
+    read
     cd /usr/ports/${port}
     doas make clean update
 done
