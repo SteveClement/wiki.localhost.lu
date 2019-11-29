@@ -26,7 +26,8 @@ doas ln -s /usr/local/bin/nvim /usr/bin/vi
 
 ## Lighter install
 ```
-doas pkg_add -v i3 slim slim-themes ntp munin-node gsed pkglocatedb
+doas pkg_add -v i3 i3-gaps i3status i3-mousedrag i3lock 
+doas pkg_add -v slim slim-themes ntp munin-node gsed pkglocatedb
 doas pkg_add -v firefox leafpad pcmanfm nitrogen intltool conky
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer ranger bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
