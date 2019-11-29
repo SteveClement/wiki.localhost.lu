@@ -2,11 +2,16 @@
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
+
 Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee, 
 
 ```
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr/share/misc/termcap
+```
+
+## Heavy install
+```
 doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
@@ -19,7 +24,22 @@ doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/nvim /usr/bin/vi
 ```
 
-# one-liner of all the above
+## Lighter install
+```
+doas pkg_add -v i3 slim slim-themes ntp munin-node gsed pkglocatedb
+doas pkg_add -v firefox leafpad pcmanfm nitrogen intltool conky
+doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer ranger bash zsh irssi filezilla
+doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
+doas pkg_add -v neomutt terminator
+doas pkg_add -v cups gimp libreoffice
+doas pkg_add -v rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird
+doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
+doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
+doas ln -s /usr/local/bin/nvim /usr/bin/vi
+```
+
+# one-liner of all the above (heavy)
 ```
 doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts gnome neomutt terminator cups gimp libreoffice rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 ```
