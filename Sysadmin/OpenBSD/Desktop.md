@@ -33,7 +33,7 @@ doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smpl
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v neomutt terminator
 doas pkg_add -v cups gimp libreoffice
-doas pkg_add -v rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird
+doas pkg_add -v rxvt-unicode st vnstat mu dialog thunderbird
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
