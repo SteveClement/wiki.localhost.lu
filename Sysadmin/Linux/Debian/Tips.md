@@ -1,3 +1,50 @@
+From tips to guide
+
+remove gdm3, xfce4-session
+
+# Wayland or xorg
+
+If you want to know whether you are running a Wayland or Xorg desktop the following come in handy.
+
+```
+$ loginctl
+SESSION  UID USER  SEAT  TTY
+      1 1000 steve seat0
+
+1 sessions listed.
+
+$ loginctl show-session 1 -p Type
+Type=x11
+```
+
+```
+sudo apt install slim
+sudo apt install amd64-microcode
+sudo apt install firmware-amd-graphics
+```
+
+# grub2 splashimages
+```
+sudo apt install grub2-splashimages
+sudo update-grub
+sudo vi /etc/default/grub
+#GRUB_BACKGROUND="/usr/share/images/grub/Plasma-lamp.tga"
+```
+
+# WiFi Firmware
+```
+Intel Corporation Dual Band Wireless-AC 3168NGW
+firmware-iwlwifi
+```
+
+# arandr
+```
+   sudo apt install python3-gi gobject-introspection gir1.2-gtk-3.0
+   git clone https://gitlab.com/arandr/arandr
+   cd arandr/
+   ./arandr
+```
+
 # 8.5 E: Dynamic MMap ran out of room
 
 Auf woody kann es bei mehreren Einträgen in der sources.list passieren, dass
