@@ -75,7 +75,7 @@ cd ~/code
 wget https://raw.githubusercontent.com/maestrogerardo/i3-gaps-deb/master/i3-gaps-deb
 
 sudo cp ~/bin/virtualenvwrapper* /usr/local/bin
-sudo apt install virtualenvwrapper virtualenv python-pip3
+sudo apt install virtualenvwrapper virtualenv python3-pip
 sudo apt install rofi conky-all
 cd ~/code
 sudo apt install build-essential git cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
@@ -103,16 +103,16 @@ Offlineimap:
 
 sudo apt install maildir-utils msmtp
 sudo apt install pinentry-curses
-wget https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tar.xz
-tar xf Python-2.7.15.tar.xz
-cd Python-2.7.15
+wget https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
+tar xf Python-2.7.17.tar.xz
+cd Python-2.7.17
 vi Modules/Setup.dist
-./configure --prefix=${HOME}/opt/python2.7.15
+./configure --prefix=${HOME}/opt/python2.7.17
 make -j8
 make -j8 install
 
 
-mkvirtualenv -p /home/steve/opt/python2.7.15/bin/python offlineimap
+mkvirtualenv -p /home/steve/opt/python2.7.17/bin/python offlineimap
 pip install six
 pip install offlineimap
 sudo ln -s /home/steve/opt/libressl/lib/libssl.so.46 /usr/lib/libssl.so.46
