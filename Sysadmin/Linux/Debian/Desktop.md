@@ -56,6 +56,20 @@ git clone --recursive https://github.com/thestinger/termite.git
 git clone https://github.com/thestinger/vte-ng.git
 export LIBRARY_PATH="/usr/include/gtk-3.0:$LIBRARY_PATH"
 cd vte-ng/
+# https://github.com/GNOME/vte/commit/53690d5cee51bdb7c3f7680d3c22b316b1086f2c#diff-09af37e3a14d365cf086df3ead32aa7f
+echo "diff --git a/bindings/vala/app.vala b/bindings/vala/app.vala
+index 8663d63c..a6b0259f 100644
+--- a/bindings/vala/app.vala
++++ b/bindings/vala/app.vala
+@@ -819,6 +819,7 @@ class App : Gtk.Application
+ 
+   public struct Options
+   {
++    public int dummy;
+     public static bool audible = false;
+     public static string? command = null;
+     private static string? cjk_ambiguous_width_string = null;" |tee /tmp/vte.patch
+cat /tmp/vte.patch |patch -p1
 ./autogen.sh 
 ./configure --datadir=/usr --prefix=/usr --localstatedir=/var --sysconfdir=/etc
 make
@@ -85,7 +99,10 @@ cd i3-gaps-deb
 make clean
 ./build.sh
 sudo apt install neomutt dialog
-sudo apt install virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso
+sudo apt -y install qemu-kvm libvirt-daemon  bridge-utils virtinst libvirt-daemon-system
+sudo apt -y install virt-top libguestfs-tools libosinfo-bin  qemu-system virt-manager
+sudo modprobe vhost_net 
+echo vhost_net | sudo tee -a /etc/modules 
 
 polybar:
 sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf
