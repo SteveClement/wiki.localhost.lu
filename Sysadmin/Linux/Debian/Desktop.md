@@ -18,7 +18,7 @@ echo "Defaults	timestamp_timeout=240" |tee -a /etc/sudoers
 exit
 logout
 sudo apt remove gdm3 gnome* xfce4-session
-sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger
+sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger tmuxinator htop fzf ncdu
 sudo apt dist-upgrade
 sudo apt autoremove
 sudo reboot
@@ -46,7 +46,7 @@ sudo make install
 sudo apt install acpi
 sudo apt install xbacklight pm-utils
 sudo apt install chromium
-# nm-connection-editor 
+# nm-connection-editor, nm-applet
 sudo apt install murrine-themes 
 sudo apt install -y g++ libgtk-3-dev gtk-doc-tools gnutls-bin valac
 sudo apt install autogen
@@ -134,5 +134,97 @@ pip install six
 pip install offlineimap
 sudo ln -s /home/steve/opt/libressl/lib/libssl.so.46 /usr/lib/libssl.so.46
 sudo ln -s /home/steve/opt/libressl/lib/libcrypto.so.44 /usr/lib/libcrypto.so.44
+
+pip3 install --user pywal
+
+Tools by hand
+
+Issues: 
+
+IPv6 connection reset foo: https://askubuntu.com/questions/905866/new-ubuntu-17-04-problem-your-connection-was-interrupted
+
+Termite on Debian:
+
+https://gist.github.com/crivotz/d4e43ebce09621906571f3720e676781<Paste>
+
+Fonts:
+https://github.com/ryanoasis/nerd-fonts#font-installation<Paste>
+
+Polybar: 
+
+https://medium.com/@tatianaensslin/install-polybar-in-3-steps-on-debian-stretch-c64ab6157fb1
+
+Ranger: apt-get install ranger
+
+Dotfile: https://github.com/ycf83/dotfile
+
+Needed: wal, powerlevel9k theme zsh
+
+https://github.com/maestrogerardo/i3-gaps-deb
+
+wal -i someImage.jpg
+
+BG: https://alpha.wallhaven.cc/wallpaper/690583
+
+ranger deps: install w3m w3m-img
+u need also this file scope.sh u can generate like this : ranger --copy-config=scope
+https://github.com/ranger/ranger/wiki/Image-Previews<Paste>
+
+
+https://github.com/Airblader/i3/wiki/Compiling-&-Installing ; u install dep and build normal , after u customize :)https://github.com/Airblader/i3/wiki/Compiling-&-Installing ; u install dep and build normal , after u customize :)
+
+
+
+sudo apt install scrot compton rofi ffmpegthumbnailer transmission-cli transmission caca-utils
+
+git clone https://github.com/stark/siji && cd siji
+  xset +fp /home/steve/.fonts
+  xset fp rehash
+
+
+IF: tput: unknown terminal "xterm-termite"
+tic -x /home/steve/tmp/termite/termite.terminfo 
+
+
+Install spacevim for nvim:
+
+curl -sLf https://spacevim.org/install.sh | bash
+
+
+bat:
+
+Line numbers not readabel: https://github.com/sharkdp/bat/issues/219
+
+mkdir -p ~/.config/bat/themes
+cd ~/.config/bat/themes
+wget https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme
+bat cache --init
+bat --theme=OneHalfDark
+
+
+sudo chmod 7455 /opt/Franz/chrome-sandbox
+
+echo "deb http://ppa.launchpad.net/mdeslaur/pasaffe/ubuntu eoan main
+deb-src http://ppa.launchpad.net/mdeslaur/pasaffe/ubuntu eoan main" |sudo tee /etc/apt/sources.list.d/pasaffe.list
+sudo apt-key adv --keyserver hkps://keyserver.ubuntu.com --recv-keys 8CA686453D4DECBC
+sudo apt update
+sudo apt install pasaffe pass pass-git-helper pass-extension-tail pass-extension-otp
+sudo apt install network-manager-l2tp network-manager-l2tp-gnome
+wget https://protonmail.com/download/beta/protonmail-bridge_1.2.3-1_amd64.deb
+sudo dpkg -i protonmail-bridge_1.2.3-1_amd64.deb ; sudo apt install -f
+pass init steve@localhost.launchpad
+pass git init
+sudo apt install pavucontrol
+
+# US International dead keys and Japanese input
+
+sudo apt install ibus-mozc fonts-ipafont fonts-vlgothic  ibus-gtk ibus-gtk3
+
+dpkg-reconfigure keyboard-configuration
+sudo apt-get remove --purge $(sudo dpkg -l | grep "^rc" | awk '{print $2}' | tr '\n' ' ')
+
+# xinitrc or other
+ibus-daemon -d -x -r -n i3
+
 
 ```
