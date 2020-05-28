@@ -357,7 +357,7 @@ doas make install
 ### From source
 
 ```
-doas pkg_add -v libtool git gcc g++ swig python--%3.7 gmake autoconf--%2.69 automake--%1.16
+doas pkg_add -v libtool git gcc g++ swig python--%3.7 gmake autoconf--%2.69 automake--%1.16 cmake
 cd
 mkdir work
 cd work
@@ -365,14 +365,11 @@ export AUTOMAKE_VERSION=1.16
 export AUTOCONF_VERSION=2.69
 git clone https://github.com/znc/znc.git --recursive
 cd znc
-./bootstrap.sh
-
-CPPFLAGS="-I/usr/local/include " LDFLAGS="-L/usr/local/lib" python_LIBS="`pkg-config --libs python-3.7`" python_CFLAGS="`pkg-config --cflags python-3.7`" ac_cv_path_GNUMAKE=gmake CXX=egcc ./configure --enable-charset --disable-optimization --enable-python
-
-#./configure --enable-charset --enable-optimization --prefix=/usr/local --sysconfdir=/etc --mandir=/usr/local/man --infodir=/usr/local/info --localstatedir=/var --disable-silent-rules --disable-gtk-doc
-
-gmake -j4
-doas gmake install
+mkdir build
+cd build
+cmake ..
+make
+doas make install
 ```
 
 ## rbenv
