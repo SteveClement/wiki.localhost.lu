@@ -16,7 +16,7 @@ doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkgloc
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
-doas pkg_add -v gnome neomutt terminator cups gimp libreoffice
+doas pkg_add -v gnome neomutt--gpgme-sasl terminator cups gimp libreoffice
 doas pkg_add -v rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
@@ -31,7 +31,7 @@ doas pkg_add -v arandr polybar rofi feh scrot slim slim-themes ntp munin-node gs
 doas pkg_add -v firefox leafpad pcmanfm nitrogen intltool conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer ranger bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
-doas pkg_add -v neomutt terminator
+doas pkg_add -v neomutt--gpgme-sasl terminator
 doas pkg_add -v cups gimp libreoffice
 doas pkg_add -v rxvt-unicode st vnstat mu dialog thunderbird
 doas pkg_add -v imapfilter urlview msmtp pidgin procmail dsh bitlbee findutils mairix ibus
