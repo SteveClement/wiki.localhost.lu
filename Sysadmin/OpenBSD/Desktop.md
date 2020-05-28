@@ -336,7 +336,7 @@ doas pkg_add -v chromium
 ## htop
 
 ```
-doas pkg_add -v automake autoconf libtool git
+doas pkg_add -v libtool git autoconf--%2.69 automake--%1.16
 cd
 mkdir work
 cd work
@@ -357,7 +357,7 @@ doas make install
 ### From source
 
 ```
-doas pkg_add -v automake autoconf libtool git gcc g++ swig python gmake
+doas pkg_add -v libtool git gcc g++ swig python--%3.7 gmake autoconf--%2.69 automake--%1.16
 cd
 mkdir work
 cd work
