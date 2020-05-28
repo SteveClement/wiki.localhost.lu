@@ -13,7 +13,7 @@ infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr
 ## Heavy install
 ```
 doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
-doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky
+doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme gnome-themes-standard conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome neomutt terminator cups gimp libreoffice
