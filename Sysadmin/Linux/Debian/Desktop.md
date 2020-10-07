@@ -18,7 +18,7 @@ echo "Defaults	timestamp_timeout=240" |tee -a /etc/sudoers
 exit
 logout
 sudo apt remove gdm3 gnome* xfce4-session
-sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger tmuxinator htop fzf ncdu
+sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger tmuxinator htop fzf ncdu mediainfo poppler-utils
 sudo apt dist-upgrade
 sudo apt autoremove
 sudo reboot
