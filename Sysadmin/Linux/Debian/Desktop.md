@@ -227,4 +227,23 @@ sudo apt-get remove --purge $(sudo dpkg -l | grep "^rc" | awk '{print $2}' | tr 
 ibus-daemon -d -x -r -n i3
 
 
+# Alacritty
+
+git clone https://github.com/alacritty/alacritty.git
+cd alacritty
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup override set stable
+rustup update stable
+sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
+cargo build --release
+infocmp alacritty
+sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
+sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+sudo desktop-file-install extra/linux/Alacritty.desktop
+sudo update-desktop-database
+sudo mkdir -p /usr/local/share/man/man1
+gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+mkdir -p ${ZDOTDIR:-~}/.zsh_functions
+cp extra/completions/_alacritty ${ZDOTDIR:-~}/.zsh_functions/_alacritty
 ```
