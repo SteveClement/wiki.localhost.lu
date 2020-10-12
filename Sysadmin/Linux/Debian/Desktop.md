@@ -246,4 +246,8 @@ sudo mkdir -p /usr/local/share/man/man1
 gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 mkdir -p ${ZDOTDIR:-~}/.zsh_functions
 cp extra/completions/_alacritty ${ZDOTDIR:-~}/.zsh_functions/_alacritty
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/alacritty 100
+# GNOME specific (dconf rather)
+gsettings set org.gnome.desktop.default-applications.terminal exec /usr/local/bin/alacritty
+gsettings set org.gnome.desktop.default-applications.terminal exec-arg "-e"
 ```
