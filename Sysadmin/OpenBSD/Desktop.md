@@ -1,4 +1,4 @@
-# Building an OpenBSD 6.7 Desktop
+# Building an OpenBSD 6.9 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
@@ -336,14 +336,14 @@ doas pkg_add -v chromium
 ## htop
 
 ```
-doas pkg_add -v libtool git autoconf--%2.69 automake--%1.16
+doas pkg_add -v libtool git autoconf--%2.71 automake--%1.16
 cd
 mkdir work
 cd work
 git clone https://github.com/hishamhm/htop
 cd htop
-export AUTOMAKE_VERSION=1.16 # 7
-export AUTOCONF_VERSION=2.69 # 16
+export AUTOMAKE_VERSION=1.16 # 10
+export AUTOCONF_VERSION=2.71 # 17
 ./autogen.sh
 ./configure
 make
@@ -357,12 +357,12 @@ doas make install
 ### From source
 
 ```
-doas pkg_add -v libtool git gcc g++ swig python--%3.7 gmake autoconf--%2.69 automake--%1.16 cmake
+doas pkg_add -v libtool git gcc g++ swig python--%3.7 gmake autoconf--%2.71 automake--%1.16 cmake
 cd
 mkdir work
 cd work
 export AUTOMAKE_VERSION=1.16
-export AUTOCONF_VERSION=2.69
+export AUTOCONF_VERSION=2.71
 git clone https://github.com/znc/znc.git --recursive
 cd znc
 mkdir build
