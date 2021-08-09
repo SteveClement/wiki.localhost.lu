@@ -14,6 +14,12 @@ infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr
 
 ## Virtualbox Guest custom resolution
 
+You probably need the following in sysctl.conf
+
+```
+machdep.allowaperture=2
+```
+
 ```
 VBoxManage setextradata "OpenBSD VM Name" CustomVideoMode1 1360x768x32
 # Double check
