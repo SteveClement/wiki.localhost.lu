@@ -20,19 +20,19 @@ There is new syntax := that assigns values to variables as part of a larger expr
 
 In this example, the assignment expression helps avoid calling len() twice:
 
-'''python
+```python
 if (n := len(a)) > 10:
     print(f"List is too long ({n} elements, expected <= 10)")
-'''
+```
 
 # What's new and noteworthy in python 3.9
 
-'''python
+```python
 >>> "pre-order-now".removeprefix("pre-")
 "order-now"
 >>> "pre-order-now".removesuffix("-now")
 "pre-order"
-'''
+```
 
 ## import random
 
@@ -43,6 +43,7 @@ Added a new random.Random.randbytes method: generate random bytes.
 The zoneinfo module brings support for the IANA time zone database to the standard library. It adds zoneinfo.ZoneInfo, a concrete datetime.tzinfo implementation backed by the system’s time zone data.
 
 Example:
+```python
 >>>
 
 >>> from zoneinfo import ZoneInfo
@@ -61,8 +62,7 @@ Example:
 2020-11-07 12:00:00-08:00
 >>> print(dt.tzname())
 PST
-
-
+```
 
 # What's new and noteworthy in python 3.10
 
@@ -74,22 +74,26 @@ N/A
 
 # pip upgrade all
 
+```
+pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+```
+
+# try catch
+
 Good:
 
+```python
 try:
         os.remove('someFie.tmp')
 except OSError:
         pass
+```
 
 Better:
 
+```python
 with ignored(OSError):
         os.remove('someFie.tmp')
-
-
-
-```
-pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 ```
 
 # Permutations 
@@ -125,7 +129,7 @@ for s in product:
 
 # Python on OSX
 
-```
+```bash
 brew update
 brew install pyenv pyenv-virtualenv
 brew install python3
