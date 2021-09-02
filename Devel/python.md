@@ -2,7 +2,7 @@
 
 :warning: Needs to be completed
 
-# What's new in python 3.6 (and why we <3 it)
+# What's new and noteworthy in python 3.6
 
 f-strings: x = "world"; y = 42; print(f"Hello {x}, {y}")
 
@@ -13,6 +13,64 @@ $$$$
 Underscore in numbers
 
 100_000 --
+
+# What's new and noteworthy in python 3.8
+
+There is new syntax := that assigns values to variables as part of a larger expression. It is affectionately known as “the walrus operator” due to its resemblance to the eyes and tusks of a walrus.
+
+In this example, the assignment expression helps avoid calling len() twice:
+
+'''python
+if (n := len(a)) > 10:
+    print(f"List is too long ({n} elements, expected <= 10)")
+'''
+
+# What's new and noteworthy in python 3.9
+
+'''python
+>>> "pre-order-now".removeprefix("pre-")
+"order-now"
+>>> "pre-order-now".removesuffix("-now")
+"pre-order"
+'''
+
+## import random
+
+Added a new random.Random.randbytes method: generate random bytes.
+
+## New Modules
+
+The zoneinfo module brings support for the IANA time zone database to the standard library. It adds zoneinfo.ZoneInfo, a concrete datetime.tzinfo implementation backed by the system’s time zone data.
+
+Example:
+>>>
+
+>>> from zoneinfo import ZoneInfo
+>>> from datetime import datetime, timedelta
+
+>>> # Daylight saving time
+>>> dt = datetime(2020, 10, 31, 12, tzinfo=ZoneInfo("America/Los_Angeles"))
+>>> print(dt)
+2020-10-31 12:00:00-07:00
+>>> dt.tzname()
+'PDT'
+
+>>> # Standard time
+>>> dt += timedelta(days=7)
+>>> print(dt)
+2020-11-07 12:00:00-08:00
+>>> print(dt.tzname())
+PST
+
+
+
+# What's new and noteworthy in python 3.10
+
+Many improvements to error messages.
+
+# What's new and noteworthy in python 3.11
+
+N/A
 
 # pip upgrade all
 
