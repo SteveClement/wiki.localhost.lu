@@ -213,7 +213,8 @@ sudo apt install pavucontrol
 
 sudo apt install ibus-mozc fonts-ipafont fonts-vlgothic  ibus-gtk ibus-gtk3
 
-dpkg-reconfigure keyboard-configuration
+sudo /usr/sbin/dpkg-reconfigure keyboard-configuration
+sudo service keyboard-setup restart
 sudo apt-get remove --purge $(sudo dpkg -l | grep "^rc" | awk '{print $2}' | tr '\n' ' ')
 
 # xinitrc or other
