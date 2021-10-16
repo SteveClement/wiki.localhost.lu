@@ -1,9 +1,9 @@
-# Building an OpenBSD 6.9 Desktop
+# Building an OpenBSD 7.0 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
 
-Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee, 
+Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee. Can be avoided by adding options. (e.g: bitlbee--libpurple-otr)
 
 ```
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
@@ -19,7 +19,9 @@ doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v gnome neomutt--gpgme-sasl terminator cups gimp libreoffice
 doas pkg_add -v rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus
-doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
+# Tools
+doas pkg_add -v htop
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/nvim /usr/bin/vi
 ```
@@ -32,10 +34,14 @@ doas pkg_add -v firefox leafpad pcmanfm nitrogen intltool conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer ranger bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
 doas pkg_add -v neomutt--gpgme-sasl terminator
-doas pkg_add -v cups gimp libreoffice
+# Tools
+doas pkg_add -v htop
+# Print
+doas pkg_add -v cups
+doas pkg_add -v gimp libreoffice
 doas pkg_add -v rxvt-unicode st vnstat mu dialog thunderbird
 doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus
-doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
 doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 doas ln -s /usr/local/bin/nvim /usr/bin/vi
 ```
@@ -331,23 +337,6 @@ doas pkg_add -v texlive_texmf-full texlive_base texworks
 ## Chromium
 ```
 doas pkg_add -v chromium
-```
-
-## htop
-
-```
-doas pkg_add -v libtool git autoconf--%2.71 automake--%1.16
-cd
-mkdir work
-cd work
-git clone https://github.com/hishamhm/htop
-cd htop
-export AUTOMAKE_VERSION=1.16 # 10
-export AUTOCONF_VERSION=2.71 # 17
-./autogen.sh
-./configure
-make
-doas make install
 ```
 
 ## znc
