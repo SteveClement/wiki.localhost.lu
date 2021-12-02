@@ -1,6 +1,7 @@
 # Raw Notes
 
 ```
+# Debian specific, not needed on Ubuntu
 su -
 cat << EOF >> /etc/apt/sources.list
 deb http://deb.debian.org/debian/ bullseye main contrib non-free
@@ -17,12 +18,14 @@ usermod --append -G sudo steve
 echo "Defaults	timestamp_timeout=240" |tee -a /etc/sudoers
 exit
 logout
-sudo apt remove gdm3 gnome* xfce4-session -y
-sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger tmuxinator htop fzf ncdu mediainfo poppler-utils -y
+# -----8<-------
 sudo apt dist-upgrade -y
 sudo apt autoremove -y
-sudo reboot
 
+sudo apt remove gdm3 gnome* xfce4-session -y
+sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi -y
+sudo apt install slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger tmuxinator htop fzf ncdu mediainfo poppler-utils bat -y
+sudo reboot
 #sudo vgscan
 #sudo vgchange -ay
 #sudo lvs
@@ -45,7 +48,7 @@ make
 sudo make install
 sudo apt install acpi -y
 sudo apt install xbacklight pm-utils -y
-sudo apt install chromium -y
+sudo apt install chromium-browser -y
 # nm-connection-editor, nm-applet
 sudo apt install murrine-themes  -y
 sudo apt install -y g++ libgtk-3-dev gtk-doc-tools gnutls-bin valac
@@ -97,6 +100,7 @@ cd i3-gaps-deb
 sudo apt install neomutt dialog -y
 sudo apt -y install qemu-kvm libvirt-daemon  bridge-utils virtinst libvirt-daemon-system
 sudo apt -y install virt-top libguestfs-tools libosinfo-bin  qemu-system virt-manager
+sudo apt -y install nodejs npm
 sudo modprobe vhost_net 
 echo vhost_net | sudo tee -a /etc/modules 
 
@@ -134,6 +138,9 @@ installCustOfflineImap () {
 
 pip3 install --user pywal
 
+sudo apt install offlineimap python3-pip polybar
+mu init -m ~/.mail --my-address=steve@localhost.lu --my-address=steve.clement@circl.lu --my-address=steve@circl.lu --my-address=steve@ion.lu --my-address=sclement@gmail.com --my-address=steve.clement@securitymadein.lu ; mu index
+
 Tools by hand
 
 Issues: 
@@ -156,6 +163,7 @@ Ranger: apt-get install ranger
 Dotfile: https://github.com/ycf83/dotfile
 
 Needed: wal, powerlevel9k theme zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 https://github.com/maestrogerardo/i3-gaps-deb
 
