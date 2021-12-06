@@ -31,7 +31,9 @@ rm ~/.zshrc
 [[ ! -e "~/.mutt" ]] && ln -s ~/dotfiles/.mutt ~/
 [[ ! -e "~/.muttilsrc" ]] && ln -s ~/dotfiles/.muttilsrc ~/
 [[ ! -e "~/.tmux" ]] && ln -s ~/dotfiles/.tmux ~/
+[[ ! -e "~/.tmux.conf" ]] && ln -s ~/.tmux/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# prefix + I -> Install plugs
 
 [[ ! -L "~/.config" ]] && mv ~/.config ~/.config-date && ln -s ~/dotfiles/.config
 sudo cp ~/bin/virtualenvwrapper.sh /usr/local/bin/virtualenvwrapper.sh
