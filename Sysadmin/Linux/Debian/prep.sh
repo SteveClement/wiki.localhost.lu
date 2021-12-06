@@ -17,19 +17,20 @@ chmod 700 ~/.gnupg/*
 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 rm ~/.zshrc
-[[ ! -L "~/.zshrc" ]] && ln -s ~/dotfiles/.zshrc
-[[ ! -e "~/.msmtp" ]] && ln -s ~/dotfiles/.msmtp
-[[ ! -e "~/.cargo" ]] && ln -s ~/dotfiles/.cargo
-[[ ! -e "~/.misp" ]] && ln -s ~/dotfiles/.misp
-[[ ! -e "~/bin" ]] && ln -s ~/truecrypt1/bin
-[[ ! -e "~/.gitconfig" ]] && ln -s ~/dotfiles/.gitconfig
-[[ ! -e "~/.gitignore" ]] && ln -s ~/dotfiles/.gitignore
-#[[ ! -e "~/.gitignore_global" ]] && ln -s ~/dotfiles/.gitignore_global
-[[ ! -e "~/.gitmux.conf" ]] && ln -s ~/dotfiles/.gitmux.conf
-[[ ! -e "~/.dir_colors" ]] && ln -s ~/dotfiles/.dir_colors
-[[ ! -e "~/.offlineimaprc" ]] && ln -s ~/dotfiles/.offlineimaprc
-[[ ! -e "~/.mutt" ]] && ln -s ~/dotfiles/.mutt
-[[ ! -e "~/.muttilsrc" ]] && ln -s ~/dotfiles/.muttilsrc
+[[ ! -L "~/.zshrc" ]] && ln -s ~/dotfiles/.zshrc ~/
+[[ ! -e "~/.msmtp" ]] && ln -s ~/dotfiles/.msmtp ~/
+[[ ! -e "~/.cargo" ]] && ln -s ~/dotfiles/.cargo ~/
+[[ ! -e "~/.misp" ]] && ln -s ~/dotfiles/.misp ~/
+[[ ! -e "~/bin" ]] && ln -s ~/truecrypt1/bin ~/
+[[ ! -e "~/.gitconfig" ]] && ln -s ~/dotfiles/.gitconfig ~/
+[[ ! -e "~/.gitignore" ]] && ln -s ~/dotfiles/.gitignore ~/
+#[[ ! -e "~/.gitignore_global" ]] && ln -s ~/dotfiles/.gitignore_global ~/
+[[ ! -e "~/.gitmux.conf" ]] && ln -s ~/dotfiles/.gitmux.conf ~/
+[[ ! -e "~/.dir_colors" ]] && ln -s ~/dotfiles/.dir_colors ~/
+[[ ! -e "~/.offlineimaprc" ]] && ln -s ~/dotfiles/.offlineimaprc ~/
+[[ ! -e "~/.mutt" ]] && ln -s ~/dotfiles/.mutt ~/
+[[ ! -e "~/.muttilsrc" ]] && ln -s ~/dotfiles/.muttilsrc ~/
+[[ ! -e "~/.tmux" ]] && ln -s ~/dotfiles/.tmux ~/
 
 [[ ! -L "~/.config" ]] && mv ~/.config ~/.config-date && ln -s ~/dotfiles/.config
 sudo cp ~/bin/virtualenvwrapper.sh /usr/local/bin/virtualenvwrapper.sh
