@@ -24,7 +24,7 @@ sudo apt autoremove -y
 
 sudo apt remove gdm3 gnome* xfce4-session -y
 sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi -y
-sudo apt install slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger w3m w3m-img tmuxinator htop fzf ncdu mediainfo poppler-utils bat git -y
+sudo apt install slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger w3m w3m-img tmuxinator htop fzf ncdu mediainfo poppler-utils bat git pandoc -y
 sudo reboot
 #sudo vgscan
 #sudo vgchange -ay
