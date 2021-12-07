@@ -17,10 +17,10 @@ echo "Installing for remote user ${REMOTE_USER}"
 echo "..........................................."
 sleep 3
 
-R_SSH sudo apt install etckeeper
+R_SSH sudo apt install etckeeper -y
 R_SSH sudo apt update
 R_SSH sudo apt dist-upgrade
-R_SSH sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu bat gawk npm fzf coreutils net-tools neovim -y
+R_SSH sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu bat gawk npm fzf coreutils net-tools neovim flake8 -y
 
 # .ssh config?
 # .gnupg forwarding for signing commits

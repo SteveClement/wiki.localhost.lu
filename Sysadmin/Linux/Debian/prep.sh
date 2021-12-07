@@ -41,10 +41,3 @@ sudo cp ~/bin/virtualenvwrapper.sh /usr/local/bin/virtualenvwrapper.sh
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim +'PlugInstall' +qa --headless
-
-
-setxkbmap -rules "evdev" -model "pc105" -option "terminate:ctrl_alt_bksp,lv3:rwin_switch,grp:shifts_toggle,caps:ctrl_modifier,altwin:swap_lalt_lwin"
-
-
-
-
