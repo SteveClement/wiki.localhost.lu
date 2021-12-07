@@ -24,13 +24,13 @@ sudo apt autoremove -y
 
 sudo apt remove gdm3 gnome* xfce4-session -y
 sudo apt install amd64-microcode firmware-amd-graphics firmware-iwlwifi -y
-sudo apt install slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger tmuxinator htop fzf ncdu mediainfo poppler-utils bat -y
+sudo apt install slim etckeeper command-not-found rbenv fdisk zsh zsh-syntax-highlighting tmux mlocate trash-cli khard khal vdirsyncer ranger w3m w3m-img tmuxinator htop fzf ncdu mediainfo poppler-utils bat git -y
 sudo reboot
 #sudo vgscan
 #sudo vgchange -ay
 #sudo lvs
 sudo apt install neovim -y
-sudo apt install i3 suckless-tools dmenu i3lock feh xserver-xorg xinit network-manager -y
+sudo apt install i3 suckless-tools dmenu i3lock i3lock-fancy feh xserver-xorg xinit network-manager mpv -y
 sudo apt install s-tui -y
 sudo apt install texlive-latex-base -y
 cd
@@ -38,7 +38,7 @@ mkdir code
 cd code
 sudo apt install ruby-ronn sysstat make gcc lm-sensors alsa-utils -y
 sudo apt install build-essential  -y
-sudo apt install autoconf -y
+sudo apt install autoconf autogen -y
 sudo apt install gawk -y
 git clone git://github.com/vivien/i3blocks
 cd i3blocks/
@@ -51,9 +51,7 @@ sudo apt install xbacklight pm-utils -y
 sudo apt install chromium-browser -y
 # nm-connection-editor, nm-applet
 sudo apt install murrine-themes  -y
-sudo apt install -y g++ libgtk-3-dev gtk-doc-tools gnutls-bin valac
-sudo apt install autogen -y
-sudo apt-get install -y git g++ libgtk-3-dev gtk-doc-tools gnutls-bin valac intltool libpcre2-dev libglib3.0-cil-dev libgnutls28-dev libgirepository1.0-dev libxml2-utils gperf libtool
+sudo apt install -y g++ libgtk-3-dev gtk-doc-tools gnutls-bin valac intltool libpcre2-dev libglib3.0-cil-dev libgnutls28-dev libgirepository1.0-dev libxml2-utils gperf libtool
 cd ~/code/
 git clone --recursive https://github.com/thestinger/termite.git
 git clone https://github.com/thestinger/vte-ng.git
@@ -92,14 +90,14 @@ sudo cp ~/bin/virtualenvwrapper* /usr/local/bin
 sudo apt install virtualenvwrapper virtualenv python3-pip -y
 sudo apt install rofi conky-all -y
 cd ~/code
-sudo apt install build-essential git cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev -y
+sudo apt install build-essential cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev -y
 sudo apt install libcurl4-openssl-dev libasound2-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libjsoncpp-dev libmpdclient-dev libnl-genl-3-dev -y
 git clone git@github.com:maestrogerardo/i3-gaps-deb.git
 cd i3-gaps-deb
 ./i3-gabs-deb
 sudo apt install neomutt dialog -y
-sudo apt -y install qemu-kvm libvirt-daemon  bridge-utils virtinst libvirt-daemon-system
-sudo apt -y install virt-top libguestfs-tools libosinfo-bin  qemu-system virt-manager
+sudo apt -y install qemu-kvm libvirt-daemon bridge-utils virtinst libvirt-daemon-system
+sudo apt -y install virt-top libguestfs-tools libosinfo-bin qemu-system virt-manager
 sudo apt -y install nodejs npm
 sudo modprobe vhost_net 
 echo vhost_net | sudo tee -a /etc/modules 
@@ -111,7 +109,7 @@ sudo fc-cache -f -v
 # nerd-fonts
 sudo apt install fonts-powerline fonts-font-awesome fonts-entypo
 
-sudo apt install git build-essential python3-dev libdbus-glib-1-dev libgirepository1.0-dev libcairo2-dev python3-venv python3-wheel -y
+sudo apt install python3-dev libdbus-glib-1-dev libgirepository1.0-dev libcairo2-dev python3-venv python3-wheel -y
 git clone https://github.com/erpalma/lenovo-throttling-fix.git
 sudo ./lenovo-throttling-fix/install.sh
 sudo apt install scrot compton rofi ffmpegthumbnailer transmission-cli transmission caca-utils -y
@@ -158,8 +156,6 @@ Polybar:
 
 https://medium.com/@tatianaensslin/install-polybar-in-3-steps-on-debian-stretch-c64ab6157fb1
 
-Ranger: apt-get install ranger
-
 Dotfile: https://github.com/ycf83/dotfile
 
 Needed: wal, powerlevel9k theme zsh
@@ -171,16 +167,11 @@ wal -i someImage.jpg
 
 BG: https://alpha.wallhaven.cc/wallpaper/690583
 
-ranger deps: install w3m w3m-img
 u need also this file scope.sh u can generate like this : ranger --copy-config=scope
-https://github.com/ranger/ranger/wiki/Image-Previews<Paste>
-
+https://github.com/ranger/ranger/wiki/Image-Previews
 
 https://github.com/Airblader/i3/wiki/Compiling-&-Installing ; u install dep and build normal , after u customize :)https://github.com/Airblader/i3/wiki/Compiling-&-Installing ; u install dep and build normal , after u customize :)
 
-
-
-sudo apt install scrot compton rofi ffmpegthumbnailer transmission-cli transmission caca-utils
 
 git clone https://github.com/stark/siji && cd siji
   xset +fp /home/steve/.fonts
@@ -195,9 +186,7 @@ Install spacevim for nvim:
 
 curl -sLf https://spacevim.org/install.sh | bash
 
-
 bat:
-
 Line numbers not readabel: https://github.com/sharkdp/bat/issues/219
 
 mkdir -p ~/.config/bat/themes
@@ -205,7 +194,6 @@ cd ~/.config/bat/themes
 wget https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme
 bat cache --init
 bat --theme=OneHalfDark
-
 
 sudo chmod 7455 /opt/Franz/chrome-sandbox
 

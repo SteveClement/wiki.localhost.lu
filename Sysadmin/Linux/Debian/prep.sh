@@ -14,7 +14,6 @@ chmod 600 ~/.ssh/*
 chmod 700 ~/.gnupg
 chmod 700 ~/.gnupg/*
 
-
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 rm ~/.zshrc
 [[ ! -L "~/.zshrc" ]] && ln -s ~/dotfiles/.zshrc ~/
@@ -34,6 +33,7 @@ rm ~/.zshrc
 [[ ! -e "~/.tmux.conf" ]] && ln -s ~/.tmux/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I -> Install plugs
+[[ ! -e "~/wallpaper" ]] && ln -s ~/truecrypt1/wallpaper ~/
 
 [[ ! -L "~/.config" ]] && mv ~/.config ~/.config-date && ln -s ~/dotfiles/.config
 sudo cp ~/bin/virtualenvwrapper.sh /usr/local/bin/virtualenvwrapper.sh
