@@ -21,6 +21,7 @@ rm ~/.zshrc
 [[ ! -e "~/.cargo" ]] && ln -s ~/dotfiles/.cargo ~/
 [[ ! -e "~/.misp" ]] && ln -s ~/dotfiles/.misp ~/
 [[ ! -e "~/bin" ]] && ln -s ~/truecrypt1/bin ~/
+[[ ! -e "~/.lessfilter" ]] && ln -s ~/dotfiles/.lessfilter ~/
 [[ ! -e "~/.gitconfig" ]] && ln -s ~/dotfiles/.gitconfig ~/
 [[ ! -e "~/.gitignore" ]] && ln -s ~/dotfiles/.gitignore ~/
 #[[ ! -e "~/.gitignore_global" ]] && ln -s ~/dotfiles/.gitignore_global ~/
