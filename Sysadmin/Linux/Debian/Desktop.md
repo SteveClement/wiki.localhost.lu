@@ -134,6 +134,15 @@ installCustOfflineImap () {
   sudo ln -s /home/steve/opt/libressl/lib/libcrypto.so.44 /usr/lib/libcrypto.so.44
 }
 
+# muttils
+
+```
+hg clone https://hg.phloxic.productions/muttils
+cd muttils
+make && make install-home
+pip3 install .
+```
+
 pip3 install --user pywal
 
 sudo apt install offlineimap python3-pip polybar
