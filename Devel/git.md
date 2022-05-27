@@ -73,6 +73,17 @@ If not add it
 git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
 ```
 
+### Rename master to main
+
+[Source](https://github.com/github/renaming)
+
+```bash
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
+
 ### Sync
 
 [Source](https://help.github.com/articles/syncing-a-fork/)
