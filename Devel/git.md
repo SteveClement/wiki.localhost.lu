@@ -7,11 +7,25 @@ git branch -r | grep -v '\->' | while read remote; do git branch --track "${remo
 git fetch --all
 git pull --all
 ```
+
+
+## Merge develop back into 2.4
+
+```
+git add foo
+git commit
+git push origin 2.4
+git checkout develop
+git pull origin develop
+git merge --no-ff 2.4
+git push origin develop
+```
+
 ## Converting git repo to bare
 
 ### Pre-
 
-:warning: Make sure you have ALL your branches merged with the master branch!
+:warning: Make sure you have ALL your branches merged with the main branch!
 
 ### Copy your local copy to remote server
 
@@ -23,7 +37,7 @@ git pull --all
 
 ```
 $ git branch
-* master
+* main
   working
 $ git branch -d working
 Deleted branch working (was eb2cc05).
@@ -65,8 +79,8 @@ git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.gi
 
 ```
 git fetch upstream
-git checkout master
-git merge upstream/master
+git checkout main
+git merge upstream/main
 git push
 ```
 
@@ -115,15 +129,15 @@ origin  https://github.com/CIRCL/traceroute-circl.git (push)
 $ git remote show
 origin
 $ git branch
-* master
+* main
 $ git branch my-devel-branch
 $ git branch
-* master
+* main
 my-devel-branch
 $ git checkout my-devel-branch
 Switched to branch 'my-devel-branch'
 $ git branch
-master
+main
 * my-devel-branch
 $ git status
 # On branch my-devel-branch
@@ -145,13 +159,13 @@ $ git commit -a
 $ git add -A
 
 
-$ git diff master my-devel-branch
+$ git diff main my-devel-branch
 $ git log
 
 $ git fetch (only fetch new references, but no
 $ git pull (fetch & merge)
 
-$ git merge origin master
+$ git merge origin main
 $ git push origin
 $ git push origin my-devel-branch
 ```
@@ -160,7 +174,7 @@ To be investigated:
 
 ```
 git diff my-devel-branch:
-git diff origin/master
+git diff origin/main
 git merge my-devel-branch:
 git merge
 git merge my-devel-branch:text
@@ -169,7 +183,7 @@ git fetch origin
 
 Some questions to be answered:
 
-* Is HEAD == master <--- The HEAD notation is only supported for historical reasons, do NOT use src: [git-merge](https://git-scm.com/docs/git-merge)
+* Is HEAD == main <--- The HEAD notation is only supported for historical reasons, do NOT use src: [git-merge](https://git-scm.com/docs/git-merge)
 * Is : == origin
 * what is ^
 
@@ -212,7 +226,7 @@ Next steps:
   git add README
   git commit -m 'first commit'
   git remote add origin git@github.com:SteveClement/myNewRepo.git
-  git push -u origin master
+  git push -u origin main
 ```
 
 Existing Git Repo?
@@ -220,7 +234,7 @@ Existing Git Repo?
 ```
   cd existing_git_repo
   git remote add origin git@github.com:SteveClement/myNewRepo.git
-  git push -u origin master
+  git push -u origin main
 ```
 
 ## changing remote
