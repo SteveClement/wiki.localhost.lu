@@ -53,25 +53,21 @@ echo "Installing for remote user ${REMOTE_USER}"
 echo "..........................................."
 sleep 3
 
-R_SSH sudo apt update
-R_SSH sudo apt install etckeeper -y
-R_SSH sudo apt dist-upgrade
-R_SSH sudo apt autoremove
-R_SSH sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu bat gawk npm fzf coreutils net-tools neovim flake8 python3-pygments -y
+R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu bat gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl -y"
 
 # .ssh config?
 # .gnupg forwarding for signing commits
 
 R_SSH mkdir -p config/nvim
 R_SSH mkdir -p config/bat/themes
-R_SSH mkdir -p tmux
+R_SSH mkdir -p .tmux
 R_SSH mkdir -p .dir_colors
-R_SSH mkdir bin
+R_SSH mkdir -p bin
 R_SSH wget -O config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme
 R_SSH batcat cache -b
 
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
-if [[ -z ${OH_MY} ]]; then
+if [[ ! -z ${OH_MY} ]]; then
     R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh --interactive"
 else
     R_SSH sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -89,9 +85,9 @@ scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
 scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
 scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
 scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:config/nvim/
-scp -q ~/.tmux/tmux.conf ${REMOTE}:tmux/tmux.conf
-scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:tmux/tmux.remote.conf
-R_SSH ln -s tmux/tmux.conf .tmux.conf
+scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
+scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
+R_SSH ln -s .tmux/tmux.conf .tmux.conf
 TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
     R_SSH git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm
