@@ -1,29 +1,60 @@
 #!/bin/bash
-#
 
 shopt -s expand_aliases
 REMOTE=$1
 
-if [[ "$(ssh -q -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
-    echo "Connection failed, abort"
+if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
+    echo "Connection failed, key maybe not installed, running ssh-copy-id"
+    ssh-copy-id ${REMOTE}
+fi
+
+if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
+    echo "Connection still failed, investigate manually:"
+    echo "ssh ${REMOTE}"
     exit 255
 fi
 
-alias R_SSH="ssh -q -t $REMOTE"
+alias R_SSH="ssh -q -t -t $REMOTE"
+alias R_SSH_V="ssh -t -t $REMOTE"
 
-REMOTE_USER=$(R_SSH whoami)
-REMOTE_HOME=$(R_SSH pwd)
+REMOTE_USER=$(R_SSH whoami|sed 's/\r//g')
+REMOTE_HOME=$(R_SSH pwd|sed 's/\r//g')
 if [[ -z ${REMOTE_USER} ]]; then
     echo "Cannot determine user failed, abort"
     exit 255
 fi
+
+R_SSH_SUDO=$(R_SSH sudo -V > /dev/null; echo $?)
+if [[ "${R_SSH_SUDO}" != "0" ]]; then
+    echo "sudo NOT installed"
+    R_SSH_V "su -c apt\ install\ sudo\ -y"
+    SUDO_INST=$(echo $?)
+    if [[ "${SUDO_INST}" != "0" ]]; then
+        echo "Installing sudo failed, investigate manually."
+        exit 255
+    fi
+    R_SSH_V su -c "/sbin/usermod\ -a\ -G\ sudo\ ${REMOTE_USER}"
+    SUDO_INST=$(echo $?)
+    if [[ "${SUDO_INST}" != "0" ]]; then
+        echo "Installing sudo failed, investigate manually."
+        exit 255
+    fi
+fi
+
+PREPPED=$(R_SSH cat .remote_prep ; echo $?)
+
+if [[ "${PREPPED}" == "0" ]]; then
+    echo "This machine is already prepped, by caution, we bail!"
+    exit 255
+fi
+
 echo "..........................................."
 echo "Installing for remote user ${REMOTE_USER}"
 echo "..........................................."
 sleep 3
 
-R_SSH sudo apt install etckeeper -y
 R_SSH sudo apt update
+R_SSH sudo apt install etckeeper -y
 R_SSH sudo apt dist-upgrade
 R_SSH sudo apt autoremove
 R_SSH sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu bat gawk npm fzf coreutils net-tools neovim flake8 python3-pygments -y
@@ -68,3 +99,7 @@ fi
 # prefix + I -> Install plugs
 R_SSH curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 R_SSH nvim +'PlugInstall' +qa --headless
+
+
+R_SSH touch .remote_prep
+echo "${REMOTE} is now prepped"
