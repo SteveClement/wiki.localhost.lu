@@ -15,7 +15,6 @@ if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" !=
 fi
 
 alias R_SSH="ssh -q -t -t $REMOTE"
-alias R_SSH_V="ssh -t -t $REMOTE"
 
 REMOTE_USER=$(R_SSH whoami|sed 's/\r//g')
 REMOTE_HOME=$(R_SSH pwd|sed 's/\r//g')
@@ -27,13 +26,15 @@ fi
 R_SSH_SUDO=$(R_SSH sudo -V > /dev/null; echo $?)
 if [[ "${R_SSH_SUDO}" != "0" ]]; then
     echo "sudo NOT installed"
-    R_SSH_V "su -c apt\ install\ sudo\ -y"
+    echo -n "root "
+    R_SSH "su -c apt\ install\ sudo\ -y"
     SUDO_INST=$(echo $?)
     if [[ "${SUDO_INST}" != "0" ]]; then
         echo "Installing sudo failed, investigate manually."
         exit 255
     fi
-    R_SSH_V su -c "/sbin/usermod\ -a\ -G\ sudo\ ${REMOTE_USER}"
+    echo -n "root "
+    R_SSH su -c "/sbin/usermod\ -a\ -G\ sudo\ ${REMOTE_USER}"
     SUDO_INST=$(echo $?)
     if [[ "${SUDO_INST}" != "0" ]]; then
         echo "Installing sudo failed, investigate manually."
@@ -98,4 +99,6 @@ R_SSH nvim +'PlugInstall' +qa --headless
 
 
 R_SSH touch .remote_prep
+echo ""
+echo "------------------------"
 echo "${REMOTE} is now prepped"
