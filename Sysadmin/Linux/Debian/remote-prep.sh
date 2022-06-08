@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## Add user:
+# useradd -m -G adm,cdrom,sudo,dip,plugdev,lxd -s /bin/bash steve
+# passwd steve
+# ssh-copy-id foo
+
 shopt -s expand_aliases
 REMOTE=$1
 
@@ -59,12 +64,12 @@ R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade
 # .ssh config?
 # .gnupg forwarding for signing commits
 
-R_SSH mkdir -p config/nvim
-R_SSH mkdir -p config/bat/themes
+R_SSH mkdir -p .config/nvim
+R_SSH mkdir -p .config/bat/themes
 R_SSH mkdir -p .tmux
 R_SSH mkdir -p .dir_colors
 R_SSH mkdir -p bin
-R_SSH wget -O config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme
+R_SSH wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme
 R_SSH batcat cache -b
 
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
