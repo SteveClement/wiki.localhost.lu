@@ -4,6 +4,7 @@
 # useradd -m -G adm,cdrom,sudo,dip,plugdev,lxd -s /bin/bash steve
 # passwd steve
 # ssh-copy-id foo
+# For docker foo: sudo adduser steve docker
 
 shopt -s expand_aliases
 REMOTE=$1
@@ -90,7 +91,7 @@ scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
 scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
 scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
 scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
-scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:config/nvim/
+scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
 scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
 scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
 R_SSH ln -s .tmux/tmux.conf .tmux.conf
