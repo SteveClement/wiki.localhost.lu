@@ -8,6 +8,8 @@
 
 shopt -s expand_aliases
 REMOTE=$1
+INST_TYPE=$2
+PREP=$3
 
 if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
     echo "Connection failed, key maybe not installed, running ssh-copy-id"
@@ -48,7 +50,11 @@ if [[ "${R_SSH_SUDO}" != "0" ]]; then
     fi
 fi
 
-PREPPED=$(R_SSH cat .remote_prep ; echo $?)
+if [[ "${PREP}" == "skip" ]]; then
+    echo "Even if prepped we still install"
+else
+    PREPPED=$(R_SSH cat .remote_prep ; echo $?)
+fi
 
 if [[ "${PREPPED}" == "0" ]]; then
     echo "This machine is already prepped, by caution, we bail!"
@@ -60,7 +66,19 @@ echo "Installing for remote user ${REMOTE_USER}"
 echo "..........................................."
 sleep 3
 
-R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu bat gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl -y"
+if [[ "${INST_TYPE}" == "server" ]]; then
+    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl -y"
+else
+    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl -y"
+fi
+
+echo "Pulling bat from github as it is unstable in some debian releases"
+
+if [[ ! $(dpkg -l bat-musl) ]]; then
+    wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb
+    sudo dpkg -i bat-musl_0.22.1_amd64.deb
+    rm bat-musl_0.22.1_amd64.deb
+fi
 
 # .ssh config?
 # .gnupg forwarding for signing commits
