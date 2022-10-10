@@ -9,7 +9,8 @@
 shopt -s expand_aliases
 REMOTE=$1
 INST_TYPE=$2
-PREP=$3
+PROXY=$3
+PREP=$4
 
 if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
     echo "Connection failed, key maybe not installed, running ssh-copy-id"
@@ -21,6 +22,15 @@ if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" !=
     echo "ssh ${REMOTE}"
     exit 255
 fi
+
+if [[ ! -z ${PROXY} ]]; then
+    export http_proxy="http://proxy.lc1.conostix.com:3128"
+    export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
+    export https_proxy="https://proxy.lc1.conostix.com:3128"
+    export HTTPS_PROXY="https://proxy.lc1.conostix.com:3128"
+fi
+
+PROXY_EXPORT="export https_proxy=$https_proxy"
 
 alias R_SSH="ssh -q -t -t $REMOTE"
 
@@ -74,11 +84,13 @@ fi
 
 echo "Pulling bat from github as it is unstable in some debian releases"
 
-if [[ ! $(dpkg -l bat-musl) ]]; then
-    wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb
-    sudo dpkg -i bat-musl_0.22.1_amd64.deb
-    rm bat-musl_0.22.1_amd64.deb
+if [[ $(R_SSH dpkg -l bat-musl 2> /dev/null > /dev/null ;echo $?) != 0 ]]; then
+    R_SSH "$PROXY_EXPORT ; wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb"
+    R_SSH sudo dpkg -i bat-musl_0.22.1_amd64.deb
+    R_SSH rm bat-musl_0.22.1_amd64.deb
 fi
+
+read
 
 # .ssh config?
 # .gnupg forwarding for signing commits
@@ -88,14 +100,14 @@ R_SSH mkdir -p .config/bat/themes
 R_SSH mkdir -p .tmux
 R_SSH mkdir -p .dir_colors
 R_SSH mkdir -p bin
-R_SSH wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme
+R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
 R_SSH batcat cache -b
 
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
 if [[ ! -z ${OH_MY} ]]; then
     R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh --interactive"
 else
-    R_SSH sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    R_SSH sh -c "$($PROXY_EXPORT ; curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 R_SSH rm .zshrc
 R_SSH rm .tmux.conf
@@ -115,10 +127,10 @@ scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
 R_SSH ln -s .tmux/tmux.conf .tmux.conf
 TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
-    R_SSH git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm
+    R_SSH "$PROXY_EXPORT ; git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm"
 fi
 # prefix + I -> Install plugs
-R_SSH curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+R_SSH "$PROXY_EXPORT ;curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 R_SSH nvim +'PlugInstall' +qa --headless
 
 
