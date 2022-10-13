@@ -1,4 +1,4 @@
-# Building an OpenBSD 7.0 Desktop
+# Building an OpenBSD 7.1 Desktop
 
 Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
 
@@ -7,7 +7,8 @@ Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee. Can 
 
 ```
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
-infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr/share/misc/termcap
+#infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee /usr/local/share/terminfo/x/xterm-termite
+doas cp /usr/share/terminfo/x/xterm-color /usr/share/terminfo/x/xterm-termite
 ```
 
 ## Heavy install

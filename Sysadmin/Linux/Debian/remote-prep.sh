@@ -12,6 +12,8 @@ INST_TYPE=$2
 PROXY=$3
 PREP=$4
 
+ARCHI=$(uname -m)
+
 if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
     echo "Connection failed, key maybe not installed, running ssh-copy-id"
     ssh-copy-id ${REMOTE}
@@ -23,7 +25,7 @@ if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" !=
     exit 255
 fi
 
-if [[ ! -z ${PROXY} ]]; then
+if [[ "${PROXY}" == "proxy" ]]; then
     export http_proxy="http://proxy.lc1.conostix.com:3128"
     export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
     export https_proxy="https://proxy.lc1.conostix.com:3128"
@@ -85,12 +87,17 @@ fi
 echo "Pulling bat from github as it is unstable in some debian releases"
 
 if [[ $(R_SSH dpkg -l bat-musl 2> /dev/null > /dev/null ;echo $?) != 0 ]]; then
-    R_SSH "$PROXY_EXPORT ; wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb"
-    R_SSH sudo dpkg -i bat-musl_0.22.1_amd64.deb
-    R_SSH rm bat-musl_0.22.1_amd64.deb
+    if [[ "${ARCHI}" == "x86_64" ]]; then
+        R_SSH "$PROXY_EXPORT ; wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb"
+        R_SSH sudo dpkg -i bat-musl_0.22.1_amd64.deb
+        R_SSH rm bat-musl_0.22.1_amd64.deb
+    fi
+    if [[ "${ARCHI}" == "armv7l" ]]; then
+        R_SSH "$PROXY_EXPORT ; wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_armhf.deb"
+        R_SSH sudo dpkg -i bat-musl_0.22.1_armhf.deb
+        R_SSH rm bat-musl_0.22.1_armhf.deb
+    fi
 fi
-
-read
 
 # .ssh config?
 # .gnupg forwarding for signing commits
@@ -101,7 +108,9 @@ R_SSH mkdir -p .tmux
 R_SSH mkdir -p .dir_colors
 R_SSH mkdir -p bin
 R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
-R_SSH batcat cache -b
+
+[[ -e $(which bat) ]] && R_SSH bat cache -b
+[[ -e $(which batcat) ]] && R_SSH batcat cache -b
 
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
 if [[ ! -z ${OH_MY} ]]; then
