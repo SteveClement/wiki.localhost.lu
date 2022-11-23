@@ -94,15 +94,6 @@ See:
 May  3 10:59:18 oBuilder gnome-session-binary[6625]: WARNING: software acceleration check failed: Child process exited with code 1
 ```
 
-## OpenBSD 5.9 Linux Emulation
-
-Only exists on i386 and NOT on amd64 OR OpenBSD 6.0
-
-To enable:
-```
-doas sysctl kern.emul.linux=1
-```
-
 ## Serial over USB on OpenBSD
 
 Usually I use screen on Linux boxes to connect via serial. This sux under OpenBSD, use 'cu'
@@ -161,11 +152,11 @@ You are missing the X headers, install them like so:
 
 ```
 $ su -
-# wget http://ftp.belnet.be/pub/OpenBSD/6.6/amd64/xbase66.tgz
-# wget http://ftp.belnet.be/pub/OpenBSD/6.6/amd64/xshare66.tgz
-# tar -C / -xzphf xbase66.tgz
-# tar -C / -xzphf xshare66.tgz
-rm xbase66.tgz xshare66.tgz
+# wget http://ftp.belnet.be/pub/OpenBSD/7.2/amd64/xbase72.tgz
+# wget http://ftp.belnet.be/pub/OpenBSD/7.2/amd64/xshare72.tgz
+# tar -C / -xzphf xbase72.tgz
+# tar -C / -xzphf xshare72.tgz
+rm xbase72.tgz xshare72.tgz
 ```
 
 ## sudo removed, doas introduced
@@ -369,7 +360,7 @@ Write new label?: [y] y
 pkg_add -v automake autoconf libtool git
 git clone https://github.com/hishamhm/htop
 cd htop
-export AUTOMAKE_VERSION=1.15
+export AUTOMAKE_VERSION=1.16
 export AUTOCONF_VERSION=2.69
 ./autogen.sh
 ./configure
@@ -386,7 +377,7 @@ cd /usr/
 doas mkdir -p xenocara
 doas chgrp wsrc xenocara
 doas chmod 775  xenocara
-cvs -qd anoncvs@anoncvs.openbsd.org:/cvs checkout -rOPENBSD_6_6 -P xenocara
+cvs -qd anoncvs@anoncvs.openbsd.org:/cvs checkout -rOPENBSD_7_2 -P xenocara
 cd /usr/xenocara
 doas make bootstrap
 doas make obj
@@ -425,46 +416,9 @@ Current version of pixman: 0.38.4
 	to make sure that you have the latest version.
 ```
  
-Kernel Version vanilla 6.6:
-```
-OpenBSD foo.lan 6.6 GENERIC.MP#0 amd64
-```
-
 This is done through CVSup and takes time.
 
 OpenBSD is not meant to be set up in 5 minutes and your done. It aims at System Administrators that are actually interested in their Systems security.
-
-# Install basic packages on 6.6
-
-## From URL
-```
-pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/lsof-4.89.tgz
-pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/ntp-4.2.8pl6.tgz
-pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/munin-node-2.0.25p1.tgz
-pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/gsed-4.2.2p0.tgz
-pkg_add -v ftp://cdn.openbsd.org/pub/OpenBSD/6.6/packages/amd64/pkglocatedb-1.2.tgz
-```
-
-Or for the cool kids:
-
-## OLD STYLE (obsolete)
-```
-export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.3/packages/i386/
-pkg_add -v lsof ntp munin-node gsed pkglocatedb
-```
-
-## OLD-NEW STYLE (obsolete)
-```
-echo "installpath=http://ftp.spline.de/pub/OpenBSD/%c/packages/%a/" > /etc/pkg.conf
-pkg_add -v lsof ntp munin-node gsed pkglocatedb
-```
-
-## NEW STYLE
-```
-# The following might already be done if installed from a recent build
-echo "https://cdn.openbsd.org/pub/OpenBSD" |doas tee /etc/installurl
-doas pkg_add -v lsof ntp munin-node gsed pkglocatedb
-```
 
 # Install reposync
 
@@ -527,59 +481,6 @@ $ du -sh /home/cvs/*
 # Making a new world
 :warning: Read this: https://openbsd.org/faq/upgrade66.html
 :warning: Make sure to skim through the document and use sysmerge as well as "2. Files to delete" (if coming from prior versions)
-
-## pre-update Notes
-### 5.2 -> 5.3
-n/a
-
-### 5.0 -> 5.1
-```
-rm -rf /usr/X11R6/share/X11/xkb/symbols/srvr_ctrl
-nsdc rebuild
-/etc/rc.dnsd restart
-```
-
-### sysmerge
-```
-wget ftp://ftp.openbsd.org/pub/OpenBSD/5.2/i386/etc52.tgz
-wget ftp://ftp.openbsd.org/pub/OpenBSD/5.2/i386/xetc52.tgz
-sysmerge -s ${RELEASEPATH}/etc52.tgz -x ${RELEASEPATH}/xetc52.tgz
-```
-
-### remove un-needed files
-#### 5.3
-```
-rm /usr/bin/pmdb /usr/share/man/man1/pmdb.1
-rm -rf /usr/X11R6/lib/X11/config
-rm -f /usr/X11R6/bin/{ccmakedep,cleanlinks,imake,makeg,mergelib,mkdirhier,mkhtmlindex,revpath,xmkmf}
-rm -f /usr/X11R6/man/man1/{ccmakedep,cleanlinks,imake,makeg,mergelib,mkdirhier,mkhtmlindex,revpath,xmkmf}.1
-rm -r /usr/lib/gcc-lib/*-unknown-openbsd5.2
-```
-
-#### 5.1
-```
-rm /etc/rc.d/aucat
-rm /etc/ccd.conf /sbin/ccdconfig /usr/share/man/man8/ccdconfig.8
-rm /usr/sbin/pkg_merge
-rm /usr/libexec/getNAME /usr/share/man/man8/getNAME.8
-rm -rf /usr/lib/gcc-lib/i386-unknown-openbsd5.0
-rm -f /usr/bin/midicat /usr/share/man/man1/midicat.1
-rm -f /usr/bin/makewhatis /usr/bin/mandocdb /usr/share/man/man8/mandocdb.8
-```
-
-#### 5.2
-```
-rm /usr/bin/lint
-rm /usr/libexec/lint[12]
-rm -r /usr/libdata/lint
-rm /usr/share/man/man1/lint.1
-rm /usr/sbin/pkg
-rm /sbin/raidctl
-rm /usr/share/man/man4/raid.4
-rm /usr/share/man/man8/raidctl.8
-rm /usr/libexec/tftpd
-rm -r /usr/lib/gcc-lib/*-unknown-openbsd5.1
-```
 
 ## Compile a new Kernel; build a new world
 ```
