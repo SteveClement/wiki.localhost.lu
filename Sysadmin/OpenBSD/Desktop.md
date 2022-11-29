@@ -1,7 +1,4 @@
-# Building an OpenBSD 7.1 Desktop
-
-Random sources: http://www.taringa.net/post/info/14077505/Tutorial-Configurar-instalar-Openbox-en-OpenBSD-5-0.html
-
+# Building an OpenBSD 7.2 Desktop
 
 Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee. Can be avoided by adding options. (e.g: bitlbee--libpurple-otr)
 
@@ -23,8 +20,9 @@ doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpur
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
 # Tools
 doas pkg_add -v htop
-doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
-doas ln -s /usr/local/bin/nvim /usr/bin/vi
+echo "alias vi=nvim" |tee -a ~/.profile
+echo "alias vi=nvim" |tee -a ~/.zshrc
+echo "alias vi=nvim" |doas tee -a /root/.profile
 ```
 
 ## Lighter install
