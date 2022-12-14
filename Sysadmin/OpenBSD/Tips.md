@@ -6,12 +6,6 @@
 doas syspatch
 ```
 
-## termite issues add it to termcap
-
-```bash
-infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee -a /usr/share/misc/termcap
-```
-
 ## Virtualbox Guest custom resolution
 
 You probably need the following in sysctl.conf

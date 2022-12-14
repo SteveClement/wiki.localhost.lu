@@ -4,8 +4,6 @@ Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee. Can 
 
 ```
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
-#infocmp -C xterm-color | sed -e 's/xterm-color/xterm-termite/' |doas tee /usr/local/share/terminfo/x/xterm-termite
-doas cp /usr/share/terminfo/x/xterm-color /usr/share/terminfo/x/xterm-termite
 ```
 
 ## Heavy install

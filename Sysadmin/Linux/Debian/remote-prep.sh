@@ -7,12 +7,32 @@
 # For docker foo: sudo adduser steve docker
 
 shopt -s expand_aliases
+
+
 REMOTE=$1
 INST_TYPE=$2
 PROXY=$3
 PREP=$4
 
 ARCHI=$(uname -m)
+
+usage () {
+  echo "remote-prep.sh <REMOTE_SERVER> <TYPE_OF_PREP> <PROXY_USE> <SKIP_PREP>"
+  echo "Available proxies: constix"
+  exit 0
+}
+
+if [[ ! -z "${PROXY}" ]]; then
+    if [[ ${PROXY} == "conostix" ]]; then
+      export http_proxy="http://proxy.lc1.conostix.com:3128"
+      export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
+      export https_proxy="https://proxy.lc1.conostix.com:3128"
+      export HTTPS_PROXY="https://proxy.lc1.conostix.com:3128"
+    fi
+fi
+if [[ -z $1 ]]; then
+    usage
+fi
 
 if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
     echo "Connection failed, key maybe not installed, running ssh-copy-id"
@@ -25,12 +45,6 @@ if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" !=
     exit 255
 fi
 
-if [[ "${PROXY}" == "proxy" ]]; then
-    export http_proxy="http://proxy.lc1.conostix.com:3128"
-    export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
-    export https_proxy="https://proxy.lc1.conostix.com:3128"
-    export HTTPS_PROXY="https://proxy.lc1.conostix.com:3128"
-fi
 
 PROXY_EXPORT="export https_proxy=$https_proxy"
 
@@ -122,9 +136,6 @@ R_SSH rm .zshrc
 R_SSH rm .tmux.conf
 scp -q ~/bin/prettyping ${REMOTE}:bin/
 scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
-scp -q ~/dotfiles/termite.terminfo ${REMOTE}:/tmp/
-R_SSH tic -x /tmp/termite.terminfo
-R_SSH sudo tic -x /tmp/termite.terminfo
 scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
 scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
 scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig

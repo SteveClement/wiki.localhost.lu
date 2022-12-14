@@ -53,34 +53,6 @@ sudo apt install chromium-browser -y
 sudo apt install murrine-themes  -y
 sudo apt install -y g++ libgtk-3-dev gtk-doc-tools gnutls-bin valac intltool libpcre2-dev libglib3.0-cil-dev libgnutls28-dev libgirepository1.0-dev libxml2-utils gperf libtool flake8
 cd ~/code/
-git clone --recursive https://github.com/thestinger/termite.git
-git clone https://github.com/thestinger/vte-ng.git
-export LIBRARY_PATH="/usr/include/gtk-3.0:$LIBRARY_PATH"
-cd vte-ng/
-# https://github.com/GNOME/vte/commit/53690d5cee51bdb7c3f7680d3c22b316b1086f2c#diff-09af37e3a14d365cf086df3ead32aa7f
-echo "diff --git a/bindings/vala/app.vala b/bindings/vala/app.vala
-index 8663d63c..a6b0259f 100644
---- a/bindings/vala/app.vala
-+++ b/bindings/vala/app.vala
-@@ -819,6 +819,7 @@ class App : Gtk.Application
- 
-   public struct Options
-   {
-+    public int dummy;
-     public static bool audible = false;
-     public static string? command = null;
-     private static string? cjk_ambiguous_width_string = null;" |tee /tmp/vte.patch
-cat /tmp/vte.patch |patch -p1
-./autogen.sh 
-./configure --datadir=/usr --prefix=/usr --localstatedir=/var --sysconfdir=/etc
-make
-sudo make install
-cd ../termite/
-make
-sudo make install
-sudo ldconfig
-sudo mkdir -p /lib/terminfo/x; sudo ln -s /usr/local/share/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termite
-sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/termite 60
 sudo vi /etc/gtk-2.0/gtkrc
 sudo vi /etc/gtk-3.0/settings.ini
 
@@ -185,10 +157,6 @@ https://github.com/Airblader/i3/wiki/Compiling-&-Installing ; u install dep and 
 git clone https://github.com/stark/siji && cd siji
   xset +fp /home/steve/.fonts
   xset fp rehash
-
-
-IF: tput: unknown terminal "xterm-termite"
-tic -x /home/steve/tmp/termite/termite.terminfo 
 
 
 Install spacevim for nvim:
