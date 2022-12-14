@@ -8,12 +8,12 @@ echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/do
 
 ## Heavy install
 ```
-doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb
+doas pkg_add -v xfce openbox fbpanel ntp munin-node gsed pkglocatedb
 doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
-doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
+doas pkg_add -v youtube-dl scrot mplayer ubuntu-fonts
 doas pkg_add -v gnome neomutt--gpgme-sasl terminator cups gimp libreoffice
-doas pkg_add -v rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium
+doas pkg_add -v alacritty xfce4-clipman st vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
 # Tools
@@ -26,21 +26,22 @@ echo "alias vi=nvim" |doas tee -a /root/.profile
 ## Lighter install
 ```
 doas pkg_add -v i3-gaps i3status i3lock # others in-lieu of: i3, i3-mousedrag 
-doas pkg_add -v arandr polybar rofi feh scrot slim slim-themes ntp munin-node gsed pkglocatedb
+doas pkg_add -v arandr polybar rofi feh scrot munin-node gsed pkglocatedb
 doas pkg_add -v firefox leafpad pcmanfm nitrogen intltool conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer ranger bash zsh irssi filezilla
-doas pkg_add -v youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts
+doas pkg_add -v youtube-dl scrot mplayer ubuntu-fonts
 doas pkg_add -v neomutt--gpgme-sasl terminator
 # Tools
 doas pkg_add -v htop
 # Print
 doas pkg_add -v cups
 doas pkg_add -v gimp libreoffice
-doas pkg_add -v rxvt-unicode st vnstat mu dialog thunderbird
+doas pkg_add -v alacritty st vnstat mu dialog thunderbird
 doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
-doas mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
-doas ln -s /usr/local/bin/nvim /usr/bin/vi
+echo "alias vi=nvim" |tee -a ~/.profile
+echo "alias vi=nvim" |tee -a ~/.zshrc
+echo "alias vi=nvim" |doas tee -a /root/.profile
 ```
 
 ## CJK input foo
@@ -51,7 +52,7 @@ fcitx # arimasu
 
 # one-liner of all the above (heavy)
 ```
-doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme conky-- neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot gstreamer-plugins-ugly mplayer ubuntu-fonts gnome neomutt--gpgme-sasl terminator cups gimp libreoffice rxvt-unicode xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
+doas pkg_add -v xfce openbox fbpanel munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme conky-- neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot mplayer ubuntu-fonts gnome neomutt--gpgme-sasl terminator cups gimp libreoffice alacritty xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 ```
 
 # The following new rcscripts were installed
@@ -69,11 +70,9 @@ doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkgloc
 /etc/rc.d/samba
 /etc/rc.d/samba_ad_dc
 /etc/rc.d/saslauthd
-/etc/rc.d/slim
 /etc/rc.d/smbd
 /etc/rc.d/vnstatd
 /etc/rc.d/winbindd
-/etc/rc.d/xntpd
 ```
 
 # New and changed readme(s):
@@ -98,11 +97,8 @@ doas pkg_add -v xfce openbox slim slim-themes fbpanel ntp munin-node gsed pkgloc
 	/usr/local/share/doc/pkg-readmes/mplayer
 	/usr/local/share/doc/pkg-readmes/munin-node
 	/usr/local/share/doc/pkg-readmes/neovim
-	/usr/local/share/doc/pkg-readmes/ntp
-	/usr/local/share/doc/pkg-readmes/rxvt-unicode
 	/usr/local/share/doc/pkg-readmes/samba
 	/usr/local/share/doc/pkg-readmes/sdl2
-	/usr/local/share/doc/pkg-readmes/slim
 	/usr/local/share/doc/pkg-readmes/texlive_base
 	/usr/local/share/doc/pkg-readmes/thunderbird
 	/usr/local/share/doc/pkg-readmes/upower
@@ -177,139 +173,16 @@ rc.local
 ```
 echo -n ' ntpdate'
 /usr/local/sbin/ntpdate -b pool.ntp.org >/dev/null
-xntpd_flags="-p /var/run/ntpd.pid"
-echo -n ' ntpd'; /usr/local/sbin/ntpd ${xntpd_flags}
-if [ -x /usr/local/bin/slim ]; then
-        echo -n ' slim'; ( sleep 5; /usr/local/bin/slim -nodaemon ) &
-fi
 ```
 
 rc.conf.local
 ```
-# Make sure to disable xenodm by NOT setting the next flag
-#xenodm_flags=
+xenodm_flags=
 inetd_flags=NO
-ntpd_flags="-s"
 hotplugd_flags=""
 multicast_host=YES
 #pkg_scripts="messagebus avahi_daemon gdm"
 pkg_scripts="messagebus avahi_daemon cupsd munin_node"
-```
-
-ntp.conf
-```
-#
-# $FreeBSD$
-#
-# Default NTP servers for the FreeBSD operating system.
-#
-# Don't forget to enable ntpd in /etc/rc.conf with:
-# ntpd_enable="YES"
-#
-# The driftfile is by default /var/db/ntpd.drift, check
-# /etc/defaults/rc.conf on how to change the location.
-#
-
-#
-# Set the target and limit for adding servers configured via pool statements
-# or discovered dynamically via mechanisms such as broadcast and manycast.
-# Ntpd automatically adds maxclock-1 servers from configured pools, and may
-# add as many as maxclock*2 if necessary to ensure that at least minclock 
-# servers are providing good consistant time.
-#
-tos minclock 3 maxclock 6
-
-#
-# The following pool statement will give you a random set of NTP servers
-# geographically close to you.  A single pool statement adds multiple
-# servers from the pool, according to the tos minclock/maxclock targets.
-# See http://www.pool.ntp.org/ for details.  Note, pool.ntp.org encourages
-# users with a static IP and good upstream NTP servers to add a server
-# to the pool. See http://www.pool.ntp.org/join.html if you are interested.
-#
-# The option `iburst' is used for faster initial synchronization.
-#
-pool 0.freebsd.pool.ntp.org iburst
-
-#
-# If you want to pick yourself which country's public NTP server
-# you want to sync against, comment out the above pool, uncomment
-# the next one, and replace CC with the country's abbreviation.
-# Make sure that the hostname resolves to a proper IP address!
-#
-# pool 0.CC.pool.ntp.org iburst
-
-#
-# To configure a specific server, such as an organization-wide local
-# server, add lines similar to the following.  One or more specific
-# servers can be configured in addition to, or instead of, any server
-# pools specified above.  When both are configured, ntpd first adds all
-# the specific servers, then adds servers from the pool until the tos
-# minclock/maxclock targets are met.
-#
-#server time.my-internal.org iburst
-
-#
-# Security:
-#
-# By default, only allow time queries and block all other requests
-# from unauthenticated clients.
-#
-# The "restrict source" line allows peers to be mobilized when added by
-# ntpd from a pool, but does not enable mobilizing a new peer association
-# by other dynamic means (broadcast, manycast, ntpq commands, etc).
-#
-# See http://support.ntp.org/bin/view/Support/AccessRestrictions
-# for more information.
-#
-restrict    default limited kod nomodify notrap noquery nopeer
-restrict -6 default limited kod nomodify notrap noquery nopeer
-restrict    source  limited kod nomodify notrap noquery
-
-#
-# Alternatively, the following rules would block all unauthorized access.
-#
-#restrict default ignore
-#restrict -6 default ignore
-#
-# In this case, all remote NTP time servers also need to be explicitly
-# allowed or they would not be able to exchange time information with
-# this server.
-#
-# Please note that this example doesn't work for the servers in
-# the pool.ntp.org domain since they return multiple A records.
-#
-#restrict 0.pool.ntp.org nomodify nopeer noquery notrap
-#restrict 1.pool.ntp.org nomodify nopeer noquery notrap
-#restrict 2.pool.ntp.org nomodify nopeer noquery notrap
-#
-# The following settings allow unrestricted access from the localhost
-restrict 127.0.0.1
-restrict -6 ::1
-
-#
-# If a server loses sync with all upstream servers, NTP clients
-# no longer follow that server. The local clock can be configured
-# to provide a time source when this happens, but it should usually
-# be configured on just one server on a network. For more details see
-# http://support.ntp.org/bin/view/Support/UndisciplinedLocalClock
-# The use of Orphan Mode may be preferable.
-#
-#server 127.127.1.0
-#fudge 127.127.1.0 stratum 10
-
-# See http://support.ntp.org/bin/view/Support/ConfiguringNTP#Section_6.14.
-# for documentation regarding leapfile. Updates to the file can be obtained
-# from ftp://time.nist.gov/pub/ or ftp://tycho.usno.navy.mil/pub/ntp/.
-# Use either leapfile in /etc/ntp or weekly updated leapfile in /var/db.
-#leapfile "/etc/ntp/leap-seconds"
-leapfile "/var/db/ntpd.leap-seconds.list"
-```
-
-# Update leap-seconds file
-
-```
-doas update-leap
 ```
 
 .xinitrc
