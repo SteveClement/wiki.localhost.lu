@@ -18,7 +18,7 @@ ARCHI=$(uname -m)
 
 usage () {
   echo "remote-prep.sh <REMOTE_SERVER> <TYPE_OF_PREP> <PROXY_USE> <SKIP_PREP>"
-  echo "Available proxies: constix"
+  echo "Available proxies: conostix"
   exit 0
 }
 
@@ -52,13 +52,14 @@ alias R_SSH="ssh -q -t -t $REMOTE"
 
 REMOTE_USER=$(R_SSH whoami|sed 's/\r//g')
 REMOTE_HOME=$(R_SSH pwd|sed 's/\r//g')
+REMOTE_OS=$(R_SSH uname -s| uconv| tr -d '\r')
 if [[ -z ${REMOTE_USER} ]]; then
     echo "Cannot determine user failed, abort"
     exit 255
 fi
 
 R_SSH_SUDO=$(R_SSH sudo -V > /dev/null; echo $?)
-if [[ "${R_SSH_SUDO}" != "0" ]]; then
+if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
     echo "sudo NOT installed"
     echo -n "root "
     R_SSH "su -c apt\ install\ sudo\ -y"
@@ -87,10 +88,49 @@ if [[ "${PREPPED}" == "0" ]]; then
     exit 255
 fi
 
+###### Functions ######
+
+mkdirs () {
+   R_SSH mkdir -p .config/nvim
+   R_SSH mkdir -p .config/bat/themes
+   R_SSH mkdir -p .tmux
+   R_SSH mkdir -p .dir_colors
+   R_SSH mkdir -p bin
+}
+
+rms () {
+    R_SSH rm .zshrc
+    R_SSH rm .tmux.conf
+}
+
+scps () {
+scp -q ~/bin/prettyping ${REMOTE}:bin/
+scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
+scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
+scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
+scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
+scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
+scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
+scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
+scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
+scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
+}
+
+OpenBSD () {
+   mkdirs
+   rms
+   scps
+   R_SSH ln -s .tmux/tmux.conf .tmux.conf
+   exit
+}
+
+
 echo "..........................................."
 echo "Installing for remote user ${REMOTE_USER}"
 echo "..........................................."
 sleep 3
+
+[[ "${REMOTE_OS}" == "OpenBSD" ]] && OpenBSD
 
 if [[ "${INST_TYPE}" == "server" ]]; then
     [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl -y"
@@ -116,11 +156,9 @@ fi
 # .ssh config?
 # .gnupg forwarding for signing commits
 
-R_SSH mkdir -p .config/nvim
-R_SSH mkdir -p .config/bat/themes
-R_SSH mkdir -p .tmux
-R_SSH mkdir -p .dir_colors
-R_SSH mkdir -p bin
+mkdirs
+rms
+
 R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
 
 [[ -e $(which bat) ]] && R_SSH bat cache -b
@@ -132,18 +170,9 @@ if [[ ! -z ${OH_MY} ]]; then
 else
     R_SSH sh -c "$($PROXY_EXPORT ; curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
-R_SSH rm .zshrc
-R_SSH rm .tmux.conf
-scp -q ~/bin/prettyping ${REMOTE}:bin/
-scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
-scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
-scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
-scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
-scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
-scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
-scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
-scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
-scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
+
+scps
+
 R_SSH ln -s .tmux/tmux.conf .tmux.conf
 TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
