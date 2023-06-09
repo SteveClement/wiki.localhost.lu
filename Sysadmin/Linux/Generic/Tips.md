@@ -4,6 +4,42 @@
 echo $XDG_SESSION_TYPE
 ```
 
+### Rotate Framebuffer Console (fbcon)
+
+You can rotate your virtual framebuffers using fbcon. 0 through 3 to represent the various rotations:
+
+0 - Normal rotation
+1 - Rotate clockwise
+2 - Rotate upside down
+3 - Rotate counter-clockwise
+These can be set from the command line by putting a value into the correct system file. Rotate the current framebuffer:
+
+```
+echo 3 | sudo tee /sys/class/graphics/fbcon/rotate
+```
+
+Rotate all virtual framebuffers:
+
+```
+echo 3 | sudo tee /sys/class/graphics/fbcon/rotate_all
+```
+
+
+
+### chroot to fix OS
+
+```
+cd /
+mount -t ext3 /dev/sda1 /mnt
+mount -t proc proc /mnt/proc
+mount -t sysfs sys /mnt/sys
+mount -o bind /dev /mnt/dev
+mount -o bind /dev/pts /mnt/dev/pts
+chroot /mnt
+# magick
+```
+
+
 
 ### Forwarding gpg-agent
 
