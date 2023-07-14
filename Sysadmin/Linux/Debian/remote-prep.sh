@@ -133,24 +133,9 @@ sleep 3
 [[ "${REMOTE_OS}" == "OpenBSD" ]] && OpenBSD
 
 if [[ "${INST_TYPE}" == "server" ]]; then
-    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl -y"
+    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat -y"
 else
-    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl -y"
-fi
-
-echo "Pulling bat from github as it is unstable in some debian releases"
-
-if [[ $(R_SSH dpkg -l bat-musl 2> /dev/null > /dev/null ;echo $?) != 0 ]]; then
-    if [[ "${ARCHI}" == "x86_64" ]]; then
-        R_SSH "$PROXY_EXPORT ; wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb"
-        R_SSH sudo dpkg -i bat-musl_0.22.1_amd64.deb
-        R_SSH rm bat-musl_0.22.1_amd64.deb
-    fi
-    if [[ "${ARCHI}" == "armv7l" ]]; then
-        R_SSH "$PROXY_EXPORT ; wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_armhf.deb"
-        R_SSH sudo dpkg -i bat-musl_0.22.1_armhf.deb
-        R_SSH rm bat-musl_0.22.1_armhf.deb
-    fi
+    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat -y"
 fi
 
 # .ssh config?
