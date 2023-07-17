@@ -1,6 +1,12 @@
-From tips to guide
-
 remove gdm3, xfce4-session
+
+# Default editor
+
+```
+sudo update-alternatives --config editor
+sudo select-editor
+```
+
 
 # Wayland or xorg
 
