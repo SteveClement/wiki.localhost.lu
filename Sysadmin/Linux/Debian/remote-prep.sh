@@ -110,6 +110,7 @@ scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
 scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
 scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
 scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
+scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
 scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
 scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
 scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
@@ -133,9 +134,9 @@ sleep 3
 [[ "${REMOTE_OS}" == "OpenBSD" ]] && OpenBSD
 
 if [[ "${INST_TYPE}" == "server" ]]; then
-    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat -y"
+    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install nala -y ; sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
-    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat -y"
+    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install nala -y ; sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
 # .ssh config?
