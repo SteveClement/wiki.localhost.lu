@@ -50,9 +50,25 @@ PROXY_EXPORT="export https_proxy=$https_proxy"
 
 alias R_SSH="ssh -q -t -t $REMOTE"
 
-REMOTE_USER=$(R_SSH whoami|sed 's/\r//g')
-REMOTE_HOME=$(R_SSH pwd|sed 's/\r//g')
-REMOTE_OS=$(R_SSH uname -s| uconv| tr -d '\r')
+REMOTE_USER=$(R_SSH "whoami|sed 's/\r//g'")
+REMOTE_HOME=$(R_SSH "pwd|sed 's/\r//g'")
+REMOTE_SHELL=$(R_SSH "env |grep SHELL| grep 'zsh\|bash'")
+if [[ -z $REMOTE_SHELL ]]; then
+    echo "Please install bash"
+    exit 255
+fi
+REMOTE_UCONV=$(R_SSH "which uconv")
+if [[ -z $REMOTE_UCONV ]]; then
+    echo "Please install icu-devtools (uconv)"
+    exit 255
+fi
+# Probably uconv is not standard on minimal Debian
+# Something is broken on Debian minimal
+# the scon
+REMOTE_OS=$(R_SSH "uname -s| uconv| tr -d \r")
+read
+REMOTE_OS=$(R_SSH uname -s| tr -d '\r')
+
 if [[ -z ${REMOTE_USER} ]]; then
     echo "Cannot determine user failed, abort"
     exit 255
@@ -104,24 +120,24 @@ rms () {
 }
 
 scps () {
-scp -q ~/bin/prettyping ${REMOTE}:bin/
-scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
-scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
-scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
-scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
-scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
-scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
-scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
-scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
-scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
-scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
+    scp -q ~/bin/prettyping ${REMOTE}:bin/
+    scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
+    scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
+    scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
+    scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
+    scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
+    scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
+    scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
+    scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
+    scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
+    scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
 }
 
 OpenBSD () {
    mkdirs
    rms
    scps
-   R_SSH ln -s .tmux/tmux.conf .tmux.conf
+   R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
    exit
 }
 
@@ -147,8 +163,8 @@ rms
 
 R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
 
-[[ -e $(which bat) ]] && R_SSH bat cache -b
-[[ -e $(which batcat) ]] && R_SSH batcat cache -b
+[[ -e $(which bat) ]] && R_SSH "bat cache -b"
+[[ -e $(which batcat) ]] && R_SSH "batcat cache -b"
 
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
 if [[ ! -z ${OH_MY} ]]; then
@@ -159,14 +175,14 @@ fi
 
 scps
 
-R_SSH ln -s .tmux/tmux.conf .tmux.conf
+R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
 TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
     R_SSH "$PROXY_EXPORT ; git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm"
 fi
 # prefix + I -> Install plugs
 R_SSH "$PROXY_EXPORT ;curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-R_SSH nvim +'PlugInstall' +qa --headless
+R_SSH "nvim +'PlugInstall' +qa --headless"
 
 
 R_SSH touch .remote_prep
