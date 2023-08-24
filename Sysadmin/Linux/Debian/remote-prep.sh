@@ -22,6 +22,23 @@ usage () {
   exit 0
 }
 
+# Simple debug function with message
+# Make sure no alias exists
+[[ $(type -t debug) == "alias" ]] && unalias debug
+debug () {
+  echo -e "${RED}Next step:${NC} ${GREEN}$1${NC}" > /dev/tty
+  if [[ ! -z ${DEBUG} ]]; then
+    NO_PROGRESS=1
+    echo -e "${RED}Debug Mode${NC}, press ${LBLUE}enter${NC} to continue..." > /dev/tty
+    exec 3>&1
+    read
+  else
+    # [Set up conditional redirection](https://stackoverflow.com/questions/8756535/conditional-redirection-in-bash)
+    #exec 3>&1 &>/dev/null
+    :
+  fi
+}
+
 if [[ ! -z "${PROXY}" ]]; then
     if [[ ${PROXY} == "conostix" ]]; then
       export http_proxy="http://proxy.lc1.conostix.com:3128"
@@ -45,18 +62,21 @@ if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" !=
     exit 255
 fi
 
-
 PROXY_EXPORT="export https_proxy=$https_proxy"
 
 alias R_SSH="ssh -q -t -t $REMOTE"
 
+debug "Fetching remote user"
 REMOTE_USER=$(R_SSH "whoami|sed 's/\r//g'")
+debug "Fetching remote home"
 REMOTE_HOME=$(R_SSH "pwd|sed 's/\r//g'")
+debug "Fetching remote shell"
 REMOTE_SHELL=$(R_SSH "env |grep SHELL| grep 'zsh\|bash'")
 if [[ -z $REMOTE_SHELL ]]; then
     echo "Please install bash"
     exit 255
 fi
+debug "Checking for uconv"
 REMOTE_UCONV=$(R_SSH "which uconv")
 if [[ -z $REMOTE_UCONV ]]; then
     echo "Please install icu-devtools (uconv)"
@@ -65,8 +85,8 @@ fi
 # Probably uconv is not standard on minimal Debian
 # Something is broken on Debian minimal
 # the scon
+debug "Checking remote OS"
 REMOTE_OS=$(R_SSH "uname -s| uconv| tr -d \r")
-read
 REMOTE_OS=$(R_SSH uname -s| tr -d '\r')
 
 if [[ -z ${REMOTE_USER} ]]; then
@@ -74,6 +94,7 @@ if [[ -z ${REMOTE_USER} ]]; then
     exit 255
 fi
 
+debug "Checking for sudo"
 R_SSH_SUDO=$(R_SSH sudo -V > /dev/null; echo $?)
 if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
     echo "sudo NOT installed"
@@ -93,6 +114,7 @@ if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
     fi
 fi
 
+debug "Checking if remote host is prepped"
 if [[ "${PREP}" == "skip" ]]; then
     echo "Even if prepped we still install"
 else
@@ -158,14 +180,19 @@ fi
 # .ssh config?
 # .gnupg forwarding for signing commits
 
+debug "Makeing remote dirs"
 mkdirs
+debug "Cleaning remote host of previous files"
 rms
 
+debug "Fetching bat theme on remote host"
 R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
 
+debug "Checking if batcat is on remote host"
 [[ -e $(which bat) ]] && R_SSH "bat cache -b"
 [[ -e $(which batcat) ]] && R_SSH "batcat cache -b"
 
+debug "Checking if oh-my-zshr is on remote host"
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
 if [[ ! -z ${OH_MY} ]]; then
     R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh --interactive"
@@ -173,6 +200,7 @@ else
     R_SSH sh -c "$($PROXY_EXPORT ; curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+debug "Copying files to remote host"
 scps
 
 R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
@@ -180,6 +208,7 @@ TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
     R_SSH "$PROXY_EXPORT ; git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm"
 fi
+debug "Installing nvim Plugs on remote host"
 # prefix + I -> Install plugs
 R_SSH "$PROXY_EXPORT ;curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 R_SSH "nvim +'PlugInstall' +qa --headless"
