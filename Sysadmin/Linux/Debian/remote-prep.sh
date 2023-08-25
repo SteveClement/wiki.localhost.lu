@@ -196,9 +196,9 @@ sleep 3
 
 debug "Installing packages"
 if [[ "${INST_TYPE}" == "server" ]]; then
-    [[ -z ${PREP} ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
-    [[ -z ${PREP} ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
 # .ssh config?
