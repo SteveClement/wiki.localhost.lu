@@ -8,13 +8,25 @@
 
 shopt -s expand_aliases
 
-
-REMOTE=$1
-INST_TYPE=$2
-PROXY=$3
-PREP=$4
+REMOTE=${REMOTE:-$1}
+INST_TYPE=${USER:-$2}
+PROXY=${PROXY:-$3}
+PREP=${PREP:-$4}
+DEBUG=${DEBUG:-$5}
 
 ARCHI=$(uname -m)
+
+colors () {
+  # Some colors for easier debug and better UX (not colorblind compatible, PR welcome)
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  LBLUE='\033[1;34m'
+  YELLOW='\033[0;33m'
+  HIDDEN='\e[8m'
+  NC='\033[0m'
+}
+
+colors
 
 usage () {
   echo "remote-prep.sh <REMOTE_SERVER> <TYPE_OF_PREP> <PROXY_USE> <SKIP_PREP>"
@@ -62,7 +74,7 @@ if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" !=
     exit 255
 fi
 
-PROXY_EXPORT="export https_proxy=$https_proxy"
+PROXY_EXPORT="export https_proxy=$https_proxy; export http_proxy=$http_proxy"
 
 alias R_SSH="ssh -q -t -t $REMOTE"
 
@@ -85,8 +97,15 @@ fi
 # Probably uconv is not standard on minimal Debian
 # Something is broken on Debian minimal
 # the scon
+debug "Checking for nala"
+REMOTE_NALA=$(R_SSH which nala| uconv |tr -d '\r')
+if [[ ! -z $REMOTE_NALA ]]; then
+    APT_TOOL=$REMOTE_NALA
+else
+    APT_TOOL="apt"
+fi
 debug "Checking remote OS"
-REMOTE_OS=$(R_SSH "uname -s| uconv| tr -d \r")
+REMOTE_OS=$(R_SSH uname -s| uconv| tr -d '\r')
 REMOTE_OS=$(R_SSH uname -s| tr -d '\r')
 
 if [[ -z ${REMOTE_USER} ]]; then
@@ -147,6 +166,10 @@ scps () {
     scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
     scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
     scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
+    if [[ ${PROXY} == "conostix" ]]; then
+      R_SSH "git config --global http.proxy $HTTP_PROXY"
+      R_SSH "git config --global https.proxy $HTTPS_PROXY"
+    fi
     scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
     scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
     scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
@@ -171,19 +194,22 @@ sleep 3
 
 [[ "${REMOTE_OS}" == "OpenBSD" ]] && OpenBSD
 
+debug "Installing packages"
 if [[ "${INST_TYPE}" == "server" ]]; then
-    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install nala -y ; sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
-    [[ -z ${PREP} ]] && R_SSH "sudo apt update && sudo apt install etckeeper -y && sudo apt install nala -y ; sudo apt dist-upgrade && sudo apt autoremove && sudo apt install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
 # .ssh config?
 # .gnupg forwarding for signing commits
 
-debug "Makeing remote dirs"
-mkdirs
 debug "Cleaning remote host of previous files"
 rms
+debug "Making remote dirs"
+mkdirs
+debug "Copying files to remote host"
+scps
 
 debug "Fetching bat theme on remote host"
 R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
@@ -192,17 +218,18 @@ debug "Checking if batcat is on remote host"
 [[ -e $(which bat) ]] && R_SSH "bat cache -b"
 [[ -e $(which batcat) ]] && R_SSH "batcat cache -b"
 
-debug "Checking if oh-my-zshr is on remote host"
+debug "Checking if oh-my-zsh is on remote host"
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
 if [[ ! -z ${OH_MY} ]]; then
-    R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh --interactive"
+    debug "Upgrading oh-my-zsh"
+    R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh -i"
 else
-    R_SSH sh -c "$($PROXY_EXPORT ; curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    debug "Installing oh-my-zsh"
+    R_SSH "$PROXY_EXPORT ; wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - > /tmp/install.sh"
+    R_SSH "KEEP_ZSHRC=yes sh /tmp/install.sh ; rm /tmp/install.sh"
 fi
 
-debug "Copying files to remote host"
-scps
-
+debug "Configuring tmux"
 R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
 TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
@@ -210,7 +237,7 @@ if [[ -z ${TPM} ]]; then
 fi
 debug "Installing nvim Plugs on remote host"
 # prefix + I -> Install plugs
-R_SSH "$PROXY_EXPORT ;curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+R_SSH "$PROXY_EXPORT ; wget -x -O .local/share/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 R_SSH "nvim +'PlugInstall' +qa --headless"
 
 
