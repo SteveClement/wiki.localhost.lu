@@ -9,7 +9,7 @@
 shopt -s expand_aliases
 
 REMOTE=${REMOTE:-$1}
-INST_TYPE=${USER:-$2}
+INST_TYPE=${INST_TYPE:-$2}
 PROXY=${PROXY:-$3}
 PREP=${PREP:-$4}
 DEBUG=${DEBUG:-$5}
@@ -173,6 +173,7 @@ scps () {
     scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
     scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
     scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
+    scp -q -r ~/dotfiles/.terminfo ${REMOTE}:
     scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
     scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
     scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
@@ -194,10 +195,11 @@ sleep 3
 
 [[ "${REMOTE_OS}" == "OpenBSD" ]] && OpenBSD
 
-debug "Installing packages"
 if [[ "${INST_TYPE}" == "server" ]]; then
+    debug "Installing server packages"
     [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
+    debug "Installing desktop packages"
     [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
