@@ -98,14 +98,14 @@ fi
 # Something is broken on Debian minimal
 # the scon
 debug "Checking for nala"
-REMOTE_NALA=$(R_SSH which nala| uconv |tr -d '\r')
+REMOTE_NALA=$(R_SSH which nala| ${REMOTE_UCONV} |tr -d '\r')
 if [[ ! -z $REMOTE_NALA ]]; then
     APT_TOOL=$REMOTE_NALA
 else
     APT_TOOL="apt"
 fi
 debug "Checking remote OS"
-REMOTE_OS=$(R_SSH uname -s| uconv| tr -d '\r')
+REMOTE_OS=$(R_SSH uname -s| ${REMOTE_UCONV} | tr -d '\r')
 REMOTE_OS=$(R_SSH uname -s| tr -d '\r')
 
 if [[ -z ${REMOTE_USER} ]]; then
@@ -148,7 +148,7 @@ fi
 ###### Functions ######
 
 mkdirs () {
-   R_SSH mkdir -p .config/nvim
+   R_SSH mkdir -p .config/nvim/site/autoload
    R_SSH mkdir -p .config/bat/themes
    R_SSH mkdir -p .tmux
    R_SSH mkdir -p .dir_colors
@@ -197,10 +197,10 @@ sleep 3
 
 if [[ "${INST_TYPE}" == "server" ]]; then
     debug "Installing server packages"
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
     debug "Installing desktop packages"
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux mlocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
 # .ssh config?
