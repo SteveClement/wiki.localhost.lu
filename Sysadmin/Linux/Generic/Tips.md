@@ -1,3 +1,9 @@
+### Docker ACL
+
+```
+sudo setfacl --modify user:<Username>:rw /var/run/docker.sock
+```
+
 ### X11 or Wayland
 
 
