@@ -150,6 +150,7 @@ fi
 mkdirs () {
    R_SSH mkdir -p .local/share/nvim/site/autoload
    R_SSH mkdir -p .config/bat/themes
+   R_SSH mkdir -p .config/nvim
    R_SSH mkdir -p .tmux
    R_SSH mkdir -p .dir_colors
    R_SSH mkdir -p bin
