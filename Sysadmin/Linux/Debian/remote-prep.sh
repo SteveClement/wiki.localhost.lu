@@ -8,6 +8,8 @@
 
 shopt -s expand_aliases
 
+VERSION='v1.24'
+
 REMOTE=${REMOTE:-$1}
 INST_TYPE=${INST_TYPE:-$2}
 PROXY=${PROXY:-$3}
@@ -92,6 +94,7 @@ debug "Checking for local uconv"
 UCONV=$(which uconv)
 if [[ -z $UCONV ]]; then
     echo "Please install icu-devtools (uconv)"
+    echo "MacOS: brew install icu4c (force link or adapt \$PATH"
     exit 255
 fi
 # Probably uconv is not standard on minimal Debian
@@ -137,11 +140,13 @@ debug "Checking if remote host is prepped"
 if [[ "${PREP}" == "skip" ]]; then
     echo "Even if prepped we still install"
 else
-    PREPPED=$(R_SSH cat .remote_prep ; echo $?)
+    PREPPED=$(R_SSH cat .remote_prep > /dev/null ; echo $?)
 fi
 
 if [[ "${PREPPED}" == "0" ]]; then
+    R_VERSION=$(R_SSH cat .remote_prep)
     echo "This machine is already prepped, by caution, we bail!"
+    echo "Current version is: ${VERSION}"
     exit 255
 fi
 
@@ -199,10 +204,10 @@ sleep 3
 
 if [[ "${INST_TYPE}" == "server" ]]; then
     debug "Installing server packages"
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs python3-pygments wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
     debug "Installing desktop packages"
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs -y && sudo update-alternatives --set editor /usr/bin/nvim"
+    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
 # .ssh config?
@@ -244,8 +249,7 @@ debug "Installing nvim Plugs on remote host"
 R_SSH "$PROXY_EXPORT ; wget -x -O .local/share/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 R_SSH "nvim +'PlugInstall' +qa --headless"
 
-
-R_SSH touch .remote_prep
+R_SSH "echo ${VERSION} > .remote_prep"
 echo ""
 echo "------------------------"
 echo "${REMOTE} is now prepped"
