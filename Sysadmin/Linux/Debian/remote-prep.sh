@@ -146,8 +146,32 @@ fi
 if [[ "${PREPPED}" == "0" ]]; then
     R_VERSION=$(R_SSH cat .remote_prep)
     echo "This machine is already prepped, by caution, we bail!"
-    echo "Current version is: ${VERSION}"
-    exit 255
+    echo "Current local version is: ${VERSION}"
+    if [[ "${R_VERSION}" == "" ]]; then
+        echo "Remote host has NO version information"
+        echo -n "Do you want to proceed? (y/n) "
+        read Q
+        if [[ "${Q}" == "y" ]]; then
+            echo "Proceeding with prep"
+        else
+            exit 255
+        fi
+    else
+        # FIXME comparision is not working
+        if [[ "${R_VERSION}" == "${VERSION}" ]]; then
+            echo "Remote host is on current version. Assuming all is done."
+            exit 255
+        else
+            echo "Current remote version is: ${R_VERSION}"
+            echo -n "Do you want to upgrade? (y/n) "
+            read Q
+            if [[ "${Q}" == "y" ]]; then
+                echo "Proceeding with prep"
+            else
+               exit 255
+            fi
+        fi
+    fi
 fi
 
 ###### Functions ######
