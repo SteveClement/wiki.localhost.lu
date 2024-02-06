@@ -3,8 +3,8 @@
 ## Add user:
 # useradd -m -G adm,cdrom,sudo,dip,plugdev,lxd -s /bin/bash steve
 # passwd steve
-# ssh-copy-id foo
-# For docker foo: sudo adduser steve docker
+# ssh-copy-id ${REMOTE}
+# For docker: sudo adduser steve docker
 
 shopt -s expand_aliases
 
