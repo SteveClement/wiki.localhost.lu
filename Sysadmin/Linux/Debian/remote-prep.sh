@@ -54,26 +54,26 @@ debug () {
 }
 
 if [[ ! -z "${PROXY}" ]]; then
-    if [[ ${PROXY} == "conostix" ]]; then
-      export http_proxy="http://proxy.lc1.conostix.com:3128"
-      export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
-      export https_proxy="https://proxy.lc1.conostix.com:3128"
-      export HTTPS_PROXY="https://proxy.lc1.conostix.com:3128"
-    fi
+  if [[ ${PROXY} == "conostix" ]]; then
+    export http_proxy="http://proxy.lc1.conostix.com:3128"
+    export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
+    export https_proxy="https://proxy.lc1.conostix.com:3128"
+    export HTTPS_PROXY="https://proxy.lc1.conostix.com:3128"
+  fi
 fi
 if [[ -z $1 ]]; then
-    usage
+  usage
 fi
 
 if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
-    echo "Connection failed, key maybe not installed, running ssh-copy-id"
-    ssh-copy-id ${REMOTE}
+  echo "Connection failed, key maybe not installed, running ssh-copy-id"
+  ssh-copy-id ${REMOTE}
 fi
 
 if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
-    echo "Connection still failed, investigate manually:"
-    echo "ssh ${REMOTE}"
-    exit 255
+  echo "Connection still failed, investigate manually:"
+  echo "ssh ${REMOTE}"
+  exit 255
 fi
 
 PROXY_EXPORT="export https_proxy=$https_proxy; export http_proxy=$http_proxy"
@@ -87,15 +87,15 @@ REMOTE_HOME=$(R_SSH "pwd|sed 's/\r//g'")
 debug "Fetching remote shell"
 REMOTE_SHELL=$(R_SSH "env |grep SHELL| grep 'zsh\|bash'")
 if [[ -z $REMOTE_SHELL ]]; then
-    echo "Please install bash"
-    exit 255
+  echo "Please install bash"
+  exit 255
 fi
 debug "Checking for local uconv"
 UCONV=$(which uconv)
 if [[ -z $UCONV ]]; then
-    echo "Please install icu-devtools (uconv)"
-    echo "MacOS: brew install icu4c (force link or adapt \$PATH"
-    exit 255
+  echo "Please install icu-devtools (uconv)"
+  echo "MacOS: brew install icu4c (force link or adapt \$PATH"
+  exit 255
 fi
 # Probably uconv is not standard on minimal Debian
 # Something is broken on Debian minimal
@@ -103,119 +103,119 @@ fi
 debug "Checking for nala"
 REMOTE_NALA=$(R_SSH which nala| ${UCONV} |tr -d '\r')
 if [[ ! -z $REMOTE_NALA ]]; then
-    APT_TOOL=$REMOTE_NALA
+  APT_TOOL=$REMOTE_NALA
 else
-    APT_TOOL="apt"
+  APT_TOOL="apt"
 fi
 debug "Checking remote OS"
 REMOTE_OS=$(R_SSH uname -s| ${UCONV} | tr -d '\r')
 REMOTE_OS=$(R_SSH uname -s| tr -d '\r')
 
 if [[ -z ${REMOTE_USER} ]]; then
-    echo "Cannot determine user failed, abort"
-    exit 255
+  echo "Cannot determine user failed, abort"
+  exit 255
 fi
 
 debug "Checking for sudo"
 R_SSH_SUDO=$(R_SSH sudo -V > /dev/null; echo $?)
 if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
-    echo "sudo NOT installed"
-    echo -n "root "
-    R_SSH "su -c apt\ install\ sudo\ -y"
-    SUDO_INST=$(echo $?)
-    if [[ "${SUDO_INST}" != "0" ]]; then
-        echo "Installing sudo failed, investigate manually."
-        exit 255
-    fi
-    echo -n "root "
-    R_SSH su -c "/sbin/usermod\ -a\ -G\ sudo\ ${REMOTE_USER}"
-    SUDO_INST=$(echo $?)
-    if [[ "${SUDO_INST}" != "0" ]]; then
-        echo "Installing sudo failed, investigate manually."
-        exit 255
-    fi
+  echo "sudo NOT installed"
+  echo -n "root "
+  R_SSH "su -c apt\ install\ sudo\ -y"
+  SUDO_INST=$(echo $?)
+  if [[ "${SUDO_INST}" != "0" ]]; then
+    echo "Installing sudo failed, investigate manually."
+    exit 255
+  fi
+  echo -n "root "
+  R_SSH su -c "/sbin/usermod\ -a\ -G\ sudo\ ${REMOTE_USER}"
+  SUDO_INST=$(echo $?)
+  if [[ "${SUDO_INST}" != "0" ]]; then
+    echo "Installing sudo failed, investigate manually."
+    exit 255
+  fi
 fi
 
 debug "Checking if remote host is prepped"
 if [[ "${PREP}" == "skip" ]]; then
-    echo "Even if prepped we still install"
+  echo "Even if prepped we still install"
 else
-    PREPPED=$(R_SSH cat .remote_prep > /dev/null ; echo $?)
+  PREPPED=$(R_SSH cat .remote_prep > /dev/null ; echo $?)
 fi
 
 if [[ "${PREPPED}" == "0" ]]; then
-    R_VERSION=$(R_SSH cat .remote_prep)
-    echo "This machine is already prepped, by caution, we bail!"
-    echo "Current local version is: ${VERSION}"
-    if [[ "${R_VERSION}" == "" ]]; then
-        echo "Remote host has NO version information"
-        echo -n "Do you want to proceed? (y/n) "
-        read Q
-        if [[ "${Q}" == "y" ]]; then
-            echo "Proceeding with prep"
-        else
-            exit 255
-        fi
+  R_VERSION=$(R_SSH cat .remote_prep)
+  echo "This machine is already prepped, by caution, we bail!"
+  echo "Current local version is: ${VERSION}"
+  if [[ "${R_VERSION}" == "" ]]; then
+    echo "Remote host has NO version information"
+    echo -n "Do you want to proceed? (y/n) "
+    read Q
+    if [[ "${Q}" == "y" ]]; then
+      echo "Proceeding with prep"
     else
-        # FIXME comparision is not working
-        if [[ "${R_VERSION}" == "${VERSION}" ]]; then
-            echo "Remote host is on current version. Assuming all is done."
-            exit 255
-        else
-            echo "Current remote version is: ${R_VERSION}"
-            echo -n "Do you want to upgrade? (y/n) "
-            read Q
-            if [[ "${Q}" == "y" ]]; then
-                echo "Proceeding with prep"
-            else
-               exit 255
-            fi
-        fi
+      exit 255
     fi
+  else
+    # FIXME comparision is not working
+    if [[ "${R_VERSION}" == "${VERSION}" ]]; then
+      echo "Remote host is on current version. Assuming all is done."
+      exit 255
+    else
+      echo "Current remote version is: ${R_VERSION}"
+      echo -n "Do you want to upgrade? (y/n) "
+      read Q
+      if [[ "${Q}" == "y" ]]; then
+        echo "Proceeding with prep"
+      else
+        exit 255
+      fi
+    fi
+  fi
 fi
 
 ###### Functions ######
 
 mkdirs () {
-   R_SSH mkdir -p .local/share/nvim/site/autoload
-   R_SSH mkdir -p .config/bat/themes
-   R_SSH mkdir -p .config/nvim
-   R_SSH mkdir -p .tmux
-   R_SSH mkdir -p .dir_colors
-   R_SSH mkdir -p bin
+  R_SSH mkdir -p .local/share/nvim/site/autoload
+  R_SSH mkdir -p .config/bat/themes
+  R_SSH mkdir -p .config/nvim
+  R_SSH mkdir -p .tmux
+  R_SSH mkdir -p .dir_colors
+  R_SSH mkdir -p bin
 }
 
 rms () {
-    R_SSH rm .zshrc
-    R_SSH rm .tmux.conf
+  R_SSH rm .zshrc
+  R_SSH rm .tmux.conf
 }
 
 scps () {
-    scp -q ~/bin/prettyping ${REMOTE}:bin/
-    scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
-    scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
-    scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
-    scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
-    if [[ ${PROXY} == "conostix" ]]; then
-      R_SSH "git config --global http.proxy $HTTP_PROXY"
-      R_SSH "git config --global https.proxy $HTTPS_PROXY"
-    fi
-    scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
-    scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
-    scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
-    scp -q -r ~/dotfiles/.terminfo ${REMOTE}:
-    R_SSH sudo cp -r .terminfo ~root/
-    scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
-    scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
-    scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
+  scp -q ~/bin/prettyping ${REMOTE}:bin/
+  scp -q ~/bin/diff-so-fancy ${REMOTE}:bin/
+  scp -q ~/dotfiles/.dir_colors/dircolors ${REMOTE}:.dir_colors/
+  scp -q ~/dotfiles/.zshrc-remote ${REMOTE}:.zshrc
+  scp -q ~/dotfiles/.gitconfig-remote ${REMOTE}:.gitconfig
+  if [[ ${PROXY} == "conostix" ]]; then
+    R_SSH "git config --global http.proxy $HTTP_PROXY"
+    R_SSH "git config --global https.proxy $HTTPS_PROXY"
+  fi
+  scp -q ~/dotfiles/.gitignore_global ${REMOTE}:.gitignore_global
+  scp -q ~/dotfiles/.lessfilter ${REMOTE}:.lessfilter
+  scp -q ~/dotfiles/.selected_editor ${REMOTE}:.selected_editor
+  scp -q -r ~/dotfiles/.terminfo ${REMOTE}:
+  R_SSH sudo cp -r .terminfo ~root/
+  scp -q ~/dotfiles/.config/nvim/init.vim ${REMOTE}:.config/nvim/
+  scp -q ~/.tmux/tmux.conf ${REMOTE}:.tmux/tmux.conf
+  scp -q ~/.tmux/tmux.remote.conf ${REMOTE}:.tmux/tmux.remote.conf
 }
 
 OpenBSD () {
-   mkdirs
-   rms
-   scps
-   R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
-   exit
+  mkdirs
+  rms
+  scps
+  R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
+  exit
 }
 
 
@@ -227,13 +227,13 @@ sleep 3
 [[ "${REMOTE_OS}" == "OpenBSD" ]] && OpenBSD
 
 if [[ "${INST_TYPE}" == "server" ]]; then
-    debug "Installing server packages"
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs python3-pygments wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
-    # Ubuntu 18.04-server
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux trash-cli tmuxinator htop ncdu gawk coreutils net-tools neovim curl nodejs python3-pygments wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
+  debug "Installing server packages"
+  [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk fzf coreutils net-tools neovim curl bat nodejs python3-pygments wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
+  # Ubuntu 18.04-server
+  [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux trash-cli tmuxinator htop ncdu gawk coreutils net-tools neovim curl nodejs python3-pygments wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
 else
-    debug "Installing desktop packages"
-    [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
+  debug "Installing desktop packages"
+  [[ -z ${PREP} || ${PREP} == "skip" ]] && R_SSH "sudo ${APT_TOOL} update && sudo ${APT_TOOL} install etckeeper -y && sudo ${APT_TOOL} install nala -y ; sudo ${APT_TOOL} upgrade && sudo ${APT_TOOL} autoremove && sudo ${APT_TOOL} install gpg command-not-found zsh zsh-syntax-highlighting tmux plocate trash-cli tmuxinator htop ncdu gawk npm fzf coreutils net-tools neovim flake8 python3-pygments curl bat nodejs wget -y && sudo update-alternatives --set editor /usr/bin/nvim"
 fi
 
 # .ssh config?
@@ -256,19 +256,19 @@ debug "Checking if batcat is on remote host"
 debug "Checking if oh-my-zsh is on remote host"
 OH_MY=$(R_SSH "[[ -e .oh-my-zsh ]] && echo true")
 if [[ ! -z ${OH_MY} ]]; then
-    debug "Upgrading oh-my-zsh"
-    R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh -i"
+  debug "Upgrading oh-my-zsh"
+  R_SSH "ZSH=.oh-my-zsh zsh -f .oh-my-zsh/tools/upgrade.sh -i"
 else
-    debug "Installing oh-my-zsh"
-    R_SSH "$PROXY_EXPORT ; wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - > /tmp/install.sh"
-    R_SSH "KEEP_ZSHRC=yes sh /tmp/install.sh ; rm /tmp/install.sh"
+  debug "Installing oh-my-zsh"
+  R_SSH "$PROXY_EXPORT ; wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - > /tmp/install.sh"
+  R_SSH "KEEP_ZSHRC=yes sh /tmp/install.sh ; rm /tmp/install.sh"
 fi
 
 debug "Configuring tmux"
 R_SSH "ln -s .tmux/tmux.conf .tmux.conf"
 TPM=$(R_SSH "[[ -e tmux/plugins/tpm ]] && echo true")
 if [[ -z ${TPM} ]]; then
-    R_SSH "$PROXY_EXPORT ; git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm"
+  R_SSH "$PROXY_EXPORT ; git clone https://github.com/tmux-plugins/tpm tmux/plugins/tpm"
 fi
 debug "Installing nvim Plugs on remote host"
 # prefix + I -> Install plugs
