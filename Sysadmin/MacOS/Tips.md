@@ -1,5 +1,22 @@
 # Essentials
 
+https://gist.github.com/devnoname120/4767a0aa18879217170fd0c68809fc24
+
+Rearrange topbar: https://github.com/Mortennn/Dozer
+Alt Video Player, with keep afloat: IINA
+Alacritty conf: https://gist.github.com/sts10/df620672662fe4c6f03ac296a02b8e72
+dmenu clone: https://keminglabs.com/finda/
+Better Display: https://github.com/waydabber/BetterDisplay
+
+Alacritty doesn't create the config file for you, but it looks for one in the following locations:
+
+    $XDG_CONFIG_HOME/alacritty/alacritty.toml
+    $XDG_CONFIG_HOME/alacritty.toml
+    $HOME/.config/alacritty/alacritty.toml
+    $HOME/.alacritty.toml
+
+
+
 * ~~Truecrypt~~ [TrueCrypt forks](https://pure-privacy.org/projects/)
 * [Homebrew](http://brew.sh/)
  * ``` ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"``` ([Mac Ports](https://www.macports.org/))
