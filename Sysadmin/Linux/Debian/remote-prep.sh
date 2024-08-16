@@ -57,28 +57,29 @@ if [[ ! -z "${PROXY}" ]]; then
   if [[ ${PROXY} == "conostix" ]]; then
     export http_proxy="http://proxy.lc1.conostix.com:3128"
     export HTTP_PROXY="http://proxy.lc1.conostix.com:3128"
-    export https_proxy="https://proxy.lc1.conostix.com:3128"
-    export HTTPS_PROXY="https://proxy.lc1.conostix.com:3128"
+    export https_proxy="http://proxy.lc1.conostix.com:3128"
+    export HTTPS_PROXY="http://proxy.lc1.conostix.com:3128"
   fi
 fi
 if [[ -z $1 ]]; then
   usage
 fi
 
-if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
-  echo "Connection failed, key maybe not installed, running ssh-copy-id"
-  ssh-copy-id ${REMOTE}
+alias B_SSH="/usr/bin/ssh"
+alias R_SSH="/usr/bin/ssh -q -t -t $REMOTE"
+
+if [[ "$(B_SSH -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
+    echo "Connection failed, key maybe not installed, running ssh-copy-id"
+    ssh-copy-id ${REMOTE}
 fi
 
-if [[ "$(ssh -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
-  echo "Connection still failed, investigate manually:"
-  echo "ssh ${REMOTE}"
-  exit 255
+if [[ "$(B_SSH -q -o BatchMode=yes -o ConnectTimeout=3 $REMOTE exit ; echo $?)" != "0" ]]; then
+    echo "Connection still failed, investigate manually:"
+    echo "R_SSH ${REMOTE}"
+    exit 255
 fi
 
 PROXY_EXPORT="export https_proxy=$https_proxy; export http_proxy=$http_proxy"
-
-alias R_SSH="ssh -q -t -t $REMOTE"
 
 debug "Fetching remote user"
 REMOTE_USER=$(R_SSH "whoami|sed 's/\r//g'")
@@ -247,7 +248,7 @@ debug "Copying files to remote host"
 scps
 
 debug "Fetching bat theme on remote host"
-R_SSH "$PROXY_EXPORT ; wget -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
+R_SSH "$PROXY_EXPORT ; wget -4 -O .config/bat/themes/OneHalfDark.tmTheme https://raw.githubusercontent.com/sonph/onehalf/master/sublimetext/OneHalfDark.tmTheme"
 
 debug "Checking if batcat is on remote host"
 [[ -e $(which bat) ]] && R_SSH "bat cache -b"
