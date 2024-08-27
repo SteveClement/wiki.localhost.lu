@@ -95,7 +95,7 @@ masquerade_classes = envelope_sender, envelope_recipient, header_sender, header_
 Forwarding `gpg-agent` is practical if you want to sign the code with gpg on a remote machine you are doing development on.
 It can be tricky to get working but is worth the effort to maintain code integrity.
 
-[Source](https://wiki.gnupg.org/AgentForwarding)
+[Source 1 - wiki.gnupg.org](https://wiki.gnupg.org/AgentForwarding)
 
 ## How to
 
@@ -115,8 +115,52 @@ HostName server.domain
 RemoteForward <socket_on_remote_box>  <extra_socket_on_local_box>
 ```
 
-If you can modify the remote ssh server settings you should put the following into `/etc/ssh/sshd_config`
+If you can modify the remote ssh server settings you should put the following into `/etc/ssh/sshd_config.d/gnupg.conf`
 
 ```
 StreamLocalBindUnlink yes
+```
+
+Reload sshd:
+
+```
+sudo systemctl restart ssh
+# OR
+/etc/init.d/ssh restart
+```
+
+## Testing
+
+To test on the remote server you can do the following:
+
+```
+echo "This text is signed with my forwarded gpg key" |gpg --sign --clear-sign
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+This text is signed with my forwarded gpg key
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEP02M9gj5T4goFSyxaaIPUJvkrukFAmbN1mkACgkQaaIPUJvk
+rul6/RAAt5GSiePXq17oCOCSikwoDlSIF+K8zlnxplCy6tpJV8oE/73ABApqIwxA
+yDS99RglDNgCKT/V/f24OtsfGdfMHvrYtET9v1mCASWZzdfTdnMGO0l85KLe/5RV
++IpQe0e1rnp54DF3H3tbFM/u7MKup4tYhLo9kioLmlehRItiy7KMCqhXR4n6Pwj4
+N3OR1E/v4+pfa9Genfxh9jvlJywsopZmBit9iqqnmEokUOm/PulvWLuGiaAJH93L
+pP3PvIDKwV0PRK4S6deyplr65ePPNcsVnqesiyjNzvruDYZOxv9ANdRj6TW5auME
+jW6YpXnG7AtK4Yjm3tb5ZgSDnbP/rCXEkwCoC2FtIaIG1C0LnotQz1t3g54YpBth
+GrPXAF51yFoxTmv+X7WzpcV0wq5OT+u8DSCkwjQ+ZiPEIkc0uz/EsltvnRsAaMWZ
+yO+WwPPlVe62w5z+UWYJP+I3zQDjfd4+PlkHYmHNMmQhZERZsPb5dm9wJnnFx32n
+/9to3Z8odLQ26vjWo8hTu3sdsJkrcTIQRuA9WPEvd/MPKgmY5htIs/Gvu15966mT
+Uy/HxpfnHdLxcOqvcYs7PwFJuoaQLMJ4D+tDAJTh5NjtvTg9yl+G2wDonCAGcg7V
+WqSDk58P7D9taGOsyWRBhFdoZAD/zxXrQD77+whhk0ZoOpaoQPU=
+=C5CN
+-----END PGP SIGNATURE-----
+```
+
+If it fails, you will get the following:
+
+```
+echo "This text is signed with my forwarded gpg key" |gpg --sign --clear-sign
+gpg: no default secret key: No secret key
+gpg: [stdin]: clear-sign failed: No secret key
 ```
