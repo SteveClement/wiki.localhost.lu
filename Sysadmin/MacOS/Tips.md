@@ -16,6 +16,19 @@ Alacritty doesn't create the config file for you, but it looks for one in the fo
     $HOME/.alacritty.toml
 
 
+## Keyboard repeat rate
+
+The below is way too fastt. Try 13 or 14,  key repeat is ok at 30ms
+
+
+```
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+```
+
+The restart your computer.
+
+
 
 * ~~Truecrypt~~ [TrueCrypt forks](https://pure-privacy.org/projects/)
 * [Homebrew](http://brew.sh/)
