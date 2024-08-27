@@ -88,19 +88,35 @@ masquerade_domains = myhost.local example.com
 masquerade_classes = envelope_sender, envelope_recipient, header_sender, header_recipient
 ```
 
-### Forwarding gpg-agent
+# Forwarding gpg-agent
+
+## Purpose
+
+Forwarding `gpg-agent` is practical if you want to sign the code with gpg on a remote machine you are doing development on.
+It can be tricky to get working but is worth the effort to maintain code integrity.
 
 [Source](https://wiki.gnupg.org/AgentForwarding)
 
-gpgconf --list-dir agent-extra-socket
-gpgconf --list-dir agent-socket
+## How to
 
-To your /.ssh/config you can add:
-Host gpgtunnel
+```
+# On the local machine run:
+gpgconf --list-dir agent-extra-socket
+# On the remote machine run:
+gpgconf --list-dir agent-socket
+```
+
+To your ~/.ssh/config you shall add:
+
+```
+# Name of the remote machine
+Host gpgtunnel_example
 HostName server.domain 
 RemoteForward <socket_on_remote_box>  <extra_socket_on_local_box>
+```
 
+If you can modify the remote ssh server settings you should put the following into `/etc/ssh/sshd_config`
 
-If you can modify the servers settings you should put:
-
+```
 StreamLocalBindUnlink yes
+```
