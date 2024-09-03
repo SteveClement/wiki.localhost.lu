@@ -157,6 +157,8 @@ WqSDk58P7D9taGOsyWRBhFdoZAD/zxXrQD77+whhk0ZoOpaoQPU=
 -----END PGP SIGNATURE-----
 ```
 
+If your output is similar to the above, it works.
+
 If it fails, you will get the following:
 
 ```
@@ -164,3 +166,5 @@ echo "This text is signed with my forwarded gpg key" |gpg --sign --clear-sign
 gpg: no default secret key: No secret key
 gpg: [stdin]: clear-sign failed: No secret key
 ```
+
+The forwarding has failed and you need to verify if you have made any mistakes during setup.
