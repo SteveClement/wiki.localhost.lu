@@ -1,3 +1,8 @@
+# What is it?
+
+[Sauron
+a free DNS & DHCP management system](http://www.sauron-dns.jyu.fi/)
+
 # Installing and Configuring Sauron
 
 ```

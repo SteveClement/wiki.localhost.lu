@@ -15,6 +15,18 @@ Alacritty doesn't create the config file for you, but it looks for one in the fo
     $HOME/.config/alacritty/alacritty.toml
     $HOME/.alacritty.toml
 
+## reinstall macOS
+
+[Official notes](https://support.apple.com/en-us/102655)
+
+- Shut down your Mac
+
+- Start up from macOS Recovery by holding power button
+
+- Reinstall macOS from Recovery
+
+Eventually go into `Options` and format your disk.
+
 
 ## Keyboard repeat rate
 

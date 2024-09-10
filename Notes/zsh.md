@@ -1,5 +1,7 @@
-Ubuntu zsh packages:
+# What should/shouldn't go in .zshenv, .zshrc, .zlogin, .zprofile, .zlogout?
 
-zsh zsh-antigen zsh-lovers zsh-syntax-highlighting
-
-Check: fizsh liquidprompt powerline vim-syntastic zgen 
+- *.zshenv*: Always sourced for all zsh instances, including both login and non-login shells. Typically used to set environment variables like $PATH, $EDITOR, and $PAGER, which should be available across all sessions. It is a good place for anything that should affect every zsh shell, regardless of how it is invoked.
+- *.zprofile*: Sourced only for login shells, and it is sourced before .zshrc. It is functionally similar to .zlogin, but it’s meant as an alternative for users more familiar with ksh-like behavior. It’s generally not used alongside .zlogin, but it can be done if needed.
+- *.zshrc*: Sourced for interactive shells (whether login or not). This file typically contains configurations that affect your interactive environment—options related to shell behavior (setopt), shell modules, prompt customization, command completion, etc.
+- *.zlogin*: Also for login shells, but sourced after .zshrc if the shell is interactive. This file is less commonly used but can be helpful for tasks like starting a window manager (startx) after login. It can be redundant if your system already handles this during boot.
+- *.zlogout*: Executed upon exiting a login shell. It’s used for cleanup tasks, such as clearing the terminal or resetting environment variables.
