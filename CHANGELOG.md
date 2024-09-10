@@ -20,6 +20,8 @@ New
 
 Changes
 -------
+- [doc] Some restructuring. [Steve Clement]
+- [log] Updated CHANGELOG.md. [Steve Clement]
 - [gi] venv. [Steve Clement]
 - [doc] Various typos. [Steve Clement]
 - [log] Updated CHANGELOG.md. [Steve Clement]
