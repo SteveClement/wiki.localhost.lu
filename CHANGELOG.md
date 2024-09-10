@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-(unreleased)
+(current changelog)
 ------------
 
 New
-~~~
+---
 - [changelog] Changelog generator. [Steve Clement]
 - [letsencrypt] Added letsencrypt tips. [Steve Clement]
 - [zsh] zsh dotfiles. [Steve Clement]
@@ -19,7 +19,10 @@ New
 - [vm] added qemu tips. [Steve Clement]
 
 Changes
-~~~~~~~
+-------
+- [gi] venv. [Steve Clement]
+- [doc] Various typos. [Steve Clement]
+- [log] Updated CHANGELOG.md. [Steve Clement]
 - [doc] Minor gpg-agent forwarding changes. [Steve Clement]
 - [log] Updated CHANGELOG.md. [Steve Clement]
 - [doc] Updated doc. [Steve Clement]
@@ -87,7 +90,7 @@ Changes
 - [doc] Updated version. [Steve Clement]
 
 Fix
-~~~
+---
 - [nvim] Missing mkdir. [Steve Clement]
 - [sh] Various fixes. [Steve Clement]
 - [remotePrep] Some fixes with mkdirs. [Steve Clement]
@@ -96,7 +99,7 @@ Fix
 - [nvim] nvim fix. [Steve Clement]
 
 Other
-~~~~~
+-----
 - Update python.md. [Steve Clement]
 - Merge branch 'master' of github.com:SteveClement/wiki.localhost.lu.
   [Steve Clement]
@@ -317,7 +320,7 @@ Other
   [Steve Clement]
 - - Minor heading change. [Steve Clement]
 - - Added UAC Disable and Moved Autologin to Generic. [Steve Clement]
-- - Replaced /!\ with :warning: [Steve Clement]
+- - Replaced :warning: with :warning: [Steve Clement]
 - - Fully migrated wiki :) **YAY**' [Steve Clement]
 - - More migration from old wiki. [Steve Clement]
 - - Added unison. [Steve Clement]
