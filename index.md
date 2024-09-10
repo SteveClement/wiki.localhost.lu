@@ -1,7 +1,6 @@
 <<TableOfContents>>
 
-This is the Localhost.lu Wiki for any of your Tech needs and more.
-Tech Wiki mostly for [my](https://twitter.com/SteveClement) needs
+This Wiki is mostly for [my](https://twitter.com/SteveClement) needs.
 
 [[parTime]]
 
