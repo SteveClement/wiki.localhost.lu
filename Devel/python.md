@@ -1,29 +1,36 @@
 # Python Notes
 
-:warning: Needs to be completed
+# [What's new and noteworthy in python 3.14](https://docs.python.org/3.14/whatsnew/3.14.html)
 
-# What's new and noteworthy in python 3.6
+N/A yet.
 
-f-strings: x = "world"; y = 42; print(f"Hello {x}, {y}")
+# What's new and noteworthy in python 3.13
 
-Secrets module, example:
+A better interactive interpreter:
 
-$$$$
+- Multiline editing with history preservation.
+- Prompts and tracebacks with color enabled by default.
+- History browsing using F2 that skips output as well as the >>> and … prompts.
+- “Paste mode” with F3 that makes pasting larger blocks of code easier (press F3 again to return to the regular prompt).
 
-Underscore in numbers
+Support for mobile platforms:
 
-100_000 --
+- iOS supported
+- Android in the works
 
-# What's new and noteworthy in python 3.8
+# What's new and noteworthy in python 3.12
 
-There is new syntax := that assigns values to variables as part of a larger expression. It is affectionately known as “the walrus operator” due to its resemblance to the eyes and tusks of a walrus.
+- Improved ‘Did you mean …’ suggestions for NameError, ImportError, and SyntaxError exceptions
+- Security improvements:
+  Replace the builtin hashlib implementations of SHA1, SHA3, SHA2-384, SHA2-512, and MD5 with formally verified code from the HACL* project. These builtin implementations remain as fallbacks that are only used when OpenSSL does not provide them.
 
-In this example, the assignment expression helps avoid calling len() twice:
+# What's new and noteworthy in python 3.11
 
-```python
-if (n := len(a)) > 10:
-    print(f"List is too long ({n} elements, expected <= 10)")
-```
+-tomllib — Support for parsing TOML in the Standard Library
+
+# What's new and noteworthy in python 3.10
+
+Many improvements to error messages.
 
 # What's new and noteworthy in python 3.9
 
@@ -43,9 +50,8 @@ Added a new random.Random.randbytes method: generate random bytes.
 The zoneinfo module brings support for the IANA time zone database to the standard library. It adds zoneinfo.ZoneInfo, a concrete datetime.tzinfo implementation backed by the system’s time zone data.
 
 Example:
-```python
->>>
 
+```python
 >>> from zoneinfo import ZoneInfo
 >>> from datetime import datetime, timedelta
 
@@ -64,13 +70,36 @@ Example:
 PST
 ```
 
-# What's new and noteworthy in python 3.10
+# What's new and noteworthy in python 3.8
 
-Many improvements to error messages.
+There is new syntax := that assigns values to variables as part of a larger expression. It is affectionately known as “the walrus operator” due to its resemblance to the eyes and tusks of a walrus.
 
-# What's new and noteworthy in python 3.11
+In this example, the assignment expression helps avoid calling len() twice:
 
-N/A
+```python
+if (n := len(a)) > 10:
+    print(f"List is too long ({n} elements, expected <= 10)")
+```
+
+# What's new and noteworthy in python 3.7
+
+- New function: breakpoint(*args, **kws)  This function drops you into the debugger at the call site.
+
+- The time module gained support for functions with nanosecond resolution.
+
+# What's new and noteworthy in python 3.6
+
+f-strings: x = "world"; y = 42; print(f"Hello {x}, {y}")
+
+Secrets module, example:
+
+```
+$$$$
+
+Underscore in numbers
+
+100_000 --
+```
 
 # pip upgrade all
 
