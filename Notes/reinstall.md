@@ -2,13 +2,13 @@
 
 ## FreeBSD
 
-See [FreeBSD Install](https://github.com/SteveClement/sysadmin/tree/master/tools/install)
+See [FreeBSD Install](https://github.com/SteveClement/sysadmin/tree/master/tools/install) :warning: out of date
 
 ## OpenBSD
 
 See [OpenBSD Desktop](../Sysadmin/OpenBSD/Desktop.md)
 
-## Debian/Ubuntu
+## Debian
 
 See [Debian Desktop](../Sysadmin/Linux/Debian/Desktop.md)
 
@@ -23,59 +23,9 @@ See [Debian Desktop](../Sysadmin/Linux/Debian/Desktop.md)
 * https://github.com/axiros/terminal_markdown_viewer
 * https://gist.github.com/BretFisher/6f688dde0122399efdca5a9d26100437
 
-## OSX
+## macOS
 
-### AppStore Apps
-
-* [pwSafe](https://itunes.apple.com/us/app/pwsafe-password-safe-compatible/id520993579)
-* [Gemini 2](https://itunes.apple.com/us/app/id1090488118)
-* [RegExRx](https://itunes.apple.com/us/app/regexrx/id498370702)
-* [Keka](https://itunes.apple.com/lu/app/keka/id470158793) cmd + , -> Extraction -> Move to trash
-* [Kaleidoscope](https://itunes.apple.com/us/app/kaleidoscope/id587512244)
-* [Evernote](https://itunes.apple.com/us/app/evernote-stay-organized/id406056744)
-* [Xcode](https://itunes.apple.com/us/app/xcode/id497799835) -> xcode-select --install
-
-### Drag to applications folder Apps
-
-* [Google Chrome](https://www.google.com/chrome/)
-* [GPG Suite](https://gpgtools.org/)
-* [iTerm2](https://iterm2.com/downloads/stable/latest)
-* [ShifIt](https://github.com/fikovnik/ShiftIt/releases)
-* [Synergy](http://synergy-project.org/)
-* [Firefox](https://getfirefox.com)
-* [Thunderbird](https://www.mozilla.org/en-US/thunderbird/)
-* [Xquartz](http://xquartz.macosforge.org/)
-* [MacTex](http://tug.org/cgi-bin/mactex-download/MacTeX.pkg)
-* [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
-* [Virtualbox & Extension Pack](https://www.virtualbox.org/wiki/Downloads)
-* [LibreOffice](https://www.libreoffice.org/download)
-* [Sublime Text 3](https://www.sublimetext.com/3)
-* [CleanMyMac 3](http://macpaw.com/cleanmymac)
-* [0xed](http://www.suavetech.com/cgi-bin/download.cgi?0xED.tar.bz2)
-* [Google Drive](https://www.google.com/drive/download/)
-* [SpamSieve](https://c-command.com/spamsieve/)
-* [TorBrowser](https://www.torproject.org/projects/torbrowser.html.en#downloads)
-* [VLC](https://www.videolan.org/vlc/download-macosx.html)
-* [Adobe CC](https://creative.adobe.com/products/download/creative-cloud)
-* [SDFormatter](https://www.sdcard.org/downloads/formatter_4/eula_mac/index.html)
-* [Steam](https://steamcdn-a.akamaihd.net/client/installer/steam.dmg)
-* [Viber Desktop](https://download.cdn.viber.com/desktop/mac/Viber.dmg)
-* [Whatsapp](https://web.whatsapp.com/desktop/mac/files/WhatsApp.dmg)
-* [Line](https://line.me/download)
-* [Spotify](https://www.spotify.com/lu-de/download/mac/)
-
-#### Archived
-* [Jdisk Report](http://www.jgoodies.com/downloads/jdiskreport/)
-* [Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)
-* [Owncloud](https://owncloud.org/install/#install-clients)
-* [Dropbox](https://www.dropbox.com/downloading)
-* [Dia](http://dia-installer.de/download/macosx.html.en)
-* [Gimp](https://www.gimp.org/downloads/)
-* [f.lux](https://justgetflux.com/dlmac.html)
-* [mBlock](http://www.mblock.cc/)
-* [Arduino](https://www.arduino.cc/en/Main/Software)
-* [Ardublock](http://blog.ardublock.com/engetting-started-ardublockzhardublock/)
-* [Tunnelblick](https://tunnelblick.net/downloads.html)
+See [macOS Desktop](../Sysadmin/macOS/Desktop.md)
 
 ### Shell install things
 
@@ -95,12 +45,6 @@ mkdir ~/Desktop/code/ && cd ~/Desktop/code
 git clone git@github.com:powerline/fonts.git
 cd fonts
 ./install.sh
-```
-
-#### Sublime
-
-```
-
 ```
 
 #### Usb-Serial
@@ -181,81 +125,6 @@ pip3 install hg+http://bitbucket.org/pygame/pygame
 
 Main install [README.md](https://github.com/CoderDojoLu/pgzero-examples/blob/master/README.md)
 
-#### [Homebrew](http://brew.sh/)
-
-##### Install
-
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-``` 
-
-###### [brew Cask](https://github.com/caskroom/homebrew-cask)
-
-```
-brew install caskroom/cask/brew-cask
-```
-
-##### brew packages
-
-```
-brew install \
-baobab \
-contacts \
-csshx \
-dialog \
-dos2unix \
-elinks \
-enscript \
-exiftool \
-ffmpeg \
-findutils \
-git-lfs \
-gnu-tar \
-htop-osx \
-hunspell \
-imagemagick \
-imapfilter \
-irssi \
-jq \
-khard \
-khal \
-libav \
-lynx \
-mercurial \
-msmtp \
-mu \
-muttils \
-neovim \
-ngrep \
-node \
-nodeenv \
-offlineimap \
-p7zip \
-python3 \
-rbenv \
-reattach-to-user-namespace \
-redis \
-rmate \
-ssh-copy-id \
-terminal-notifier \
-unrar \
-urlview \
-vdirsyncer \
-w3m \
-wemux \
-wget \
-youtube-dl \
-z \
-zsh \
-zsh-syntax-highlighting
-
-brew install --with-override-system-vi --with-python3  vim
-brew install --with-libotr bitlbee
-brew install --with-python3 notmuch
-brew install --with-pygtk nmap # Adds zenmap
-brew install --with-utf8proc tmux
-```
-
 #### Printing with lpr
 
 First, add LPD Printer. Second check what the device name is.
@@ -268,60 +137,9 @@ export ENSCRIPT
 /usr/local/bin/enscript -p - $1 | /usr/bin/lpr -P printer_office_lan_LPD
 ```
 
-#### lessfilter
-
-```
-pip3 install pygments
-```
-
-#### mutt et al.
-
-```
-mkdir ~/.signatures # ln -s your sigs.
-pip3 install git+https://github.com/honza/mutt-notmuch-py.git
-brew tap neomutt/homebrew-neomutt
-brew install --with-gpgme --with-libidn --with-notmuch-patch --with-s-lang neomutt
-sudo -u steve /usr/bin/security -v add-internet-password -a steve@localhost.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
-sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@securitymadein.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
-sudo -u steve /usr/bin/security -v add-internet-password -a steve.clement@x.circl.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
-sudo -u steve /usr/bin/security -v add-internet-password -a steve@ion.lu -s mail.mbox.lu /Users/steve/Library/Keychains/login.keychain
-```
-
-#### vdirsyncer et al.
-
-brew install vdirsyncer khal khard
-
-```bash
-ln -s ~/truecrypt1/dotfiles/.config/vdirsyncer .vdirsyncer
-vdirsyncer discover steve_calendar
-vdirsyncer discover steve_contacts
-vdirsyncer sync
-```
-
-
-
-
-To make sure gpg works add a symlink to gpg from gpg2
-
-```
-ln -s /usr/local/bin/gpg2  /usr/local/bin/gpg
-```
-
-* [Install mutt](../Sysadmin/OSX/mutt.md)
 * [Old Docs](../Sysadmin/OSX/Tips.md)
 * [More Docs](../InfoSec/GeneralProtection.md)
 * [Python Setup](../Devel/python.md)
-
-### Finder Tweaks
-
-* cmd , -> General, Sidebar, Advanced
-* List view -> View -> Show View Options -> Calculate all sizes etc -> Use as Defaults
-
-## Webapps
-
-### Slack Dracula
-
-https://draculatheme.com/slack/
 
 ### Ruby Gems
 

@@ -9,6 +9,16 @@ sudo apt upgrade --without-new-pkgs
 sudo apt full-upgrade
 ```
 
+# set locale
+
+C stands for Computer - [en_US vs C locale](https://stackoverflow.com/questions/55673886/what-is-the-difference-between-c-utf-8-and-en-us-utf-8-locales)
+
+```
+sudo apt install locales
+sudo dpkg-reconfigure locales
+```
+
+
 # update default editor
 
 ```

@@ -1,6 +1,4 @@
-<<TableOfContents>>
-
-# Protecting your Valuables on modern *nix systems in 2017
+# Protecting your Valuables on modern *nix systems in 2024
 
 As a modern-day Sysadmin Pirate (or Ninja) you have a few artefacts you don't want to loose or leave lying around plain-text on your Disk or take to con.
 
