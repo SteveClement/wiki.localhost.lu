@@ -15,18 +15,24 @@ Alacritty doesn't create the config file for you, but it looks for one in the fo
     $HOME/.config/alacritty/alacritty.toml
     $HOME/.alacritty.toml
 
-## reinstall macOS
+## reinstall macOS base OS
 
 [Official notes](https://support.apple.com/en-us/102655)
 
 - Shut down your Mac
 
-- Start up from macOS Recovery by holding power button
+When the system shuts down, follow these steps:
+
+1. Wait 25 seconds for the system to fully shut down.
+2. Press and hold down the power button to power on the system.
+   * It is important that the system be fully powered off before this step,
+     and that you press and hold down the button once, not multiple times.
+     This is required to put the machine into the right mode.
+   * Once you see `loading Options`, you can release the power button.
 
 - Reinstall macOS from Recovery
 
-Eventually go into `Options` and format your disk.
-
+Eventually go into `Options` and format your disk if necessary.
 
 ## Keyboard repeat rate
 
