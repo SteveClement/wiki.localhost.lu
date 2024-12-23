@@ -13,8 +13,13 @@ To bootstrap the machine you first need to:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-- clone the `truecrypt1` and `NONAME` folder into your homedir
-- run `prep.sh`
+- clone the wiki, `truecrypt1` and `NONAME` folder into your homedir
+
+```
+git clone git@github.com:SteveClement/wiki.localhost.lu.git
+```
+
+- run `~/wiki.localhost.lu/Sysadmin/MacOS/prep.sh`
 
 - Login to Visual Code
 

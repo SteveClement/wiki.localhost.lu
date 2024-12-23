@@ -9,12 +9,15 @@ BREW_LIST="brew.lst"
 
 MAS_LIST="mas.lst"
 
+CUR_DIR="$(pwd)"
+
 symlinks() {
     # Read each line from the input file
     while IFS="," read -r link target; do
       # Generate and print the ln -s command
       echo "ln -s ${target} ${link}"
-    done < "$SYMLINKS"
+      if ${link}
+    done < "${CUR_DIR}/${SYMLINKS}"
 }
 
 
@@ -27,7 +30,7 @@ install_brew() {
 }
 
 download_synergy() {
-    wget synergy.dmg
+    wget https://localhost.lu/synergy.dmg -O /tmp/synergy.dmg
 }
 
 install_synergy() {
@@ -36,4 +39,5 @@ install_synergy() {
     sudo cp -R /Volumes/synergy/Synergy.app /Applications/
 }
 
+cd ~
 symlinks
