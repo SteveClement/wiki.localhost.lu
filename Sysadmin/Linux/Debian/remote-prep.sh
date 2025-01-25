@@ -137,6 +137,10 @@ if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
   fi
 fi
 
+debug "FIX ME - Checking for correct locale config" # TODO
+##sudo locale-gen en_US.UTF-8
+##sudo update-locale LANG=en_US.UTF-8
+
 debug "Checking if remote host is prepped"
 if [[ "${PREP}" == "skip" ]]; then
   echo "Even if prepped we still install"
