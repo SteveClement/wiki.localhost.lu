@@ -1,12 +1,17 @@
 # OSX brew
 
-## Adding dsniff
+## Create dsniff formula
 
 ```
 brew create http://monkey.org/~dugsong/dsniff/dsniff-2.3.tar.gz
 ```
 
-## Add dependency libnet and libnids
+## Add dependencies
+
+* libnet
+* libnids
+* cmake
+* gcc
 
 ```
 brew edit dsniff
