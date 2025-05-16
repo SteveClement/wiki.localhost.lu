@@ -434,7 +434,7 @@ python3 bleachbit/GUI.py
 
 # Archive
 
-/!\ not maintained
+:warning: not maintained
 
 ## winff (defunct, lazarus not in OpenBSD 6.6)
 
