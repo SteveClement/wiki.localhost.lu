@@ -1,42 +1,46 @@
-# Building an OpenBSD 7.2 Desktop
+# Building an OpenBSD 7.7 Desktop
 
-Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee. Can be avoided by adding options. (e.g: bitlbee--libpurple-otr)
+Packages asking questions: irssi, conky, neomutt, urlview, pidgin, bitlbee, ghostscript. Can be avoided by adding options. (e.g: bitlbee--libpurple-otr or python--%3)
 
-```
+```bash
+# mandatory password
 echo "permit keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
+# nopass
+echo "permit nopass keepenv setenv { PKG_PATH ENV PS1 SSH_AUTH_SOCK } :wheel" > /etc/doas.conf
 ```
 
 ## Heavy install
-```
+```bash
 doas pkg_add -v xfce openbox fbpanel ntp munin-node gsed pkglocatedb
-doas pkg_add -v firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme conky--
+doas pkg_add -v firefox obconf obmenu leafpad pcmanfm-qt nitrogen xfce4-terminal intltool gnome-icon-theme conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot mplayer ubuntu-fonts
-doas pkg_add -v gnome neomutt--gpgme-sasl terminator cups gimp libreoffice
-doas pkg_add -v alacritty xfce4-clipman st vnstat mu dialog thunderbird chromium
+doas pkg_add -v gnome neomutt--gpgme-sasl terminator cups gimp-3.0.2 libreoffice
+doas pkg_add -v alacritty xfce4-clipman st--scrollback vnstat mu dialog thunderbird chromium
 doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
 # Tools
-doas pkg_add -v htop
+doas pkg_add -v htop git
 echo "alias vi=nvim" |tee -a ~/.profile
 echo "alias vi=nvim" |tee -a ~/.zshrc
 echo "alias vi=nvim" |doas tee -a /root/.profile
 ```
 
 ## Lighter install
-```
-doas pkg_add -v i3-gaps i3status i3lock # others in-lieu of: i3, i3-mousedrag 
+```bash
+doas pkg_add -v i3 i3status i3lock # others in-lieu of: i3, i3-mousedrag 
 doas pkg_add -v arandr polybar rofi feh scrot munin-node gsed pkglocatedb
-doas pkg_add -v firefox leafpad pcmanfm nitrogen intltool conky--
+doas pkg_add -v firefox leafpad pcmanfm-qt nitrogen intltool conky--
 doas pkg_add -v neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer ranger bash zsh irssi filezilla
 doas pkg_add -v youtube-dl scrot mplayer ubuntu-fonts
 doas pkg_add -v neomutt--gpgme-sasl terminator
 # Tools
-doas pkg_add -v htop
+doas pkg_add -v htop git
 # Print
+doas pkg_add -v ghostscript--gtk
 doas pkg_add -v cups
-doas pkg_add -v gimp libreoffice
-doas pkg_add -v alacritty st vnstat mu dialog thunderbird
+doas pkg_add -v gimp-3.0.2 libreoffice
+doas pkg_add -v alacritty st--scrollback vnstat mu dialog thunderbird
 doas pkg_add -v imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus
 doas pkg_add -v pidgin-otr pidgin-libnotify pidgin-guifications py3-pip
 echo "alias vi=nvim" |tee -a ~/.profile
@@ -46,12 +50,12 @@ echo "alias vi=nvim" |doas tee -a /root/.profile
 
 ## CJK input foo
 
-```
+```bash
 fcitx # arimasu
 ```
 
 # one-liner of all the above (heavy)
-```
+```bash
 doas pkg_add -v xfce openbox fbpanel munin-node gsed pkglocatedb firefox obconf obmenu leafpad pcmanfm nitrogen xfce4-terminal intltool gnome-icon-theme conky-- neovim dillo geany roxterm geeqie jhead ImageMagick mpv vlc smplayer file-roller bash zsh irssi filezilla youtube-dl scrot mplayer ubuntu-fonts gnome neomutt--gpgme-sasl terminator cups gimp libreoffice alacritty xfce4-clipman st vnstat mu dialog thunderbird chromium imapfilter urlview-- msmtp pidgin-- procmail dsh bitlbee--libpurple-otr findutils mairix ibus pidgin-otr pidgin-libnotify pidgin-guifications py3-pip py-pip
 ```
 
@@ -59,108 +63,100 @@ doas pkg_add -v xfce openbox fbpanel munin-node gsed pkglocatedb firefox obconf 
 ```
 /etc/rc.d/avahi_daemon
 /etc/rc.d/avahi_dnsconfd
-/etc/rc.d/bitlbee
+/etc/rc.d/gdm
+/etc/rc.d/nmbd
+/etc/rc.d/samba
+/etc/rc.d/smbd
+/etc/rc.d/winbindd
 /etc/rc.d/cups_browsed
 /etc/rc.d/cupsd
-/etc/rc.d/gdm
+/etc/rc.d/xntpd
+/etc/rc.d/bitlbee
+/etc/rc.d/vnstatd
 /etc/rc.d/messagebus
 /etc/rc.d/munin_asyncd
 /etc/rc.d/munin_node
-/etc/rc.d/nmbd
-/etc/rc.d/samba
-/etc/rc.d/samba_ad_dc
 /etc/rc.d/saslauthd
-/etc/rc.d/smbd
-/etc/rc.d/vnstatd
-/etc/rc.d/winbindd
+/etc/rc.d/gitdaemon
 ```
 
 # New and changed readme(s):
 ```
- /usr/local/share/doc/pkg-readmes/avahi
-	/usr/local/share/doc/pkg-readmes/bitlbee
-	/usr/local/share/doc/pkg-readmes/consolekit2
-	/usr/local/share/doc/pkg-readmes/cups
-	/usr/local/share/doc/pkg-readmes/cups-filters
-	/usr/local/share/doc/pkg-readmes/dbus
-	/usr/local/share/doc/pkg-readmes/ffmpeg
-	/usr/local/share/doc/pkg-readmes/firefox
-	/usr/local/share/doc/pkg-readmes/foomatic-db-engine
-	/usr/local/share/doc/pkg-readmes/gamin
-	/usr/local/share/doc/pkg-readmes/glib2
-	/usr/local/share/doc/pkg-readmes/gnome
-	/usr/local/share/doc/pkg-readmes/gnupg
-	/usr/local/share/doc/pkg-readmes/gtk+2
-	/usr/local/share/doc/pkg-readmes/gtk+3
-	/usr/local/share/doc/pkg-readmes/ibus
-	/usr/local/share/doc/pkg-readmes/libtermkey
-	/usr/local/share/doc/pkg-readmes/mplayer
-	/usr/local/share/doc/pkg-readmes/munin-node
-	/usr/local/share/doc/pkg-readmes/neovim
-	/usr/local/share/doc/pkg-readmes/samba
-	/usr/local/share/doc/pkg-readmes/sdl2
-	/usr/local/share/doc/pkg-readmes/texlive_base
-	/usr/local/share/doc/pkg-readmes/thunderbird
-	/usr/local/share/doc/pkg-readmes/upower
-	/usr/local/share/doc/pkg-readmes/vnstat
-	/usr/local/share/doc/pkg-readmes/xdg-utils
-	/usr/local/share/doc/pkg-readmes/xfce
+        /usr/local/share/doc/pkg-readmes/glib2
+        /usr/local/share/doc/pkg-readmes/consolekit2
+        /usr/local/share/doc/pkg-readmes/dbus
+        /usr/local/share/doc/pkg-readmes/libinotify
+        /usr/local/share/doc/pkg-readmes/munin-node
+        /usr/local/share/doc/pkg-readmes/terminus-font
+        /usr/local/share/doc/pkg-readmes/firefox
+        /usr/local/share/doc/pkg-readmes/ffmpeg
+        /usr/local/share/doc/pkg-readmes/gtk+2
+        /usr/local/share/doc/pkg-readmes/gtk+3
+        /usr/local/share/doc/pkg-readmes/gtk+4
+        /usr/local/share/doc/pkg-readmes/neovim
+        /usr/local/share/doc/pkg-readmes/sdl2
+        /usr/local/share/doc/pkg-readmes/xdg-utils
+        /usr/local/share/doc/pkg-readmes/mplayer
+        /usr/local/share/doc/pkg-readmes/gnupg
+        /usr/local/share/doc/pkg-readmes/cups
+        /usr/local/share/doc/pkg-readmes/cups-filters
+        /usr/local/share/doc/pkg-readmes/foomatic-db-engine
+        /usr/local/share/doc/pkg-readmes/thunderbird
+        /usr/local/share/doc/pkg-readmes/bitlbee
+        /usr/local/share/doc/pkg-readmes/gtk+2
+        /usr/local/share/doc/pkg-readmes/ibus
+        /usr/local/share/doc/pkg-readmes/ntp
+        /usr/local/share/doc/pkg-readmes/xfce
+        /usr/local/share/doc/pkg-readmes/firefox
+        /usr/local/share/doc/pkg-readmes/chromium
+        /usr/local/share/doc/pkg-readmes/avahi
+        /usr/local/share/doc/pkg-readmes/gnome
+        /usr/local/share/doc/pkg-readmes/samba
+        /usr/local/share/doc/pkg-readmes/texlive_base
+        /usr/local/share/doc/pkg-readmes/upower
+        /usr/local/share/doc/pkg-readmes/git
 ```
 
 # Package Messages
+
 ```
---- +adobe-source-code-pro-2.030p0 -------------------
-You may wish to update your font path for /usr/local/share/fonts/adobe-source-code-pro
---- +cantarell-fonts-0.111 -------------------
-You may wish to update your font path for /usr/local/share/fonts/cantarell
---- +ghostscript-fonts-8.11p3 -------------------
-You may wish to update your font path for /usr/local/share/fonts/ghostscript
---- +hunspell-1.6.2p0 -------------------
+--- +hunspell-1.7.2 -------------------
 Install mozilla dictionaries for extra hunspell languages.
 e.g.
     # pkg_add mozilla-dicts-ca
---- +noto-emoji-20180810 -------------------
-You may wish to update your font path for /usr/local/share/fonts/noto
---- +noto-fonts-20171024 -------------------
-You may wish to update your font path for /usr/local/share/fonts/noto
---- +py-pip-19.1.1 -------------------
-If you want to use this package as default pip, as root create a
-symbolic link like so (overwriting any previous default):
-    ln -sf /usr/local/bin/pip2.7 /usr/local/bin/pip
---- +py3-pip-19.1.1 -------------------
-If you want to use this package as default pip, as root create a
-symbolic link like so (overwriting any previous default):
-    ln -sf /usr/local/bin/pip3.7 /usr/local/bin/pip
---- +python-2.7.16p1 -------------------
-If you want to use this package as your default system python, as root
-create symbolic links like so (overwriting any previous default):
- ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
- ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
- ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
- ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
---- +smplayer-19.5.0 -------------------
+--- +smplayer-24.5.0 -------------------
 Please note that the audio equaliser option can not be used with smplayer.
---- +ubuntu-fonts-0.83p1 -------------------
-You may wish to update your font path for /usr/local/share/fonts/ubuntu
+--- +i3status-2.15 -------------------
+Before running i3status, a configuration file needs to be created.
+Copy the provided /usr/local/share/examples/i3status/i3status.conf
+to ~/.i3status.conf and modify as necessary.
+--- +flite-2.2 -------------------
+The festival lite package was modified from the original source.
+You can find the modifications on
+https://cvsweb.openbsd.org/ports/audio/flite/patches/
 ```
 
 
 /etc/login.conf
 ```
---- /etc/login.conf     Fri Mar  7 19:28:16 2014
-+++ /etc/login.conf     Fri Mar  7 19:32:31 2014
-@@ -43,8 +43,8 @@
+--- /etc/login.conf
++++ /etc/login.conf
+@@ -41,12 +41,12 @@ auth-ftp-defaults:auth-ftp=passwd:
  default:\
         :path=/usr/bin /bin /usr/sbin /sbin /usr/X11R6/bin /usr/local/bin /usr/local/sbin:\
         :umask=022:\
--       :datasize-max=768M:\
--       :datasize-cur=768M:\
+-       :datasize-max=1536M:\
+-       :datasize-cur=1536M:\
 +       :datasize-max=2048M:\
 +       :datasize-cur=2048M:\
         :maxproc-max=256:\
         :maxproc-cur=128:\
--        :openfiles-cur=512:\
-+        :openfiles-cur=4096:\
+        :openfiles-max=1024:\
+-       :openfiles-cur=512:\
++       :openfiles-cur=4096:\
+        :stacksize-cur=4M:\
+        :localcipher=blowfish,a:\
+        :tc=auth-defaults:\
 ```
 
 /etc/fstab
@@ -216,12 +212,12 @@ doas pkg_add -v chromium
 ### From source
 
 ```
-doas pkg_add -v libtool git gcc g++ swig python--%3.7 gmake autoconf--%2.71 automake--%1.16 cmake
+doas pkg_add -v libtool git gcc--%11 g++--%11 g++ swig python--%3 gmake autoconf--%2.72 automake--%1.17 cmake
 cd
-mkdir work
-cd work
-export AUTOMAKE_VERSION=1.16
-export AUTOCONF_VERSION=2.71
+mkdir code
+cd code
+export AUTOMAKE_VERSION=1.17
+export AUTOCONF_VERSION=2.72
 git clone https://github.com/znc/znc.git --recursive
 cd znc
 mkdir build
@@ -240,20 +236,20 @@ cd ~/.rbenv && src/configure && make -C src
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
-## virtualenv/pipenv
-
-```
-doas ln -sf /usr/local/bin/pip3.7 /usr/local/bin/pip
-doas ln -s /usr/local/bin/python3.7 /usr/local/bin/python
-doas pip install virtualenvwrapper virtualenv pipenv
-```
-
 ## lxappearance
+
+### pkg
+
+```
+doas pkg_add -v lxappearance
+```
+
+### From source
 
 ```
 doas pkg_add -v gmake
 cd
-cd work
+cd code
 wget -O lxappearance-0.6.3.tar.xz "https://downloads.sourceforge.net/project/lxde/LXAppearance/lxappearance-0.6.3.tar.xz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flxde%2Ffiles%2FLXAppearance%2F&ts=1492517080&use_mirror=freefr"
 unxz lxappearance-0.6.3.tar.xz
 tar xfv lxappearance-0.6.3.tar
@@ -424,16 +420,21 @@ ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
 https://www.bleachbit.org/
 https://www.bleachbit.org/download/source
 http://sourceforge.net/projects/bleachbit/files/bleachbit-2.0.tar.bz2
+https://sourceforge.net/projects/bleachbit/files/bleachbit/5.0.0/bleachbit-5.0.0.tar.bz2/download
 
 ```
 cd
 cd work
-wget https://download.bleachbit.org/bleachbit-3.0.tar.bz2
-tar xfvj bleachbit-3.0.tar.bz2
-cd bleachbit-3.0
+wget -O bleachbit-5.0.0.tar.bz2 https://sourceforge.net/projects/bleachbit/files/bleachbit/5.0.0/bleachbit-5.0.0.tar.bz2/download
+tar xfvj bleachbit-5.0.0.tar.bz2
+cd bleachbit-5.0.0
 make -C po local
-python2.7 bleachbit/GUI.py
+python3 bleachbit/GUI.py
 ```
+
+# Archive
+
+/!\ not maintained
 
 ## winff (defunct, lazarus not in OpenBSD 6.6)
 
