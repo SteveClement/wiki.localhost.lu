@@ -83,6 +83,14 @@ PROXY_EXPORT="export https_proxy=$https_proxy; export http_proxy=$http_proxy"
 
 debug "Fetching remote user"
 REMOTE_USER=$(R_SSH "whoami|sed 's/\r//g'")
+if [[ "$REMOTE_USER" == bash:\ warning:* ]]; then
+  echo "Starts with 'bash: warning: setlocale: LC_ALL:'"
+  # fixLocale # FIXME sudo precedence and functions
+  R_SSH "sudo sed -i 's/^# *\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen"
+  R_SSH "sudo locale-gen en_US.UTF-8"
+  R_SSH "sudo update-locale LANG=en_US.UTF-8"
+  REMOTE_USER=$(R_SSH "whoami|sed 's/\r//g'")
+fi
 debug "Fetching remote home"
 REMOTE_HOME=$(R_SSH "pwd|sed 's/\r//g'")
 debug "Fetching remote shell"
@@ -117,6 +125,7 @@ if [[ -z ${REMOTE_USER} ]]; then
   exit 255
 fi
 
+# Bug: This does not work when sudo is not installed
 debug "Checking for sudo"
 R_SSH_SUDO=$(R_SSH sudo -V > /dev/null; echo $?)
 if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
@@ -129,17 +138,13 @@ if [[ "${R_SSH_SUDO}" != "0" && "${REMOTE_OS}" != "OpenBSD" ]]; then
     exit 255
   fi
   echo -n "root "
-  R_SSH su -c "/sbin/usermod\ -a\ -G\ sudo\ ${REMOTE_USER}"
+  R_SSH "echo 'usermod -a -G sudo ${REMOTE_USER}' | su - root"
   SUDO_INST=$(echo $?)
   if [[ "${SUDO_INST}" != "0" ]]; then
     echo "Installing sudo failed, investigate manually."
     exit 255
   fi
 fi
-
-debug "FIX ME - Checking for correct locale config" # TODO
-##sudo locale-gen en_US.UTF-8
-##sudo update-locale LANG=en_US.UTF-8
 
 debug "Checking if remote host is prepped"
 if [[ "${PREP}" == "skip" ]]; then
@@ -180,6 +185,14 @@ if [[ "${PREPPED}" == "0" ]]; then
 fi
 
 ###### Functions ######
+
+# TODO make locale a variable ontop
+fixLocale () {
+  R_SSH "sudo sed -i 's/^# *\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen"
+  R_SSH "sudo locale-gen en_US.UTF-8"
+  R_SSH "sudo update-locale LANG=en_US.UTF-8"
+  echo "Locale fixed"
+}
 
 mkdirs () {
   R_SSH mkdir -p .local/share/nvim/site/autoload
@@ -278,7 +291,7 @@ fi
 debug "Installing nvim Plugs on remote host"
 # prefix + I -> Install plugs
 R_SSH "$PROXY_EXPORT ; wget -x -O .local/share/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-R_SSH "nvim +'PlugInstall' +qa --headless"
+R_SSH "$PROXY_EXPORT ; nvim +'PlugInstall' +qa --headless"
 
 R_SSH "echo ${VERSION} > .remote_prep"
 echo ""
