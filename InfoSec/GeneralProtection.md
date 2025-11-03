@@ -1,8 +1,4 @@
-# Protecting your Valuables on modern *nix systems in 2024
-
-As a modern-day Sysadmin Pirate (or Ninja) you have a few artefacts you don't want to loose or leave lying around plain-text on your Disk or take to con.
-
-Mine are:
+# Protecting your Valuables
 
  * SSH-Keys
  * GnuPG Keys
@@ -47,9 +43,12 @@ Once you have that layer of protection in place think of other directories you w
  ~/.mozilla/firefox/${your_profile}/signons*
  ~/.mozilla/firefox/${your_profile}/cookies* (for the paranoid)
  ~/.mozilla/firefox/${your_profile}/formhistory.sqlite (for the ones who know why)
- ~/.thunderbird/${your_profile}/key3.db
+ ~/.thunderbird/${your_profile}/key5.db
  ~/.thunderbird/${your_profile}/signons*
  ~/.thunderbird/${your_profile}/cookies* (for the very paranoid)
+ ~/.betterbird/${your_profile}/key3.db
+ ~/.betterbird/${your_profile}/signons*
+ ~/.betterbird/${your_profile}/cookies* (for the very paranoid)
  ~/.mutt
  ~/.gconf
  ~/keepassx.kdb
